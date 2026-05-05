@@ -1,0 +1,21 @@
+{
+  "n": 60,
+  "accuracy": 0.6166666666666667,
+  "macro_f1": 0.5832074901842343,
+  "precision_pos": 0.7142857142857143,
+  "recall_pos": 0.3448275862068966,
+  "confusion_matrix": {
+    "tn": 27,
+    "fp": 4,
+    "fn": 19,
+    "tp": 10
+  },
+  "mean_confidence": 0.6934423940306271,
+  "mean_conf_correct": 0.7081734080581948,
+  "mean_conf_wrong": 0.6697446758123657,
+  "prompt_id": "standard",
+  "use_subjects": false,
+  "base_model": "deepseek-ai/deepseek-llm-7b-base",
+  "adapter_dir": "adapters/deepseek_healthcare_nosubj/best_adapter",
+  "test_csv": "LIAR/preprocessed_test_cleaned_binary_taxes.csv"
+}

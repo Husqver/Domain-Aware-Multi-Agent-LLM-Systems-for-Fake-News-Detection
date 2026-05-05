@@ -1,0 +1,21 @@
+{
+  "n": 1267,
+  "accuracy": 0.664561957379637,
+  "macro_f1": 0.640466580534885,
+  "precision_pos": 0.6640181611804767,
+  "recall_pos": 0.819327731092437,
+  "confusion_matrix": {
+    "tn": 257,
+    "fp": 296,
+    "fn": 129,
+    "tp": 585
+  },
+  "mean_confidence": 0.7199855035571957,
+  "mean_conf_correct": 0.7472863042617771,
+  "mean_conf_wrong": 0.6658977995730603,
+  "prompt_id": "standard",
+  "use_subjects": false,
+  "base_model": "meta-llama/Llama-3.1-8B-Instruct",
+  "adapter_dir": "adapters/llama_general_nosubj/best_adapter",
+  "test_csv": "../1_Basics_Masterthesis/LIAR/preprocessed_test_cleaned_binary.csv"
+}

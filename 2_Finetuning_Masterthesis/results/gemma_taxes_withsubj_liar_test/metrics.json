@@ -1,0 +1,21 @@
+{
+  "n": 1267,
+  "accuracy": 0.6053670086819258,
+  "macro_f1": 0.6049927420923724,
+  "precision_pos": 0.708171206225681,
+  "recall_pos": 0.5098039215686274,
+  "confusion_matrix": {
+    "tn": 403,
+    "fp": 150,
+    "fn": 350,
+    "tp": 364
+  },
+  "mean_confidence": 0.8852810005322783,
+  "mean_conf_correct": 0.8909632627193853,
+  "mean_conf_wrong": 0.8765644103372559,
+  "prompt_id": "standard",
+  "use_subjects": true,
+  "base_model": "google/gemma-7b-it",
+  "adapter_dir": "adapters/gemma_taxes_withsubj/best_adapter",
+  "test_csv": "../1_Basics_Masterthesis/LIAR/preprocessed_test_cleaned_binary.csv"
+}

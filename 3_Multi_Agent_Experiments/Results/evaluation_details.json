@@ -1,0 +1,2036 @@
+{
+  "deepseek_LIAR_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1233,
+        "accuracy": 0.5020275750202757,
+        "precision_true": 0.6723404255319149,
+        "recall_true": 0.2273381294964029,
+        "f1_true": 0.33978494623655914,
+        "confusion_matrix": [
+          [
+            158,
+            537
+          ],
+          [
+            77,
+            461
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.23      0.34       695\n       False       0.46      0.86      0.60       538\n\n    accuracy                           0.50      1233\n   macro avg       0.57      0.54      0.47      1233\nweighted avg       0.58      0.50      0.45      1233\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5311760063141279,
+        "precision_true": 0.6948051948051948,
+        "recall_true": 0.29971988795518206,
+        "f1_true": 0.4187866927592955,
+        "confusion_matrix": [
+          [
+            214,
+            500
+          ],
+          [
+            94,
+            459
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.69      0.30      0.42       714\n       False       0.48      0.83      0.61       553\n\n    accuracy                           0.53      1267\n   macro avg       0.59      0.56      0.51      1267\nweighted avg       0.60      0.53      0.50      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1089,
+        "accuracy": 0.45362718089990817,
+        "precision_true": 0.7555555555555555,
+        "recall_true": 0.05501618122977346,
+        "f1_true": 0.10256410256410256,
+        "confusion_matrix": [
+          [
+            34,
+            584
+          ],
+          [
+            11,
+            460
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.76      0.06      0.10       618\n       False       0.44      0.98      0.61       471\n\n    accuracy                           0.45      1089\n   macro avg       0.60      0.52      0.35      1089\nweighted avg       0.62      0.45      0.32      1089\n"
+      },
+      "expert__economy": {
+        "n_eval": 1083,
+        "accuracy": 0.5355493998153278,
+        "precision_true": 0.6956521739130435,
+        "recall_true": 0.3142389525368249,
+        "f1_true": 0.43291995490417134,
+        "confusion_matrix": [
+          [
+            192,
+            419
+          ],
+          [
+            84,
+            388
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.70      0.31      0.43       611\n       False       0.48      0.82      0.61       472\n\n    accuracy                           0.54      1083\n   macro avg       0.59      0.57      0.52      1083\nweighted avg       0.60      0.54      0.51      1083\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1143,
+        "accuracy": 0.6255468066491688,
+        "precision_true": 0.630184331797235,
+        "recall_true": 0.8363914373088684,
+        "f1_true": 0.7187910643889619,
+        "confusion_matrix": [
+          [
+            547,
+            107
+          ],
+          [
+            321,
+            168
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.63      0.84      0.72       654\n       False       0.61      0.34      0.44       489\n\n    accuracy                           0.63      1143\n   macro avg       0.62      0.59      0.58      1143\nweighted avg       0.62      0.63      0.60      1143\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.48382004735595896,
+        "precision_true": 0.6595744680851063,
+        "recall_true": 0.17366946778711484,
+        "f1_true": 0.2749445676274945,
+        "confusion_matrix": [
+          [
+            124,
+            590
+          ],
+          [
+            64,
+            489
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.17      0.27       714\n       False       0.45      0.88      0.60       553\n\n    accuracy                           0.48      1267\n   macro avg       0.56      0.53      0.44      1267\nweighted avg       0.57      0.48      0.42      1267\n"
+      }
+    }
+  },
+  "deepseek_LIAR_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1244,
+        "accuracy": 0.52491961414791,
+        "precision_true": 0.6509695290858726,
+        "recall_true": 0.3357142857142857,
+        "f1_true": 0.4429783223374175,
+        "confusion_matrix": [
+          [
+            235,
+            465
+          ],
+          [
+            126,
+            418
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.34      0.44       700\n       False       0.47      0.77      0.59       544\n\n    accuracy                           0.52      1244\n   macro avg       0.56      0.55      0.51      1244\nweighted avg       0.57      0.52      0.51      1244\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5224940805051302,
+        "precision_true": 0.6552706552706553,
+        "recall_true": 0.32212885154061627,
+        "f1_true": 0.431924882629108,
+        "confusion_matrix": [
+          [
+            230,
+            484
+          ],
+          [
+            121,
+            432
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.32      0.43       714\n       False       0.47      0.78      0.59       553\n\n    accuracy                           0.52      1267\n   macro avg       0.56      0.55      0.51      1267\nweighted avg       0.58      0.52      0.50      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1062,
+        "accuracy": 0.4500941619585687,
+        "precision_true": 0.7017543859649122,
+        "recall_true": 0.06589785831960461,
+        "f1_true": 0.12048192771084337,
+        "confusion_matrix": [
+          [
+            40,
+            567
+          ],
+          [
+            17,
+            438
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.70      0.07      0.12       607\n       False       0.44      0.96      0.60       455\n\n    accuracy                           0.45      1062\n   macro avg       0.57      0.51      0.36      1062\nweighted avg       0.59      0.45      0.33      1062\n"
+      },
+      "expert__economy": {
+        "n_eval": 1038,
+        "accuracy": 0.5317919075144508,
+        "precision_true": 0.6677740863787376,
+        "recall_true": 0.3424190800681431,
+        "f1_true": 0.4527027027027027,
+        "confusion_matrix": [
+          [
+            201,
+            386
+          ],
+          [
+            100,
+            351
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.34      0.45       587\n       False       0.48      0.78      0.59       451\n\n    accuracy                           0.53      1038\n   macro avg       0.57      0.56      0.52      1038\nweighted avg       0.58      0.53      0.51      1038\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1124,
+        "accuracy": 0.6165480427046264,
+        "precision_true": 0.6175166297117517,
+        "recall_true": 0.8662519440124417,
+        "f1_true": 0.7210355987055016,
+        "confusion_matrix": [
+          [
+            557,
+            86
+          ],
+          [
+            345,
+            136
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.62      0.87      0.72       643\n       False       0.61      0.28      0.39       481\n\n    accuracy                           0.62      1124\n   macro avg       0.62      0.57      0.55      1124\nweighted avg       0.62      0.62      0.58      1124\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.489344909234412,
+        "precision_true": 0.6572769953051644,
+        "recall_true": 0.19607843137254902,
+        "f1_true": 0.30204962243797195,
+        "confusion_matrix": [
+          [
+            140,
+            574
+          ],
+          [
+            73,
+            480
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.20      0.30       714\n       False       0.46      0.87      0.60       553\n\n    accuracy                           0.49      1267\n   macro avg       0.56      0.53      0.45      1267\nweighted avg       0.57      0.49      0.43      1267\n"
+      }
+    }
+  },
+  "deepseek_finetuned_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1238,
+        "accuracy": 0.5266558966074314,
+        "precision_true": 0.6638176638176638,
+        "recall_true": 0.33238231098430815,
+        "f1_true": 0.4429657794676806,
+        "confusion_matrix": [
+          [
+            233,
+            468
+          ],
+          [
+            118,
+            419
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.33      0.44       701\n       False       0.47      0.78      0.59       537\n\n    accuracy                           0.53      1238\n   macro avg       0.57      0.56      0.52      1238\nweighted avg       0.58      0.53      0.51      1238\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6093133385951065,
+        "precision_true": 0.6763285024154589,
+        "recall_true": 0.5882352941176471,
+        "f1_true": 0.6292134831460674,
+        "confusion_matrix": [
+          [
+            420,
+            294
+          ],
+          [
+            201,
+            352
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.68      0.59      0.63       714\n       False       0.54      0.64      0.59       553\n\n    accuracy                           0.61      1267\n   macro avg       0.61      0.61      0.61      1267\nweighted avg       0.62      0.61      0.61      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1104,
+        "accuracy": 0.47282608695652173,
+        "precision_true": 0.7181818181818181,
+        "recall_true": 0.1253968253968254,
+        "f1_true": 0.21351351351351353,
+        "confusion_matrix": [
+          [
+            79,
+            551
+          ],
+          [
+            31,
+            443
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.72      0.13      0.21       630\n       False       0.45      0.93      0.60       474\n\n    accuracy                           0.47      1104\n   macro avg       0.58      0.53      0.41      1104\nweighted avg       0.60      0.47      0.38      1104\n"
+      },
+      "expert__economy": {
+        "n_eval": 1083,
+        "accuracy": 0.6214219759926131,
+        "precision_true": 0.671118530884808,
+        "recall_true": 0.6536585365853659,
+        "f1_true": 0.6622734761120264,
+        "confusion_matrix": [
+          [
+            402,
+            213
+          ],
+          [
+            197,
+            271
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.65      0.66       615\n       False       0.56      0.58      0.57       468\n\n    accuracy                           0.62      1083\n   macro avg       0.62      0.62      0.62      1083\nweighted avg       0.62      0.62      0.62      1083\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1170,
+        "accuracy": 0.6094017094017095,
+        "precision_true": 0.6052366565961732,
+        "recall_true": 0.9024024024024024,
+        "f1_true": 0.7245328511151296,
+        "confusion_matrix": [
+          [
+            601,
+            65
+          ],
+          [
+            392,
+            112
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.61      0.90      0.72       666\n       False       0.63      0.22      0.33       504\n\n    accuracy                           0.61      1170\n   macro avg       0.62      0.56      0.53      1170\nweighted avg       0.62      0.61      0.55      1170\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5240726124704025,
+        "precision_true": 0.6796116504854369,
+        "recall_true": 0.29411764705882354,
+        "f1_true": 0.41055718475073316,
+        "confusion_matrix": [
+          [
+            210,
+            504
+          ],
+          [
+            99,
+            454
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.68      0.29      0.41       714\n       False       0.47      0.82      0.60       553\n\n    accuracy                           0.52      1267\n   macro avg       0.58      0.56      0.51      1267\nweighted avg       0.59      0.52      0.49      1267\n"
+      }
+    }
+  },
+  "deepseek_finetuned_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1232,
+        "accuracy": 0.5186688311688312,
+        "precision_true": 0.6341463414634146,
+        "recall_true": 0.33815028901734107,
+        "f1_true": 0.4410933081998115,
+        "confusion_matrix": [
+          [
+            234,
+            458
+          ],
+          [
+            135,
+            405
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.63      0.34      0.44       692\n       False       0.47      0.75      0.58       540\n\n    accuracy                           0.52      1232\n   macro avg       0.55      0.54      0.51      1232\nweighted avg       0.56      0.52      0.50      1232\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.526440410418311,
+        "precision_true": 0.6706586826347305,
+        "recall_true": 0.3137254901960784,
+        "f1_true": 0.42748091603053434,
+        "confusion_matrix": [
+          [
+            224,
+            490
+          ],
+          [
+            110,
+            443
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.31      0.43       714\n       False       0.47      0.80      0.60       553\n\n    accuracy                           0.53      1267\n   macro avg       0.57      0.56      0.51      1267\nweighted avg       0.59      0.53      0.50      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1068,
+        "accuracy": 0.448501872659176,
+        "precision_true": 0.6956521739130435,
+        "recall_true": 0.05271828665568369,
+        "f1_true": 0.09800918836140889,
+        "confusion_matrix": [
+          [
+            32,
+            575
+          ],
+          [
+            14,
+            447
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.70      0.05      0.10       607\n       False       0.44      0.97      0.60       461\n\n    accuracy                           0.45      1068\n   macro avg       0.57      0.51      0.35      1068\nweighted avg       0.58      0.45      0.32      1068\n"
+      },
+      "expert__economy": {
+        "n_eval": 1010,
+        "accuracy": 0.5287128712871287,
+        "precision_true": 0.6702508960573477,
+        "recall_true": 0.3274956217162872,
+        "f1_true": 0.44,
+        "confusion_matrix": [
+          [
+            187,
+            384
+          ],
+          [
+            92,
+            347
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.33      0.44       571\n       False       0.47      0.79      0.59       439\n\n    accuracy                           0.53      1010\n   macro avg       0.57      0.56      0.52      1010\nweighted avg       0.59      0.53      0.51      1010\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1144,
+        "accuracy": 0.6031468531468531,
+        "precision_true": 0.6030612244897959,
+        "recall_true": 0.9009146341463414,
+        "f1_true": 0.7224938875305623,
+        "confusion_matrix": [
+          [
+            591,
+            65
+          ],
+          [
+            389,
+            99
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.60      0.90      0.72       656\n       False       0.60      0.20      0.30       488\n\n    accuracy                           0.60      1144\n   macro avg       0.60      0.55      0.51      1144\nweighted avg       0.60      0.60      0.54      1144\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.4909234411996843,
+        "precision_true": 0.6650717703349283,
+        "recall_true": 0.19467787114845939,
+        "f1_true": 0.30119176598049835,
+        "confusion_matrix": [
+          [
+            139,
+            575
+          ],
+          [
+            70,
+            483
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.19      0.30       714\n       False       0.46      0.87      0.60       553\n\n    accuracy                           0.49      1267\n   macro avg       0.56      0.53      0.45      1267\nweighted avg       0.57      0.49      0.43      1267\n"
+      }
+    }
+  },
+  "deepseek_general_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1222,
+        "accuracy": 0.4909983633387889,
+        "precision_true": 0.678391959798995,
+        "recall_true": 0.19480519480519481,
+        "f1_true": 0.30269058295964124,
+        "confusion_matrix": [
+          [
+            135,
+            558
+          ],
+          [
+            64,
+            465
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.68      0.19      0.30       693\n       False       0.45      0.88      0.60       529\n\n    accuracy                           0.49      1222\n   macro avg       0.57      0.54      0.45      1222\nweighted avg       0.58      0.49      0.43      1222\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.4964483030781373,
+        "precision_true": 0.6696428571428571,
+        "recall_true": 0.21008403361344538,
+        "f1_true": 0.31982942430703626,
+        "confusion_matrix": [
+          [
+            150,
+            564
+          ],
+          [
+            74,
+            479
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.21      0.32       714\n       False       0.46      0.87      0.60       553\n\n    accuracy                           0.50      1267\n   macro avg       0.56      0.54      0.46      1267\nweighted avg       0.58      0.50      0.44      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 865,
+        "accuracy": 0.4578034682080925,
+        "precision_true": 0.7090909090909091,
+        "recall_true": 0.07926829268292683,
+        "f1_true": 0.1425959780621572,
+        "confusion_matrix": [
+          [
+            39,
+            453
+          ],
+          [
+            16,
+            357
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.08      0.14       492\n       False       0.44      0.96      0.60       373\n\n    accuracy                           0.46       865\n   macro avg       0.57      0.52      0.37       865\nweighted avg       0.59      0.46      0.34       865\n"
+      },
+      "expert__economy": {
+        "n_eval": 797,
+        "accuracy": 0.479297365119197,
+        "precision_true": 0.68,
+        "recall_true": 0.18478260869565216,
+        "f1_true": 0.2905982905982906,
+        "confusion_matrix": [
+          [
+            85,
+            375
+          ],
+          [
+            40,
+            297
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.68      0.18      0.29       460\n       False       0.44      0.88      0.59       337\n\n    accuracy                           0.48       797\n   macro avg       0.56      0.53      0.44       797\nweighted avg       0.58      0.48      0.42       797\n"
+      },
+      "expert__health_science": {
+        "n_eval": 985,
+        "accuracy": 0.6030456852791878,
+        "precision_true": 0.6530973451327433,
+        "recall_true": 0.6542553191489362,
+        "f1_true": 0.6536758193091231,
+        "confusion_matrix": [
+          [
+            369,
+            195
+          ],
+          [
+            196,
+            225
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.65      0.65       564\n       False       0.54      0.53      0.54       421\n\n    accuracy                           0.60       985\n   macro avg       0.59      0.59      0.59       985\nweighted avg       0.60      0.60      0.60       985\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.49171270718232046,
+        "precision_true": 0.6620370370370371,
+        "recall_true": 0.20028011204481794,
+        "f1_true": 0.30752688172043013,
+        "confusion_matrix": [
+          [
+            143,
+            571
+          ],
+          [
+            73,
+            480
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.20      0.31       714\n       False       0.46      0.87      0.60       553\n\n    accuracy                           0.49      1267\n   macro avg       0.56      0.53      0.45      1267\nweighted avg       0.57      0.49      0.43      1267\n"
+      }
+    }
+  },
+  "deepseek_general_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1220,
+        "accuracy": 0.5163934426229508,
+        "precision_true": 0.6591639871382636,
+        "recall_true": 0.29753265602322204,
+        "f1_true": 0.41,
+        "confusion_matrix": [
+          [
+            205,
+            484
+          ],
+          [
+            106,
+            425
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.30      0.41       689\n       False       0.47      0.80      0.59       531\n\n    accuracy                           0.52      1220\n   macro avg       0.56      0.55      0.50      1220\nweighted avg       0.58      0.52      0.49      1220\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5067087608524072,
+        "precision_true": 0.6430868167202572,
+        "recall_true": 0.2801120448179272,
+        "f1_true": 0.3902439024390244,
+        "confusion_matrix": [
+          [
+            200,
+            514
+          ],
+          [
+            111,
+            442
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.28      0.39       714\n       False       0.46      0.80      0.59       553\n\n    accuracy                           0.51      1267\n   macro avg       0.55      0.54      0.49      1267\nweighted avg       0.56      0.51      0.48      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 835,
+        "accuracy": 0.47784431137724553,
+        "precision_true": 0.723404255319149,
+        "recall_true": 0.14225941422594143,
+        "f1_true": 0.23776223776223776,
+        "confusion_matrix": [
+          [
+            68,
+            410
+          ],
+          [
+            26,
+            331
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.72      0.14      0.24       478\n       False       0.45      0.93      0.60       357\n\n    accuracy                           0.48       835\n   macro avg       0.59      0.53      0.42       835\nweighted avg       0.61      0.48      0.39       835\n"
+      },
+      "expert__economy": {
+        "n_eval": 830,
+        "accuracy": 0.5048192771084338,
+        "precision_true": 0.6733668341708543,
+        "recall_true": 0.2791666666666667,
+        "f1_true": 0.3946980854197349,
+        "confusion_matrix": [
+          [
+            134,
+            346
+          ],
+          [
+            65,
+            285
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.28      0.39       480\n       False       0.45      0.81      0.58       350\n\n    accuracy                           0.50       830\n   macro avg       0.56      0.55      0.49       830\nweighted avg       0.58      0.50      0.47       830\n"
+      },
+      "expert__health_science": {
+        "n_eval": 998,
+        "accuracy": 0.6152304609218436,
+        "precision_true": 0.6409495548961425,
+        "recall_true": 0.7526132404181185,
+        "f1_true": 0.6923076923076923,
+        "confusion_matrix": [
+          [
+            432,
+            142
+          ],
+          [
+            242,
+            182
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.75      0.69       574\n       False       0.56      0.43      0.49       424\n\n    accuracy                           0.62       998\n   macro avg       0.60      0.59      0.59       998\nweighted avg       0.61      0.62      0.60       998\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5138121546961326,
+        "precision_true": 0.6666666666666666,
+        "recall_true": 0.27450980392156865,
+        "f1_true": 0.3888888888888889,
+        "confusion_matrix": [
+          [
+            196,
+            518
+          ],
+          [
+            98,
+            455
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.27      0.39       714\n       False       0.47      0.82      0.60       553\n\n    accuracy                           0.51      1267\n   macro avg       0.57      0.55      0.49      1267\nweighted avg       0.58      0.51      0.48      1267\n"
+      }
+    }
+  },
+  "gemma_LIAR_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1267,
+        "accuracy": 0.6314127861089187,
+        "precision_true": 0.6392333709131905,
+        "recall_true": 0.7941176470588235,
+        "f1_true": 0.7083073079325422,
+        "confusion_matrix": [
+          [
+            567,
+            147
+          ],
+          [
+            320,
+            233
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.79      0.71       714\n       False       0.61      0.42      0.50       553\n\n    accuracy                           0.63      1267\n   macro avg       0.63      0.61      0.60      1267\nweighted avg       0.63      0.63      0.62      1267\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6440410418310971,
+        "precision_true": 0.6326942482341069,
+        "recall_true": 0.8781512605042017,
+        "f1_true": 0.7354838709677419,
+        "confusion_matrix": [
+          [
+            627,
+            87
+          ],
+          [
+            364,
+            189
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.63      0.88      0.74       714\n       False       0.68      0.34      0.46       553\n\n    accuracy                           0.64      1267\n   macro avg       0.66      0.61      0.60      1267\nweighted avg       0.66      0.64      0.61      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1266,
+        "accuracy": 0.6477093206951027,
+        "precision_true": 0.6350806451612904,
+        "recall_true": 0.8823529411764706,
+        "f1_true": 0.738569753810082,
+        "confusion_matrix": [
+          [
+            630,
+            84
+          ],
+          [
+            362,
+            190
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.88      0.74       714\n       False       0.69      0.34      0.46       552\n\n    accuracy                           0.65      1266\n   macro avg       0.66      0.61      0.60      1266\nweighted avg       0.66      0.65      0.62      1266\n"
+      },
+      "expert__economy": {
+        "n_eval": 1267,
+        "accuracy": 0.6464088397790055,
+        "precision_true": 0.6335341365461847,
+        "recall_true": 0.8837535014005602,
+        "f1_true": 0.7380116959064328,
+        "confusion_matrix": [
+          [
+            631,
+            83
+          ],
+          [
+            365,
+            188
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.63      0.88      0.74       714\n       False       0.69      0.34      0.46       553\n\n    accuracy                           0.65      1267\n   macro avg       0.66      0.61      0.60      1267\nweighted avg       0.66      0.65      0.62      1267\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1267,
+        "accuracy": 0.6408839779005525,
+        "precision_true": 0.6353187042842215,
+        "recall_true": 0.8515406162464986,
+        "f1_true": 0.7277079593058049,
+        "confusion_matrix": [
+          [
+            608,
+            106
+          ],
+          [
+            349,
+            204
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.85      0.73       714\n       False       0.66      0.37      0.47       553\n\n    accuracy                           0.64      1267\n   macro avg       0.65      0.61      0.60      1267\nweighted avg       0.65      0.64      0.62      1267\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6432517758484609,
+        "precision_true": 0.6334012219959266,
+        "recall_true": 0.8711484593837535,
+        "f1_true": 0.7334905660377359,
+        "confusion_matrix": [
+          [
+            622,
+            92
+          ],
+          [
+            360,
+            193
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.63      0.87      0.73       714\n       False       0.68      0.35      0.46       553\n\n    accuracy                           0.64      1267\n   macro avg       0.66      0.61      0.60      1267\nweighted avg       0.65      0.64      0.61      1267\n"
+      }
+    }
+  },
+  "gemma_LIAR_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1267,
+        "accuracy": 0.6274664561957379,
+        "precision_true": 0.6472019464720195,
+        "recall_true": 0.7450980392156863,
+        "f1_true": 0.6927083333333334,
+        "confusion_matrix": [
+          [
+            532,
+            182
+          ],
+          [
+            290,
+            263
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.75      0.69       714\n       False       0.59      0.48      0.53       553\n\n    accuracy                           0.63      1267\n   macro avg       0.62      0.61      0.61      1267\nweighted avg       0.62      0.63      0.62      1267\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6361483820047356,
+        "precision_true": 0.6455696202531646,
+        "recall_true": 0.7857142857142857,
+        "f1_true": 0.7087807959570436,
+        "confusion_matrix": [
+          [
+            561,
+            153
+          ],
+          [
+            308,
+            245
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.79      0.71       714\n       False       0.62      0.44      0.52       553\n\n    accuracy                           0.64      1267\n   macro avg       0.63      0.61      0.61      1267\nweighted avg       0.63      0.64      0.62      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1267,
+        "accuracy": 0.6369376479873717,
+        "precision_true": 0.6501182033096927,
+        "recall_true": 0.7703081232492998,
+        "f1_true": 0.7051282051282052,
+        "confusion_matrix": [
+          [
+            550,
+            164
+          ],
+          [
+            296,
+            257
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.77      0.71       714\n       False       0.61      0.46      0.53       553\n\n    accuracy                           0.64      1267\n   macro avg       0.63      0.62      0.62      1267\nweighted avg       0.63      0.64      0.63      1267\n"
+      },
+      "expert__economy": {
+        "n_eval": 1267,
+        "accuracy": 0.6314127861089187,
+        "precision_true": 0.6405005688282139,
+        "recall_true": 0.788515406162465,
+        "f1_true": 0.706842435655995,
+        "confusion_matrix": [
+          [
+            563,
+            151
+          ],
+          [
+            316,
+            237
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.79      0.71       714\n       False       0.61      0.43      0.50       553\n\n    accuracy                           0.63      1267\n   macro avg       0.63      0.61      0.61      1267\nweighted avg       0.63      0.63      0.62      1267\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1266,
+        "accuracy": 0.6279620853080569,
+        "precision_true": 0.639080459770115,
+        "recall_true": 0.7798036465638148,
+        "f1_true": 0.7024636765634871,
+        "confusion_matrix": [
+          [
+            556,
+            157
+          ],
+          [
+            314,
+            239
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.78      0.70       713\n       False       0.60      0.43      0.50       553\n\n    accuracy                           0.63      1266\n   macro avg       0.62      0.61      0.60      1266\nweighted avg       0.62      0.63      0.62      1266\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6298342541436464,
+        "precision_true": 0.6432748538011696,
+        "recall_true": 0.7703081232492998,
+        "f1_true": 0.7010834926704907,
+        "confusion_matrix": [
+          [
+            550,
+            164
+          ],
+          [
+            305,
+            248
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.77      0.70       714\n       False       0.60      0.45      0.51       553\n\n    accuracy                           0.63      1267\n   macro avg       0.62      0.61      0.61      1267\nweighted avg       0.63      0.63      0.62      1267\n"
+      }
+    }
+  },
+  "gemma_finetuned_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1267,
+        "accuracy": 0.6132596685082873,
+        "precision_true": 0.6590909090909091,
+        "recall_true": 0.6498599439775911,
+        "f1_true": 0.6544428772919605,
+        "confusion_matrix": [
+          [
+            464,
+            250
+          ],
+          [
+            240,
+            313
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.65      0.65       714\n       False       0.56      0.57      0.56       553\n\n    accuracy                           0.61      1267\n   macro avg       0.61      0.61      0.61      1267\nweighted avg       0.61      0.61      0.61      1267\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6179952644041041,
+        "precision_true": 0.6791277258566978,
+        "recall_true": 0.6106442577030813,
+        "f1_true": 0.6430678466076696,
+        "confusion_matrix": [
+          [
+            436,
+            278
+          ],
+          [
+            206,
+            347
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.68      0.61      0.64       714\n       False       0.56      0.63      0.59       553\n\n    accuracy                           0.62      1267\n   macro avg       0.62      0.62      0.62      1267\nweighted avg       0.63      0.62      0.62      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1267,
+        "accuracy": 0.6400947119179163,
+        "precision_true": 0.6372340425531915,
+        "recall_true": 0.8389355742296919,
+        "f1_true": 0.7243047158403869,
+        "confusion_matrix": [
+          [
+            599,
+            115
+          ],
+          [
+            341,
+            212
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.84      0.72       714\n       False       0.65      0.38      0.48       553\n\n    accuracy                           0.64      1267\n   macro avg       0.64      0.61      0.60      1267\nweighted avg       0.64      0.64      0.62      1267\n"
+      },
+      "expert__economy": {
+        "n_eval": 1267,
+        "accuracy": 0.6219415943172849,
+        "precision_true": 0.6916802610114192,
+        "recall_true": 0.5938375350140056,
+        "f1_true": 0.6390354182366239,
+        "confusion_matrix": [
+          [
+            424,
+            290
+          ],
+          [
+            189,
+            364
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.69      0.59      0.64       714\n       False       0.56      0.66      0.60       553\n\n    accuracy                           0.62      1267\n   macro avg       0.62      0.63      0.62      1267\nweighted avg       0.63      0.62      0.62      1267\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1267,
+        "accuracy": 0.5840568271507498,
+        "precision_true": 0.6943866943866944,
+        "recall_true": 0.4677871148459384,
+        "f1_true": 0.5589958158995816,
+        "confusion_matrix": [
+          [
+            334,
+            380
+          ],
+          [
+            147,
+            406
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.69      0.47      0.56       714\n       False       0.52      0.73      0.61       553\n\n    accuracy                           0.58      1267\n   macro avg       0.61      0.60      0.58      1267\nweighted avg       0.62      0.58      0.58      1267\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6306235201262825,
+        "precision_true": 0.6407322654462243,
+        "recall_true": 0.7843137254901961,
+        "f1_true": 0.7052896725440806,
+        "confusion_matrix": [
+          [
+            560,
+            154
+          ],
+          [
+            314,
+            239
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.78      0.71       714\n       False       0.61      0.43      0.51       553\n\n    accuracy                           0.63      1267\n   macro avg       0.62      0.61      0.61      1267\nweighted avg       0.63      0.63      0.62      1267\n"
+      }
+    }
+  },
+  "gemma_finetuned_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1267,
+        "accuracy": 0.6306235201262825,
+        "precision_true": 0.6694214876033058,
+        "recall_true": 0.680672268907563,
+        "f1_true": 0.675,
+        "confusion_matrix": [
+          [
+            486,
+            228
+          ],
+          [
+            240,
+            313
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.68      0.68       714\n       False       0.58      0.57      0.57       553\n\n    accuracy                           0.63      1267\n   macro avg       0.62      0.62      0.62      1267\nweighted avg       0.63      0.63      0.63      1267\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6377269139700079,
+        "precision_true": 0.6684280052840158,
+        "recall_true": 0.7086834733893558,
+        "f1_true": 0.6879673691366417,
+        "confusion_matrix": [
+          [
+            506,
+            208
+          ],
+          [
+            251,
+            302
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.71      0.69       714\n       False       0.59      0.55      0.57       553\n\n    accuracy                           0.64      1267\n   macro avg       0.63      0.63      0.63      1267\nweighted avg       0.64      0.64      0.64      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1267,
+        "accuracy": 0.6385161799526441,
+        "precision_true": 0.6734417344173442,
+        "recall_true": 0.696078431372549,
+        "f1_true": 0.6845730027548209,
+        "confusion_matrix": [
+          [
+            497,
+            217
+          ],
+          [
+            241,
+            312
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.70      0.68       714\n       False       0.59      0.56      0.58       553\n\n    accuracy                           0.64      1267\n   macro avg       0.63      0.63      0.63      1267\nweighted avg       0.64      0.64      0.64      1267\n"
+      },
+      "expert__economy": {
+        "n_eval": 1267,
+        "accuracy": 0.6258879242304657,
+        "precision_true": 0.6481481481481481,
+        "recall_true": 0.7352941176470589,
+        "f1_true": 0.6889763779527559,
+        "confusion_matrix": [
+          [
+            525,
+            189
+          ],
+          [
+            285,
+            268
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.74      0.69       714\n       False       0.59      0.48      0.53       553\n\n    accuracy                           0.63      1267\n   macro avg       0.62      0.61      0.61      1267\nweighted avg       0.62      0.63      0.62      1267\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1267,
+        "accuracy": 0.6195737963693765,
+        "precision_true": 0.6705882352941176,
+        "recall_true": 0.6386554621848739,
+        "f1_true": 0.6542324246771879,
+        "confusion_matrix": [
+          [
+            456,
+            258
+          ],
+          [
+            224,
+            329
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.64      0.65       714\n       False       0.56      0.59      0.58       553\n\n    accuracy                           0.62      1267\n   macro avg       0.62      0.62      0.62      1267\nweighted avg       0.62      0.62      0.62      1267\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.632991318074191,
+        "precision_true": 0.6680161943319838,
+        "recall_true": 0.6932773109243697,
+        "f1_true": 0.6804123711340206,
+        "confusion_matrix": [
+          [
+            495,
+            219
+          ],
+          [
+            246,
+            307
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.67      0.69      0.68       714\n       False       0.58      0.56      0.57       553\n\n    accuracy                           0.63      1267\n   macro avg       0.63      0.62      0.62      1267\nweighted avg       0.63      0.63      0.63      1267\n"
+      }
+    }
+  },
+  "gemma_general_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1267,
+        "accuracy": 0.5509076558800315,
+        "precision_true": 0.7077363896848138,
+        "recall_true": 0.34593837535014005,
+        "f1_true": 0.464722483537159,
+        "confusion_matrix": [
+          [
+            247,
+            467
+          ],
+          [
+            102,
+            451
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.35      0.46       714\n       False       0.49      0.82      0.61       553\n\n    accuracy                           0.55      1267\n   macro avg       0.60      0.58      0.54      1267\nweighted avg       0.61      0.55      0.53      1267\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5493291239147593,
+        "precision_true": 0.7173252279635258,
+        "recall_true": 0.33053221288515405,
+        "f1_true": 0.45254074784276127,
+        "confusion_matrix": [
+          [
+            236,
+            478
+          ],
+          [
+            93,
+            460
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.72      0.33      0.45       714\n       False       0.49      0.83      0.62       553\n\n    accuracy                           0.55      1267\n   macro avg       0.60      0.58      0.53      1267\nweighted avg       0.62      0.55      0.52      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1267,
+        "accuracy": 0.5588003157063931,
+        "precision_true": 0.7055702917771883,
+        "recall_true": 0.37254901960784315,
+        "f1_true": 0.48762603116406966,
+        "confusion_matrix": [
+          [
+            266,
+            448
+          ],
+          [
+            111,
+            442
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.37      0.49       714\n       False       0.50      0.80      0.61       553\n\n    accuracy                           0.56      1267\n   macro avg       0.60      0.59      0.55      1267\nweighted avg       0.61      0.56      0.54      1267\n"
+      },
+      "expert__economy": {
+        "n_eval": 1267,
+        "accuracy": 0.5453827940015785,
+        "precision_true": 0.7129629629629629,
+        "recall_true": 0.3235294117647059,
+        "f1_true": 0.44508670520231214,
+        "confusion_matrix": [
+          [
+            231,
+            483
+          ],
+          [
+            93,
+            460
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.32      0.45       714\n       False       0.49      0.83      0.61       553\n\n    accuracy                           0.55      1267\n   macro avg       0.60      0.58      0.53      1267\nweighted avg       0.61      0.55      0.52      1267\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1267,
+        "accuracy": 0.5374901341752171,
+        "precision_true": 0.7051282051282052,
+        "recall_true": 0.3081232492997199,
+        "f1_true": 0.42884990253411304,
+        "confusion_matrix": [
+          [
+            220,
+            494
+          ],
+          [
+            92,
+            461
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.31      0.43       714\n       False       0.48      0.83      0.61       553\n\n    accuracy                           0.54      1267\n   macro avg       0.59      0.57      0.52      1267\nweighted avg       0.61      0.54      0.51      1267\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5627466456195738,
+        "precision_true": 0.7105263157894737,
+        "recall_true": 0.37815126050420167,
+        "f1_true": 0.4936014625228519,
+        "confusion_matrix": [
+          [
+            270,
+            444
+          ],
+          [
+            110,
+            443
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.38      0.49       714\n       False       0.50      0.80      0.62       553\n\n    accuracy                           0.56      1267\n   macro avg       0.60      0.59      0.55      1267\nweighted avg       0.62      0.56      0.55      1267\n"
+      }
+    }
+  },
+  "gemma_general_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1267,
+        "accuracy": 0.5659037095501184,
+        "precision_true": 0.6906976744186046,
+        "recall_true": 0.41596638655462187,
+        "f1_true": 0.5192307692307693,
+        "confusion_matrix": [
+          [
+            297,
+            417
+          ],
+          [
+            133,
+            420
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.69      0.42      0.52       714\n       False       0.50      0.76      0.60       553\n\n    accuracy                           0.57      1267\n   macro avg       0.60      0.59      0.56      1267\nweighted avg       0.61      0.57      0.56      1267\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5714285714285714,
+        "precision_true": 0.7100737100737101,
+        "recall_true": 0.40476190476190477,
+        "f1_true": 0.5156110615521855,
+        "confusion_matrix": [
+          [
+            289,
+            425
+          ],
+          [
+            118,
+            435
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.40      0.52       714\n       False       0.51      0.79      0.62       553\n\n    accuracy                           0.57      1267\n   macro avg       0.61      0.60      0.57      1267\nweighted avg       0.62      0.57      0.56      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1267,
+        "accuracy": 0.5651144435674822,
+        "precision_true": 0.6945107398568019,
+        "recall_true": 0.40756302521008403,
+        "f1_true": 0.5136804942630185,
+        "confusion_matrix": [
+          [
+            291,
+            423
+          ],
+          [
+            128,
+            425
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.69      0.41      0.51       714\n       False       0.50      0.77      0.61       553\n\n    accuracy                           0.57      1267\n   macro avg       0.60      0.59      0.56      1267\nweighted avg       0.61      0.57      0.55      1267\n"
+      },
+      "expert__economy": {
+        "n_eval": 1267,
+        "accuracy": 0.5674822415153907,
+        "precision_true": 0.6939252336448598,
+        "recall_true": 0.41596638655462187,
+        "f1_true": 0.5201401050788091,
+        "confusion_matrix": [
+          [
+            297,
+            417
+          ],
+          [
+            131,
+            422
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.69      0.42      0.52       714\n       False       0.50      0.76      0.61       553\n\n    accuracy                           0.57      1267\n   macro avg       0.60      0.59      0.56      1267\nweighted avg       0.61      0.57      0.56      1267\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1267,
+        "accuracy": 0.5548539857932123,
+        "precision_true": 0.7027027027027027,
+        "recall_true": 0.3641456582633053,
+        "f1_true": 0.4797047970479705,
+        "confusion_matrix": [
+          [
+            260,
+            454
+          ],
+          [
+            110,
+            443
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.70      0.36      0.48       714\n       False       0.49      0.80      0.61       553\n\n    accuracy                           0.55      1267\n   macro avg       0.60      0.58      0.55      1267\nweighted avg       0.61      0.55      0.54      1267\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5761641673243884,
+        "precision_true": 0.7025171624713958,
+        "recall_true": 0.42997198879551823,
+        "f1_true": 0.5334491746307559,
+        "confusion_matrix": [
+          [
+            307,
+            407
+          ],
+          [
+            130,
+            423
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.70      0.43      0.53       714\n       False       0.51      0.76      0.61       553\n\n    accuracy                           0.58      1267\n   macro avg       0.61      0.60      0.57      1267\nweighted avg       0.62      0.58      0.57      1267\n"
+      }
+    }
+  },
+  "llama_LIAR_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1265,
+        "accuracy": 0.5826086956521739,
+        "precision_true": 0.75,
+        "recall_true": 0.38764044943820225,
+        "f1_true": 0.5111111111111111,
+        "confusion_matrix": [
+          [
+            276,
+            436
+          ],
+          [
+            92,
+            461
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.75      0.39      0.51       712\n       False       0.51      0.83      0.64       553\n\n    accuracy                           0.58      1265\n   macro avg       0.63      0.61      0.57      1265\nweighted avg       0.65      0.58      0.57      1265\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5974743488555643,
+        "precision_true": 0.8017751479289941,
+        "recall_true": 0.3795518207282913,
+        "f1_true": 0.5152091254752852,
+        "confusion_matrix": [
+          [
+            271,
+            443
+          ],
+          [
+            67,
+            486
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.80      0.38      0.52       714\n       False       0.52      0.88      0.66       553\n\n    accuracy                           0.60      1267\n   macro avg       0.66      0.63      0.59      1267\nweighted avg       0.68      0.60      0.58      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1246,
+        "accuracy": 0.6252006420545746,
+        "precision_true": 0.7392197125256673,
+        "recall_true": 0.5142857142857142,
+        "f1_true": 0.6065711878685762,
+        "confusion_matrix": [
+          [
+            360,
+            340
+          ],
+          [
+            127,
+            419
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.74      0.51      0.61       700\n       False       0.55      0.77      0.64       546\n\n    accuracy                           0.63      1246\n   macro avg       0.65      0.64      0.62      1246\nweighted avg       0.66      0.63      0.62      1246\n"
+      },
+      "expert__economy": {
+        "n_eval": 1261,
+        "accuracy": 0.6011102299762093,
+        "precision_true": 0.8190184049079755,
+        "recall_true": 0.3755274261603376,
+        "f1_true": 0.5149469623915139,
+        "confusion_matrix": [
+          [
+            267,
+            444
+          ],
+          [
+            59,
+            491
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.82      0.38      0.51       711\n       False       0.53      0.89      0.66       550\n\n    accuracy                           0.60      1261\n   macro avg       0.67      0.63      0.59      1261\nweighted avg       0.69      0.60      0.58      1261\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1207,
+        "accuracy": 0.5526097763048882,
+        "precision_true": 0.7818930041152263,
+        "recall_true": 0.28064992614475626,
+        "f1_true": 0.41304347826086957,
+        "confusion_matrix": [
+          [
+            190,
+            487
+          ],
+          [
+            53,
+            477
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.78      0.28      0.41       677\n       False       0.49      0.90      0.64       530\n\n    accuracy                           0.55      1207\n   macro avg       0.64      0.59      0.53      1207\nweighted avg       0.66      0.55      0.51      1207\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6156274664561957,
+        "precision_true": 0.7451403887688985,
+        "recall_true": 0.4831932773109244,
+        "f1_true": 0.5862361937128292,
+        "confusion_matrix": [
+          [
+            345,
+            369
+          ],
+          [
+            118,
+            435
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.75      0.48      0.59       714\n       False       0.54      0.79      0.64       553\n\n    accuracy                           0.62      1267\n   macro avg       0.64      0.63      0.61      1267\nweighted avg       0.66      0.62      0.61      1267\n"
+      }
+    }
+  },
+  "llama_LIAR_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1266,
+        "accuracy": 0.6026856240126383,
+        "precision_true": 0.7476415094339622,
+        "recall_true": 0.44460028050490885,
+        "f1_true": 0.5576077396657871,
+        "confusion_matrix": [
+          [
+            317,
+            396
+          ],
+          [
+            107,
+            446
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.75      0.44      0.56       713\n       False       0.53      0.81      0.64       553\n\n    accuracy                           0.60      1266\n   macro avg       0.64      0.63      0.60      1266\nweighted avg       0.65      0.60      0.59      1266\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6148382004735596,
+        "precision_true": 0.7797029702970297,
+        "recall_true": 0.4411764705882353,
+        "f1_true": 0.5635062611806798,
+        "confusion_matrix": [
+          [
+            315,
+            399
+          ],
+          [
+            89,
+            464
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.78      0.44      0.56       714\n       False       0.54      0.84      0.66       553\n\n    accuracy                           0.61      1267\n   macro avg       0.66      0.64      0.61      1267\nweighted avg       0.67      0.61      0.60      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1239,
+        "accuracy": 0.6440677966101694,
+        "precision_true": 0.7293497363796133,
+        "recall_true": 0.5911680911680912,
+        "f1_true": 0.6530291109362707,
+        "confusion_matrix": [
+          [
+            415,
+            287
+          ],
+          [
+            154,
+            383
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.73      0.59      0.65       702\n       False       0.57      0.71      0.63       537\n\n    accuracy                           0.64      1239\n   macro avg       0.65      0.65      0.64      1239\nweighted avg       0.66      0.64      0.65      1239\n"
+      },
+      "expert__economy": {
+        "n_eval": 1245,
+        "accuracy": 0.6040160642570281,
+        "precision_true": 0.7789757412398922,
+        "recall_true": 0.41285714285714287,
+        "f1_true": 0.5396825396825397,
+        "confusion_matrix": [
+          [
+            289,
+            411
+          ],
+          [
+            82,
+            463
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.78      0.41      0.54       700\n       False       0.53      0.85      0.65       545\n\n    accuracy                           0.60      1245\n   macro avg       0.65      0.63      0.60      1245\nweighted avg       0.67      0.60      0.59      1245\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1080,
+        "accuracy": 0.5935185185185186,
+        "precision_true": 0.7715231788079471,
+        "recall_true": 0.3864013266998342,
+        "f1_true": 0.5149171270718232,
+        "confusion_matrix": [
+          [
+            233,
+            370
+          ],
+          [
+            69,
+            408
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.77      0.39      0.51       603\n       False       0.52      0.86      0.65       477\n\n    accuracy                           0.59      1080\n   macro avg       0.65      0.62      0.58      1080\nweighted avg       0.66      0.59      0.57      1080\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.6298342541436464,
+        "precision_true": 0.7435387673956262,
+        "recall_true": 0.5238095238095238,
+        "f1_true": 0.6146261298274446,
+        "confusion_matrix": [
+          [
+            374,
+            340
+          ],
+          [
+            129,
+            424
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.74      0.52      0.61       714\n       False       0.55      0.77      0.64       553\n\n    accuracy                           0.63      1267\n   macro avg       0.65      0.65      0.63      1267\nweighted avg       0.66      0.63      0.63      1267\n"
+      }
+    }
+  },
+  "llama_finetuned_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1266,
+        "accuracy": 0.542654028436019,
+        "precision_true": 0.7732793522267206,
+        "recall_true": 0.26750700280112044,
+        "f1_true": 0.3975026014568158,
+        "confusion_matrix": [
+          [
+            191,
+            523
+          ],
+          [
+            56,
+            496
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.77      0.27      0.40       714\n       False       0.49      0.90      0.63       552\n\n    accuracy                           0.54      1266\n   macro avg       0.63      0.58      0.51      1266\nweighted avg       0.65      0.54      0.50      1266\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5240726124704025,
+        "precision_true": 0.7905759162303665,
+        "recall_true": 0.211484593837535,
+        "f1_true": 0.33370165745856356,
+        "confusion_matrix": [
+          [
+            151,
+            563
+          ],
+          [
+            40,
+            513
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.79      0.21      0.33       714\n       False       0.48      0.93      0.63       553\n\n    accuracy                           0.52      1267\n   macro avg       0.63      0.57      0.48      1267\nweighted avg       0.65      0.52      0.46      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1263,
+        "accuracy": 0.5890736342042755,
+        "precision_true": 0.7546666666666667,
+        "recall_true": 0.39859154929577467,
+        "f1_true": 0.5216589861751152,
+        "confusion_matrix": [
+          [
+            283,
+            427
+          ],
+          [
+            92,
+            461
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.75      0.40      0.52       710\n       False       0.52      0.83      0.64       553\n\n    accuracy                           0.59      1263\n   macro avg       0.64      0.62      0.58      1263\nweighted avg       0.65      0.59      0.57      1263\n"
+      },
+      "expert__economy": {
+        "n_eval": 1264,
+        "accuracy": 0.5126582278481012,
+        "precision_true": 0.793939393939394,
+        "recall_true": 0.18373071528751753,
+        "f1_true": 0.2984054669703872,
+        "confusion_matrix": [
+          [
+            131,
+            582
+          ],
+          [
+            34,
+            517
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.79      0.18      0.30       713\n       False       0.47      0.94      0.63       551\n\n    accuracy                           0.51      1264\n   macro avg       0.63      0.56      0.46      1264\nweighted avg       0.65      0.51      0.44      1264\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1259,
+        "accuracy": 0.49166004765687055,
+        "precision_true": 0.7207792207792207,
+        "recall_true": 0.15677966101694915,
+        "f1_true": 0.25754060324825984,
+        "confusion_matrix": [
+          [
+            111,
+            597
+          ],
+          [
+            43,
+            508
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.72      0.16      0.26       708\n       False       0.46      0.92      0.61       551\n\n    accuracy                           0.49      1259\n   macro avg       0.59      0.54      0.44      1259\nweighted avg       0.61      0.49      0.41      1259\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5651144435674822,
+        "precision_true": 0.7554858934169278,
+        "recall_true": 0.33753501400560226,
+        "f1_true": 0.4666021297192643,
+        "confusion_matrix": [
+          [
+            241,
+            473
+          ],
+          [
+            78,
+            475
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.76      0.34      0.47       714\n       False       0.50      0.86      0.63       553\n\n    accuracy                           0.57      1267\n   macro avg       0.63      0.60      0.55      1267\nweighted avg       0.64      0.57      0.54      1267\n"
+      }
+    }
+  },
+  "llama_finetuned_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1266,
+        "accuracy": 0.5434439178515008,
+        "precision_true": 0.7319587628865979,
+        "recall_true": 0.29873772791023845,
+        "f1_true": 0.4243027888446215,
+        "confusion_matrix": [
+          [
+            213,
+            500
+          ],
+          [
+            78,
+            475
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.73      0.30      0.42       713\n       False       0.49      0.86      0.62       553\n\n    accuracy                           0.54      1266\n   macro avg       0.61      0.58      0.52      1266\nweighted avg       0.63      0.54      0.51      1266\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5327545382794001,
+        "precision_true": 0.7798165137614679,
+        "recall_true": 0.23809523809523808,
+        "f1_true": 0.3648068669527897,
+        "confusion_matrix": [
+          [
+            170,
+            544
+          ],
+          [
+            48,
+            505
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.78      0.24      0.36       714\n       False       0.48      0.91      0.63       553\n\n    accuracy                           0.53      1267\n   macro avg       0.63      0.58      0.50      1267\nweighted avg       0.65      0.53      0.48      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1262,
+        "accuracy": 0.6125198098256736,
+        "precision_true": 0.7402597402597403,
+        "recall_true": 0.4810126582278481,
+        "f1_true": 0.5831202046035806,
+        "confusion_matrix": [
+          [
+            342,
+            369
+          ],
+          [
+            120,
+            431
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.74      0.48      0.58       711\n       False       0.54      0.78      0.64       551\n\n    accuracy                           0.61      1262\n   macro avg       0.64      0.63      0.61      1262\nweighted avg       0.65      0.61      0.61      1262\n"
+      },
+      "expert__economy": {
+        "n_eval": 1266,
+        "accuracy": 0.5165876777251185,
+        "precision_true": 0.806060606060606,
+        "recall_true": 0.18653576437587657,
+        "f1_true": 0.30296127562642367,
+        "confusion_matrix": [
+          [
+            133,
+            580
+          ],
+          [
+            32,
+            521
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.81      0.19      0.30       713\n       False       0.47      0.94      0.63       553\n\n    accuracy                           0.52      1266\n   macro avg       0.64      0.56      0.47      1266\nweighted avg       0.66      0.52      0.45      1266\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1262,
+        "accuracy": 0.5039619651347068,
+        "precision_true": 0.7135678391959799,
+        "recall_true": 0.19971870604781997,
+        "f1_true": 0.3120879120879121,
+        "confusion_matrix": [
+          [
+            142,
+            569
+          ],
+          [
+            57,
+            494
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.20      0.31       711\n       False       0.46      0.90      0.61       551\n\n    accuracy                           0.50      1262\n   macro avg       0.59      0.55      0.46      1262\nweighted avg       0.60      0.50      0.44      1262\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.5666929755327546,
+        "precision_true": 0.7391304347826086,
+        "recall_true": 0.35714285714285715,
+        "f1_true": 0.48158640226628896,
+        "confusion_matrix": [
+          [
+            255,
+            459
+          ],
+          [
+            90,
+            463
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.74      0.36      0.48       714\n       False       0.50      0.84      0.63       553\n\n    accuracy                           0.57      1267\n   macro avg       0.62      0.60      0.55      1267\nweighted avg       0.64      0.57      0.55      1267\n"
+      }
+    }
+  },
+  "llama_general_no_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1267,
+        "accuracy": 0.47355958958168903,
+        "precision_true": 0.6598639455782312,
+        "recall_true": 0.13585434173669467,
+        "f1_true": 0.22531939605110338,
+        "confusion_matrix": [
+          [
+            97,
+            617
+          ],
+          [
+            50,
+            503
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.14      0.23       714\n       False       0.45      0.91      0.60       553\n\n    accuracy                           0.47      1267\n   macro avg       0.55      0.52      0.41      1267\nweighted avg       0.57      0.47      0.39      1267\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.4696132596685083,
+        "precision_true": 0.7058823529411765,
+        "recall_true": 0.10084033613445378,
+        "f1_true": 0.17647058823529413,
+        "confusion_matrix": [
+          [
+            72,
+            642
+          ],
+          [
+            30,
+            523
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.10      0.18       714\n       False       0.45      0.95      0.61       553\n\n    accuracy                           0.47      1267\n   macro avg       0.58      0.52      0.39      1267\nweighted avg       0.59      0.47      0.37      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1261,
+        "accuracy": 0.48057097541633625,
+        "precision_true": 0.6559139784946236,
+        "recall_true": 0.17110799438990182,
+        "f1_true": 0.271412680756396,
+        "confusion_matrix": [
+          [
+            122,
+            591
+          ],
+          [
+            64,
+            484
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.17      0.27       713\n       False       0.45      0.88      0.60       548\n\n    accuracy                           0.48      1261\n   macro avg       0.55      0.53      0.43      1261\nweighted avg       0.57      0.48      0.41      1261\n"
+      },
+      "expert__economy": {
+        "n_eval": 1262,
+        "accuracy": 0.45245641838351824,
+        "precision_true": 0.6461538461538462,
+        "recall_true": 0.059154929577464786,
+        "f1_true": 0.10838709677419354,
+        "confusion_matrix": [
+          [
+            42,
+            668
+          ],
+          [
+            23,
+            529
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.06      0.11       710\n       False       0.44      0.96      0.60       552\n\n    accuracy                           0.45      1262\n   macro avg       0.54      0.51      0.36      1262\nweighted avg       0.56      0.45      0.33      1262\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1205,
+        "accuracy": 0.4871369294605809,
+        "precision_true": 0.75,
+        "recall_true": 0.128698224852071,
+        "f1_true": 0.2196969696969697,
+        "confusion_matrix": [
+          [
+            87,
+            589
+          ],
+          [
+            29,
+            500
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.75      0.13      0.22       676\n       False       0.46      0.95      0.62       529\n\n    accuracy                           0.49      1205\n   macro avg       0.60      0.54      0.42      1205\nweighted avg       0.62      0.49      0.39      1205\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.47671665351223363,
+        "precision_true": 0.650887573964497,
+        "recall_true": 0.15406162464985995,
+        "f1_true": 0.2491506228765572,
+        "confusion_matrix": [
+          [
+            110,
+            604
+          ],
+          [
+            59,
+            494
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.65      0.15      0.25       714\n       False       0.45      0.89      0.60       553\n\n    accuracy                           0.48      1267\n   macro avg       0.55      0.52      0.42      1267\nweighted avg       0.56      0.48      0.40      1267\n"
+      }
+    }
+  },
+  "llama_general_with_subjects.csv": {
+    "notes": [],
+    "modes": {
+      "decision_agent": {
+        "n_eval": 1266,
+        "accuracy": 0.4794628751974723,
+        "precision_true": 0.6608187134502924,
+        "recall_true": 0.15826330532212884,
+        "f1_true": 0.25536723163841807,
+        "confusion_matrix": [
+          [
+            113,
+            601
+          ],
+          [
+            58,
+            494
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.16      0.26       714\n       False       0.45      0.89      0.60       552\n\n    accuracy                           0.48      1266\n   macro avg       0.56      0.53      0.43      1266\nweighted avg       0.57      0.48      0.41      1266\n"
+      },
+      "majority_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.47277032359905286,
+        "precision_true": 0.7090909090909091,
+        "recall_true": 0.1092436974789916,
+        "f1_true": 0.18932038834951456,
+        "confusion_matrix": [
+          [
+            78,
+            636
+          ],
+          [
+            32,
+            521
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.11      0.19       714\n       False       0.45      0.94      0.61       553\n\n    accuracy                           0.47      1267\n   macro avg       0.58      0.53      0.40      1267\nweighted avg       0.60      0.47      0.37      1267\n"
+      },
+      "expert__politics": {
+        "n_eval": 1249,
+        "accuracy": 0.4851881505204163,
+        "precision_true": 0.6386138613861386,
+        "recall_true": 0.18454935622317598,
+        "f1_true": 0.28634850166481685,
+        "confusion_matrix": [
+          [
+            129,
+            570
+          ],
+          [
+            73,
+            477
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.18      0.29       699\n       False       0.46      0.87      0.60       550\n\n    accuracy                           0.49      1249\n   macro avg       0.55      0.53      0.44      1249\nweighted avg       0.56      0.49      0.42      1249\n"
+      },
+      "expert__economy": {
+        "n_eval": 1265,
+        "accuracy": 0.4561264822134387,
+        "precision_true": 0.6621621621621622,
+        "recall_true": 0.06882022471910113,
+        "f1_true": 0.12468193384223919,
+        "confusion_matrix": [
+          [
+            49,
+            663
+          ],
+          [
+            25,
+            528
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.66      0.07      0.12       712\n       False       0.44      0.95      0.61       553\n\n    accuracy                           0.46      1265\n   macro avg       0.55      0.51      0.37      1265\nweighted avg       0.57      0.46      0.33      1265\n"
+      },
+      "expert__health_science": {
+        "n_eval": 1148,
+        "accuracy": 0.4930313588850174,
+        "precision_true": 0.7071428571428572,
+        "recall_true": 0.1546875,
+        "f1_true": 0.25384615384615383,
+        "confusion_matrix": [
+          [
+            99,
+            541
+          ],
+          [
+            41,
+            467
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.71      0.15      0.25       640\n       False       0.46      0.92      0.62       508\n\n    accuracy                           0.49      1148\n   macro avg       0.59      0.54      0.43      1148\nweighted avg       0.60      0.49      0.41      1148\n"
+      },
+      "weighted_vote": {
+        "n_eval": 1267,
+        "accuracy": 0.47434885556432516,
+        "precision_true": 0.6428571428571429,
+        "recall_true": 0.15126050420168066,
+        "f1_true": 0.24489795918367346,
+        "confusion_matrix": [
+          [
+            108,
+            606
+          ],
+          [
+            60,
+            493
+          ]
+        ],
+        "report": "              precision    recall  f1-score   support\n\n        True       0.64      0.15      0.24       714\n       False       0.45      0.89      0.60       553\n\n    accuracy                           0.47      1267\n   macro avg       0.55      0.52      0.42      1267\nweighted avg       0.56      0.47      0.40      1267\n"
+      }
+    }
+  }
+}

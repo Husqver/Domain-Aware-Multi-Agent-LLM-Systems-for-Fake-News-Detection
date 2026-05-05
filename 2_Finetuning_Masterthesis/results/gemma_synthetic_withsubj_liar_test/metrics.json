@@ -1,0 +1,21 @@
+{
+  "n": 1267,
+  "accuracy": 0.6037884767166535,
+  "macro_f1": 0.6037823062125607,
+  "precision_pos": 0.6899641577060932,
+  "recall_pos": 0.5392156862745098,
+  "confusion_matrix": {
+    "tn": 380,
+    "fp": 173,
+    "fn": 329,
+    "tp": 385
+  },
+  "mean_confidence": 0.8339328080887022,
+  "mean_conf_correct": 0.8390046584036385,
+  "mean_conf_wrong": 0.8262037931665377,
+  "prompt_id": "standard",
+  "use_subjects": true,
+  "base_model": "google/gemma-7b-it",
+  "adapter_dir": "adapters/gemma_synthetic_withsubj/best_adapter",
+  "test_csv": "../1_Basics_Masterthesis/LIAR/preprocessed_test_cleaned_binary.csv"
+}

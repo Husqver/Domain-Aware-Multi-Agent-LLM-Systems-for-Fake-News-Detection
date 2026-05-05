@@ -1,0 +1,21 @@
+{
+  "n": 1267,
+  "accuracy": 0.6314127861089187,
+  "macro_f1": 0.6013374343494915,
+  "precision_pos": 0.6370699223085461,
+  "recall_pos": 0.803921568627451,
+  "confusion_matrix": {
+    "tn": 226,
+    "fp": 327,
+    "fn": 140,
+    "tp": 574
+  },
+  "mean_confidence": 0.7964590406209172,
+  "mean_conf_correct": 0.8164936831864213,
+  "mean_conf_wrong": 0.7621384537849358,
+  "prompt_id": "standard",
+  "use_subjects": false,
+  "base_model": "google/gemma-7b-it",
+  "adapter_dir": "adapters/gemma_healthcare_nosubj/best_adapter",
+  "test_csv": "../1_Basics_Masterthesis/LIAR/preprocessed_test_cleaned_binary.csv"
+}

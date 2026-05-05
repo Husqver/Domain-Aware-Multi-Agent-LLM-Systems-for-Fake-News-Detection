@@ -1,0 +1,21 @@
+{
+  "n": 226,
+  "accuracy": 0.6858407079646017,
+  "macro_f1": 0.6740406687387004,
+  "precision_pos": 0.5892857142857143,
+  "recall_pos": 0.9801980198019802,
+  "confusion_matrix": {
+    "tn": 56,
+    "fp": 69,
+    "fn": 2,
+    "tp": 99
+  },
+  "mean_confidence": 0.742050436989399,
+  "mean_conf_correct": 0.7681471228834156,
+  "mean_conf_wrong": 0.6850787987700674,
+  "prompt_id": "standard",
+  "use_subjects": false,
+  "base_model": "google/gemma-7b-it",
+  "adapter_dir": "adapters/gemma_general_nosubj/best_adapter",
+  "test_csv": "synthetic_test.csv"
+}

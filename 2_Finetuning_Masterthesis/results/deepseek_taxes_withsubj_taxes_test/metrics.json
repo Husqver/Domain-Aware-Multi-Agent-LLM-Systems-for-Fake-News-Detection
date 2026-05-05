@@ -1,0 +1,21 @@
+{
+  "n": 60,
+  "accuracy": 0.5333333333333333,
+  "macro_f1": 0.4034090909090909,
+  "precision_pos": 0.6666666666666666,
+  "recall_pos": 0.06896551724137931,
+  "confusion_matrix": {
+    "tn": 30,
+    "fp": 1,
+    "fn": 27,
+    "tp": 2
+  },
+  "mean_confidence": 0.6240686673281839,
+  "mean_conf_correct": 0.6386270091178388,
+  "mean_conf_wrong": 0.6074305624257216,
+  "prompt_id": "standard",
+  "use_subjects": true,
+  "base_model": "deepseek-ai/deepseek-llm-7b-base",
+  "adapter_dir": "adapters/deepseek_taxes_withsubj/best_adapter",
+  "test_csv": "LIAR/preprocessed_test_cleaned_binary_taxes.csv"
+}

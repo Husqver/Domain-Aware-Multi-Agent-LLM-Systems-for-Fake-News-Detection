@@ -1,0 +1,21 @@
+{
+  "n": 226,
+  "accuracy": 0.8761061946902655,
+  "macro_f1": 0.8741748190567088,
+  "precision_pos": 0.8762886597938144,
+  "recall_pos": 0.8415841584158416,
+  "confusion_matrix": {
+    "tn": 113,
+    "fp": 12,
+    "fn": 16,
+    "tp": 85
+  },
+  "mean_confidence": 0.8821749112521878,
+  "mean_conf_correct": 0.8987257806441367,
+  "mean_conf_wrong": 0.7651366205519763,
+  "prompt_id": "standard",
+  "use_subjects": false,
+  "base_model": "meta-llama/Llama-3.1-8B-Instruct",
+  "adapter_dir": "adapters/llama_synthetic_nosubj/best_adapter",
+  "test_csv": "synthetic_test.csv"
+}

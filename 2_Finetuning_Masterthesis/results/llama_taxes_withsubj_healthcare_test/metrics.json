@@ -1,0 +1,21 @@
+{
+  "n": 83,
+  "accuracy": 0.5783132530120482,
+  "macro_f1": 0.5780682643427741,
+  "precision_pos": 0.5813953488372093,
+  "recall_pos": 0.5952380952380952,
+  "confusion_matrix": {
+    "tn": 23,
+    "fp": 18,
+    "fn": 17,
+    "tp": 25
+  },
+  "mean_confidence": 0.7757023474941481,
+  "mean_conf_correct": 0.7923684142508369,
+  "mean_conf_wrong": 0.7528460273706888,
+  "prompt_id": "standard",
+  "use_subjects": true,
+  "base_model": "meta-llama/Llama-3.1-8B-Instruct",
+  "adapter_dir": "adapters/llama_taxes_withsubj/best_adapter",
+  "test_csv": "LIAR/preprocessed_test_cleaned_binary_healthcare.csv"
+}

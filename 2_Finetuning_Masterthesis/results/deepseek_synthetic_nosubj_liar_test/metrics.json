@@ -1,0 +1,21 @@
+{
+  "n": 1267,
+  "accuracy": 0.5722178374112076,
+  "macro_f1": 0.571769409980494,
+  "precision_pos": 0.6447811447811448,
+  "recall_pos": 0.5364145658263305,
+  "confusion_matrix": {
+    "tn": 342,
+    "fp": 211,
+    "fn": 331,
+    "tp": 383
+  },
+  "mean_confidence": 0.7659621789709913,
+  "mean_conf_correct": 0.7709649717880316,
+  "mean_conf_wrong": 0.7592702513098211,
+  "prompt_id": "standard",
+  "use_subjects": false,
+  "base_model": "deepseek-ai/deepseek-llm-7b-base",
+  "adapter_dir": "adapters/deepseek_synthetic_nosubj/best_adapter",
+  "test_csv": "../1_Basics_Masterthesis/LIAR/preprocessed_test_cleaned_binary.csv"
+}

@@ -1,0 +1,436 @@
+i,j,votes,text_i,text_j
+7,111,2,Biden said insulin shot costs $15 vs $400 .,Biden claimed insulin shot cost $15 vs . $400 ; actual caps are $35 and ~€450/year .
+8,112,2,Trump said US had lowest taxes ever on Jan 6.,Trump said U.S. had lowest taxes & regulation on Jan 6; historically false .
+20,41,2,Trump said illegal border crossings last month were the lowest ever recorded .,Trump said illegal border crossings last month were the lowest ever recorded .
+20,45,2,Trump said illegal border crossings last month were the lowest ever recorded .,Illegal border crossings last month were the lowest ever recorded .
+20,57,2,Trump said illegal border crossings last month were the lowest ever recorded .,Illegal border crossings last month were the lowest ever recorded .
+21,42,2,Trump claimed over 21 million people entered the U.S. illegally in four years .,Trump claimed over 21 million people entered the U.S. illegally in four years .
+22,71,2,Trump said federal judiciary members are in a secret club .,Trump claims federal judiciary members are in a secret club .
+23,70,2,Posts misrepresent weather modification causing floods in Texas .,Posts misrepresent weather modification causing floods in Texas .
+24,72,2,A Craigslist ad proves paid protesters in LA .,Craigslist ad proves paid protesters in LA .
+25,74,2,5G towers emit radiation that causes cancer .,5G towers emit radiation that causes cancer .
+27,48,2,Trump claimed Biden pardoned 33 murderers .,Trump said President Biden pardoned 33 murderers .
+27,60,2,Trump claimed Biden pardoned 33 murderers .,Trump claimed Biden pardoned 33 murderers .
+28,49,2,Trump said 2020 election was totally rigged .,Election of 2020 was totally rigged .
+28,61,2,Trump said 2020 election was totally rigged .,2020 election was totally rigged .
+31,50,2,Trump said Davos margin gave him a massive mandate .,Trump claimed he won by a massive mandate at Davos .
+31,62,2,Trump said Davos margin gave him a massive mandate .,Trump said he won by a massive mandate at Davos .
+32,51,2,Trump blamed CA water policy for worsening wildfires .,He blamed California water policy for worsening wildfires .
+32,63,2,Trump blamed CA water policy for worsening wildfires .,He blamed California water policy for worsening wildfires .
+34,85,2,Walz said insulin cost $800 before new cap .,Walz overstated insulin cost as $800 pre-cap .
+35,97,2,Walz misrepresented child tax vote as nonexistent attendance .,Walz misclaimed child tax vote attendance .
+36,98,2,Schumer said Vance skipped vote on child tax credit .,Schumer said Vance skipped vote on child tax credit .
+37,83,2,Walz joked about investing in a ladder factory to help border wall .,Walz joked about investing in ladder factory to scale border wall .
+38,99,2,Walz did not literally mean helping illegal crossings .,Walz didn’t literally mean aiding illegal crossings .
+41,45,2,Trump said illegal border crossings last month were the lowest ever recorded .,Illegal border crossings last month were the lowest ever recorded .
+41,57,2,Trump said illegal border crossings last month were the lowest ever recorded .,Illegal border crossings last month were the lowest ever recorded .
+45,57,2,Illegal border crossings last month were the lowest ever recorded .,Illegal border crossings last month were the lowest ever recorded .
+46,58,2,Over the past four years 21 million people poured into the US illegally .,Over the past four years 21 million people entered the U.S. illegally .
+48,60,2,Trump said President Biden pardoned 33 murderers .,Trump claimed Biden pardoned 33 murderers .
+49,61,2,Election of 2020 was totally rigged .,2020 election was totally rigged .
+50,62,2,Trump claimed he won by a massive mandate at Davos .,Trump said he won by a massive mandate at Davos .
+51,63,2,He blamed California water policy for worsening wildfires .,He blamed California water policy for worsening wildfires .
+52,64,2,Vault : Trump said inauguration marked a golden age beginning right now .,Vault : inauguration marked a golden age beginning right now .
+53,65,2,Kentucky voting machine switched Trump vote to Harris due to fraud .,Kentucky voting machine switched Trump vote to Harris due to fraud .
+54,66,2,Claim : Family inheritance law stops children from inheriting homes .,Claim : law stops children from inheriting homes .
+55,67,2,Project 2025 plans to eliminate National Weather Service .,Project 2025 plans to eliminate National Weather Service .
+55,258,2,Project 2025 plans to eliminate National Weather Service .,Project 2025 advocates for eliminating the National Weather Service .
+56,68,2,ICE detained 72 % of individuals without criminal convictions .,ICE detained 72 % of individuals without criminal convictions .
+56,107,2,ICE detained 72 % of individuals without criminal convictions .,72% of individuals detained by ICE had no criminal convictions .
+56,157,2,ICE detained 72 % of individuals without criminal convictions .,72 % of people detained by ICE had no criminal conviction or charges .
+67,258,2,Project 2025 plans to eliminate National Weather Service .,Project 2025 advocates for eliminating the National Weather Service .
+68,107,2,ICE detained 72 % of individuals without criminal convictions .,72% of individuals detained by ICE had no criminal convictions .
+68,157,2,ICE detained 72 % of individuals without criminal convictions .,72 % of people detained by ICE had no criminal conviction or charges .
+76,106,2,Chemtrail conspiracy theories gaining traction .,Chemtrail conspiracy gaining legislative traction .
+107,157,2,72% of individuals detained by ICE had no criminal convictions .,72 % of people detained by ICE had no criminal conviction or charges .
+114,172,2,Trump suggested disinfectant injection could treat COVID‑19 ; dangerous claim .,Trump claimed disinfectant injection could cure COVID‑19 ; false .
+187,234,2,Samsung announced $17 bn chip factory in Texas in 2021 .,Samsung announced a $17B Texas semiconductor factory in 2021 .
+193,237,2,Amkor plans $2 bn chip packaging facility in AZ under CHIPS Act .,Amkor building $2B chip packaging facility in Arizona .
+195,238,2,Micron received $6.1 bn grant for fab in Idaho and NY .,Micron received $6.1B grant for Idaho & NY fabs .
+198,240,2,Rocket Lab to expand solar cell production in New Mexico with $23.9 m.,Rocket Lab expanding solar cell production with $23.9M in NM .
+199,239,2,Hemlock Semiconductor $325 m award for polysilicon factory in Michigan .,Hemlock Semiconductor awarded $325M for polysilicon Michigan factory .
+207,254,2,In June 2025 72% of ICE detainees had no criminal conviction .,Over 11700 ICE detainees had no criminal record mid‑June 2025 .
+291,345,2,Mosque fire video in Catalonia is actually from Jakarta .,Reuters : Video of mosque fire was actually from Jakarta not Catalonia .
+292,347,2,Photo of drone spying on Netanyahu is digitally altered .,Reuters : drone photo of Netanyahu was digitally edited .
+297,351,2,Photos of UK coast don’t disprove sea‑level rise .,Scenic UK coast photos don’t disprove climate‑induced sea‑level rise .
+321,342,2,FactCheck.org SciCheck debunks partisan science claims .,FactCheck.org SciCheck launched Jan 2015 to counter partisan science claims .
+321,368,2,FactCheck.org SciCheck debunks partisan science claims .,FactCheck.org launched SciCheck in 2015 to address partisan science claims .
+325,350,2,Reuters : England’s June 2025 was warmest on record .,June 2025 was England s warmest June on record per Met Office .
+337,366,2,SciCheck : RFK Jr . downplayed measles outbreak severity in Texas .,SciCheck : RFK Jr . minimized U.S. measles outbreak severity .
+341,372,2,SciCheck : RFK Jr.’s CDC panel clean‑sweep justification flawed .,SciCheck : RFK Jr . justification of CDC panel overhaul is flawed .
+342,368,2,FactCheck.org SciCheck launched Jan 2015 to counter partisan science claims .,FactCheck.org launched SciCheck in 2015 to address partisan science claims .
+375,475,2,EU pandemic treaty won’t override national sovereignty contrary to claims .,Reuters : WHO pandemic treaty doesn’t override sovereignty .
+377,433,2,AFP Fact Check : Clip from Ukraine war miscaptioned as Gaza footage .,AFP : Clip from Ukraine war miscaptioned as Gaza footage .
+378,432,2,PolitiFact : Claim that school closures had no effect on COVID transmission is false .,PolitiFact : Claim school closures had no effect on COVID transmission is false .
+378,474,2,PolitiFact : Claim that school closures had no effect on COVID transmission is false .,PolitiFact : Claim COVID school policies had zero transmission effect is false .
+379,434,2,Reuters Fact Check : No evidence that solar panels explode in heatwaves .,Reuters : No evidence solar panels explode in heatwaves .
+380,435,2,FactCheck.org : Claim that fluoride in water causes mass hysteria is false .,FactCheck.org : Claim fluoride causes mass hysteria is false .
+381,436,2,AFP : Photo misused from Indonesia wildfire shown as Amazon fire .,AFP : Photo misused from Indonesia wildfire shown as Amazon fire .
+382,437,2,PolitiFact : Senators did not set Social Security age to 70 .,PolitiFact : Senators did not set Social Security age to 70 .
+383,438,2,Reuters : No proof the WHO pandemic treaty removes national sovereignty .,Reuters : No proof WHO treaty removes national sovereignty .
+384,439,2,FactCheck.org SciCheck : Claim COVID vaccines caused infertility is unsupported .,FactCheck.org SciCheck : COVID vaccines causing infertility is unsupported .
+385,440,2,Reuters : Video from Kenya wrongly used to show US protests .,Reuters : Video from Kenya wrongly used to show US protests .
+386,441,2,AFP : Meme misquotes Pope Francis on climate action urgency .,AFP : Meme misquotes Pope Francis on climate action urgency .
+387,442,2,PolitiFact : Claim that electric cars increase CO₂ emissions is false .,PolitiFact : Claim electric cars increase CO₂ emissions is false .
+388,443,2,Reuters : Astronaut did not say the Moon landing was staged .,Reuters : Astronaut did not say the Moon landing was staged .
+389,444,2,FactCheck.org : Claim that vitamin D cures COVID is false .,FactCheck.org : Claim vitamin D cures COVID is false .
+390,445,2,AFP : Graphic misrepresents refugee numbers as millions dead .,AFP : Graphic misrepresents refugee numbers as millions dead .
+391,446,2,PolitiFact : Statement that gas prices doubled under Biden is misleading .,PolitiFact : Claim gas prices doubled under Biden is misleading .
+392,447,2,Reuters : Heatwave footage from Spain misused as India heat crisis .,Reuters : Heatwave footage from Spain misused as India heat crisis .
+393,448,2,FactCheck.org : Claim masks cause CO₂ poisoning is false .,FactCheck.org : Masks causing CO₂ poisoning is false .
+402,449,2,AFP : Old forest fire image miscaptioned as climate protest banner .,AFP : Old forest fire image miscaptioned as climate protest banner .
+403,450,2,PolitiFact : Claim that electric scooters are banned in every US city is false .,PolitiFact : Claim electric scooters banned in all US cities is false .
+404,451,2,Reuters : Claim that Antarctica ice sheet is expanding is false .,Reuters : Antarctica ice sheet is expanding myth is false .
+405,452,2,FactCheck.org : Rumor that coffee causes cancer is false .,FactCheck.org : Rumor coffee causes cancer is false .
+406,453,2,AFP : Video of donated aid misused to show famine in Somalia .,AFP : Video donated aid misused to show famine in Somalia .
+407,454,2,PolitiFact : Claim that unemployment reached 50% in 2024 is false .,PolitiFact : Claim unemployment hit 50% in 2024 is false .
+408,455,2,Reuters : No proof that vitamin C prevents cancer .,Reuters : No proof vitamin C prevents cancer .
+409,456,2,FactCheck.org SciCheck : Claim that 5G causes infertility is false .,FactCheck.org SciCheck : Claim 5G causes infertility is false .
+410,457,2,AFP : Photo from 2015 misused as evidence of current war crimes in Ukraine .,AFP : Photo from 2015 misused as Ukraine war footage .
+411,458,2,PolitiFact : Claim that minimum wage is now $20 in California is false .,PolitiFact : Claim minimum wage is now $20 in California is false .
+412,459,2,Reuters : No evidence that wildlife relocated causes pandemics .,Reuters : No evidence wildlife relocation causes pandemics .
+413,460,2,FactCheck.org SciCheck : Claim that GMO corn causes diabetes is false .,FactCheck.org SciCheck : GMO corn causing diabetes is false .
+414,461,2,AFP : Image misrepresented as US border crisis footage .,AFP : Image misrepresented as US border crisis footage .
+415,462,2,PolitiFact : Claim that school choice defunds public schools is misleading .,PolitiFact : Claim school choice defunds public schools is misleading .
+416,463,2,Reuters : No evidence nuclear bunker funding signals imminent war .,Reuters : No evidence bunker funding signals imminent war .
+417,464,2,FactCheck.org : Claim that wind turbines cause earthquakes is false .,FactCheck.org : Claim wind turbines cause earthquakes is false .
+418,465,2,AFP : Miscaptioned clip of plane landing shown as missile strike .,AFP : Clip of missile strike miscaptioned plane landing .
+419,466,2,PolitiFact : Claim that Social Security is going bankrupt next year is false .,PolitiFact : Social Security ‘going bankrupt next year’ claim is false .
+420,467,2,Reuters : No evidence fur bans lead to higher unemployment .,Reuters : No evidence fur bans lead to higher unemployment .
+421,468,2,FactCheck.org SciCheck : Claim that masks reduce lung capacity is false .,FactCheck.org SciCheck : Masks reduce lung capacity claim is false .
+424,471,2,Reuters : No proof that solar flares disrupt national grids .,Reuters : No proof solar flares disrupt national grids .
+425,472,2,FactCheck.org : Rumor that oil companies pay no taxes is false .,FactCheck.org : Oil companies paying no taxes rumor is false .
+426,473,2,AFP : Misused stock footage labeled as Amazon rainforest burning today .,AFP : Stock footage miscaptioned as Amazon rainforest burning now .
+432,474,2,PolitiFact : Claim school closures had no effect on COVID transmission is false .,PolitiFact : Claim COVID school policies had zero transmission effect is false .
+510,553,2,AFP : Video of fireworks misused as illegal protest footage .,AFP : Video from fireworks show misused as protests .
+577,725,2,Wind turbines convert wind into electricity .,Wind turbines convert wind into electricity .
+579,672,2,Interest rates affect the cost of borrowing money .,Interest rates affect the cost of borrowing money .
+580,752,2,Telescopes collect light from distant objects .,Telescopes collect light from dis nottant objects .
+581,658,2,Cloud computing offers scalable data storage .,Cloud computing offers scalable data storage .
+582,599,2,Formula 1 races take place on international circuits .,Formula 1 races take place on international circuits .
+584,602,2,Carpooling helps reduce carbon emissions .,Carpooling helps reduce carbon emis notsions .
+586,722,2,Taylor Swift re-recorded her early albums .,Taylor Swift re-recorded her early albums .
+588,677,2,Cryptocurrencies operate independently of central banks .,Cryptocurrencies operate independently of central banks .
+593,601,2,Supply and demand influence product prices .,Supply and demand influence product prices .
+596,675,2,Billie Eilish gained fame via SoundCloud .,Billie Eilis noth gained fame via SoundCloud .
+598,613,2,Tom Holland plays Spider-Man in Marvel films .,Tom Holland plays Spider-Man in Marvel films .
+603,648,2,Physical activity reduces symptoms of depression .,Physical activity reduces symptoms of depression .
+606,748,2,Taxes fund public services and infrastructure .,Taxes fund public services and infrastructure .
+608,618,2,Quantum computing uses qubits instead of bits .,Quantum computing uses qubits instead of bits .
+609,696,2,Some schools have uniforms for students .,Some schools have uniforms for students .
+612,736,2,Some countries have mandatory voting laws .,Some countries have mandatory voting laws .
+614,721,2,Arson involves intentional fire-setting .,Arson involves intentional fire-setting .
+614,1380,2,Arson involves intentional fire-setting .,Arson causes intentional property damage by fire .
+614,1421,2,Arson involves intentional fire-setting .,Arson causes intentional property damage by fire . [false]
+616,753,2,Dwayne Johnson transitioned from wrestling to acting .,Dwayne Johnson transitioned from wrestling to acting .
+617,749,2,Rewilding helps restore natural habitats .,Rewilding helps restore natural habitats .
+619,646,2,STEM education focuses on science and math .,STEM education focuses on science and math .
+623,640,2,Elections in Brazil use electronic voting machines .,Elections in Brazil use electronic voting machines .
+625,720,2,Wi-Fi uses radio waves to transmit data .,Wi-Fi uses radio waves to transmit data .
+627,703,2,Climate models predict future weather patterns .,Climate models predict future weather patterns .
+631,744,2,Unemployment rates reflect labor market conditions .,Unemployment rates reflect labor market conditions .
+633,645,2,Surveillance cameras help deter crime .,Surveillance cameras help deter crime .
+634,758,2,Electric vehicles produce no tailpipe emis notsions .,Electric vehicles produce no tailpipe emissions .
+636,738,2,Excessive sugar intake cannot lead to type 2 diabetes .,Excessive sugar intake can lead to type 2 diabetes .
+638,706,2,Switzerland practices direct democracy through referendums .,Switzerland practices direct democracy through referendums .
+642,644,2,Inflation reduces the purchas noting power of money .,Inflation reduces the purchasing power of money .
+647,700,2,Ryan Reynolds voices the character Pikachu .,Ryan Reynolds voices the character Pikachu .
+652,728,2,Deforestation reduces biodiversity in rainforests .,Deforestation reduces biodiversity in rainforests .
+653,684,2,RNA plays a key role in protein synthesis not .,RNA plays a key role in protein synthesis .
+655,755,2,Wetlands act as natural water filters .,Wetlands act as natural water filters .
+656,663,2,Blockchain technology enables secure digital transactions .,Blockchain technology enables secure digital transactions .
+659,731,2,Smartphones combine computing and communication features .,Smartphones combine computing and communication features .
+661,673,2,Lady Gaga won an Oscar for A Star Is Born .,Lady Gaga won an Oscar for A Star Is Born .
+667,719,2,Vaccines help develop immunity without causing dis notease .,Vaccines help develop immunity without causing disease .
+668,726,2,Budget deficits occur when expenses exceed revenue .,Budget deficits occur when expenses exceed revenue .
+669,763,2,Lack of sleep cannot impair cognitive function .,Lack of sleep can impair cognitive function .
+674,705,2,Cybercrime excludes hacking and identity theft .,Cybercrime includes hacking and identity theft .
+676,699,2,The periodic table organizes chemical elements .,The periodic table organizes chemical elements .
+680,737,2,Plants convert sunlight into energy via photosynthesis .,Plants convert sunlight into energy via photosynthesis not .
+682,718,2,GDP measures a country s economic output .,GDP measures a country s economic output .
+685,734,2,Many schools now use digital learning platforms .,Many schools now use digital learning platforms .
+686,754,2,The UN has 193 member states .,The UN has not 193 member states .
+687,905,2,Shoplifting is a type of petty theft .,Shoplifting is a common form of theft .
+690,724,2,Universities offer undergraduate and graduate degrees .,Universities offer undergraduate and graduate degrees .
+691,695,2,White-collar crimes are not usually non-violent .,White-collar crimes are usually non-violent .
+694,729,2,Stock exchanges facilitate buying and selling shares .,Stock exchanges facilitate buying and selling share nots .
+701,713,2,Gravity is weaker on the Moon than on Earth .,Gravity is not weaker on the Moon than on Earth .
+704,761,2,Baseball uses a bat and a ball .,Baseball uses a bat and a ball .
+709,711,2,Drinking water helps regulate body temperature .,Drinking water helps regulate body temperature .
+710,863,2,Shoplifting is not a type of petty theft .,Shoplifting is not a common form of theft .
+714,764,2,Bilingual education supports multilingualis notm .,Bilingual education supports multilingualism .
+721,1380,2,Arson involves intentional fire-setting .,Arson causes intentional property damage by fire .
+721,1421,2,Arson involves intentional fire-setting .,Arson causes intentional property damage by fire . [false]
+732,746,2,Antibiotics do not work against viruses .,Antibiotics do not work against viruses .
+739,750,2,Brad Pitt co-founded a production company .,Brad Pitt co-founded a production company .
+747,751,2,3D printing allows creation of physical objects from digital models .,3D printing allows creation of physical objects from digital models .
+765,845,2,Sun exposure helps produce vitamin D.,Sun exposure helps produce vitamin D.
+767,799,2,Excessive screen time can lead to eye strain .,Excessive screen time cannot lead to eye strain .
+768,930,2,Usain Bolt holds the record in the 100-meter sprint .,Usain Bolt holds the record in the 100-meter sprint .
+769,921,2,Minimum wage laws aim to protect low-income workers .,Minimum wage laws aim to protect low-income workers .
+770,842,2,Consumer confidence impacts retail sales .,Consumer confidence impacts retail sales .
+771,947,2,Entrepreneurship drives innovation and job creation .,Entrepreneurship drives innovation and job creation .
+772,942,2,Video compression reduces file size for streaming .,Video compression reduces file size for streaming .
+773,792,2,Forgery involves falsifying documents .,Forgery involves falsifying documents .
+775,950,2,Import taxes increase the cost of foreign goods .,Import taxes increase the cost of foreign goods .
+775,1518,2,Import taxes increase the cost of foreign goods .,Tariffs increase the price of imported goods .
+776,899,2,Urban green spaces improve mental well-being .,Urban green spaces improve mental well-being .
+778,913,2,The Big Bang theory describes the origin of the universe .,The Big Bang theory describes the origin of the universe .
+779,783,2,Johnny Depp portrayed Captain Jack Sparrow .,Johnny Depp portrayed Captain Jack Sparrow .
+781,956,2,The water cycle includes evaporation and precipitation .,The water cycle excludes evaporation and precipitation .
+782,785,2,Self-driving cars use sensors and AI to navigate .,Self-driving cars use sensors and AI to navigate .
+784,819,2,E-waste recycling helps recover rare not metals .,E-waste recycling helps recover rare metals .
+786,824,2,MOOCs offer free online university-level courses .,MOOCs offer free online university-level courses .
+788,922,2,Green roofs help insulate buildings and absorb rainwater .,Green roofs help insulate buildings and absorb rainwater .
+789,935,2,Gerrymandering affects electoral district boundaries .,Gerrymandering affects electoral dis nottrict boundaries .
+790,955,2,Report cards summarize student performance .,Report cards summarize student performance .
+793,901,2,The pH scale measures acidity or alkalinity .,The pH scale measures acidity or alkalinity .
+796,869,2,Rihanna launched her own cosmetics brand .,Rihanna launched her own cosmetics brand .
+798,948,2,Digital currencies use cryptographic security .,Digital currencies use cryptographic security .
+801,803,2,Photosynthesis occurs in chloroplasts of plant cells .,Photosynthesis not occurs in chloroplasts of plant cells .
+802,908,2,Educational technology supports personalized learning .,Educational technology supports personalized learning .
+805,953,2,Sleep apnea disrupts normal breathing at night .,Sleep apnea dis notrupts normal breathing at night .
+808,946,2,Shakira performed at the 2020 Super Bowl halftime show .,Shakira performed at the 2020 Super Bowl halftime show .
+810,830,2,LED lights are not more energy-efficient than incannotdescent bulbs .,LED lights are more energy-efficient than incandescent bulbs .
+811,958,2,Augmented reality overlays digital content onto the real world .,Augmented reality overlays digital content onto the real world .
+812,818,2,Chemical reactions cannot release heat and light .,Chemical reactions can release heat and light .
+813,825,2,Central banks control interest rates and money supply .,Central banks control interest rates and money supply .
+814,855,2,Chronic illnesses often require long-term management .,Chronic illnesses often require long-term management .
+815,932,2,Diplomatic immunity protects foreign officials from prosecution .,Diplomatic immunity protects foreign officials from prosecution .
+816,944,2,Oil spills harm marine ecosystems severely .,Oil spills harm marine ecosystems severely .
+820,883,2,Carjacking involves stealing a vehicle by force .,Carjacking involves stealing a vehicle by force .
+821,832,2,Witness protection programs ensure safety during trials .,Witness protection programs ensure safety during trials .
+823,898,2,Touchscreens detect input using electrical signals .,Touchscreens detect input using electrical signals .
+826,892,2,Gymnastics excludes floor and apparatus routines .,Gymnastics includes floor and apparatus routines .
+828,875,2,Meditation may reduce stress and improve mental health .,Meditation may reduce stress and improve mental health .
+829,881,2,Student councils represent peers in school decisions .,Student councils represent peers in school decis notions .
+835,911,2,Biodegradable plastics break down naturally over time .,Biodegradable plastics break down naturally over time .
+836,959,2,Some countries have more than two main political parties .,Some countries have more than two main political parties .
+837,940,2,Daniel Radcliffe starred in the Harry Potter films .,Daniel Radcliffe starred in the Harry Potter films .
+838,857,2,Referendums allow citizens to vote directly on laws .,Referendums allow citizens to vote directly on laws .
+840,866,2,Encryption protects data from unauthorized access .,Encryption protects data from unauthorized access .
+843,886,2,The UFC hosts professional mixed martial arts fights .,The UFC hosts professional mixed martial arts fights .
+844,893,2,The NBA Finals determine the basketball champion .,The NBA Finals determine the basketball champion .
+846,873,2,Many countries require compulsory schooling .,Many countries require compulsory schooling .
+847,888,2,The Tour de France covers thousands of kilometers .,The Tour de France covers thousands of kilometers .
+848,924,2,Dinosaurs went extinct around 65 million years ago .,Dinosaurs went extinct around 65 million years ago .
+850,891,2,Education systems vary widely between countries .,Education systems vary widely between countries .
+856,872,2,Class sizes affect learning outcomes .,Class sizes affect learning outcomes .
+858,984,2,Air pollution increases the risk of respiratory diseases .,Air pollution contributes to respiratory illnesses .
+858,1090,2,Air pollution increases the risk of respiratory diseases .,Air pollution contributes to respiratory illnesses . [false]
+862,937,2,Campaign financing laws vary greatly between nations .,Campaign financing laws vary greatly between nations .
+864,938,2,Magnets attract certain types of metals .,Magnets attract certain types of metals .
+865,870,2,The housing market affects national economic growth .,The housing market affects national economic growth .
+867,907,2,Inertia keeps an object in motion unless acted upon .,Inertia keeps an object in motion unless acted upon .
+868,949,2,A monopoly restricts market competition .,A monopoly restricts market competition .
+876,926,2,A trade deficit occurs when imports exceed exports .,A trade deficit occurs when imports exceed exports .
+877,951,2,Good posture prevents musculoskeletal problems .,Good posture prevents musculoskeletal problems .
+880,910,2,Recessions lead to reduced consumer spending .,Recessions lead to reduced consumer spending .
+885,933,2,5G networks enable faster mobile internet speeds .,5G networks enable faster mobile internet speeds .
+887,957,2,Mangroves protect coastlines from storm surges .,Mangroves protect coastlines from storm surges .
+894,909,2,Allergies are caused by immune system overreactions .,Allergies are not caused by immune system overreactions .
+895,917,2,Commuting by bicycle reduces fossil fuel use .,Commuting by bicycle reduces fossil fuel use .
+896,906,2,Climate change contributes to more extreme weather events .,Climate change contributes to more extreme weather events .
+897,919,2,Libraries support student learning and research .,Libraries support student learning and research .
+929,945,2,Mars has not the tallest mountain in the solar system .,Mars has the tallest mountain in the solar system .
+943,952,2,Smoking during pregnancy harms fetal development .,Smoking during pregnancy harms fetal development .
+950,1518,2,Import taxes increase the cost of foreign goods .,Tariffs increase the price of imported goods .
+961,991,2,The decathlon combines ten track and field events . [false],The decathlon combines ten track and field events .
+963,1079,2,Digital twins are not virtual representations of real-world objects . [false],Digital twins are virtual representations of real-world objects .
+964,1133,2,The World Series determines the baseball champion in the U.S. [false],The World Series determines the baseball champion in the U.S.
+965,1076,2,Coalition governments are not formed when no single party gains a majority . [false],Coalition governments are formed when no single party gains a majority .
+969,1002,2,Hit-and-run accidents involve fleeing the scene . [false],Hit-and-run accidents involve fleeing the scene .
+970,1077,2,Some parliaments require a supermajority to pass constitutional amendments . [false],Some parliaments require a supermajority to pass constitutional amendments .
+971,1092,2,Teachers use rubrics to grade assignments .,Teachers use rubrics to grade assignments . [false]
+972,1043,2,The NBA Draft selects new basketball players . [false],The NBA Draft selects new basketball players .
+974,1080,2,Bribery seeks to influence officials illegally .,Bribery seeks to influence officials illegally . [false]
+975,998,2,Smart speakers respond to voice commands . [false],Smart speakers respond to voice commands .
+976,1023,2,Trespassing means entering private property unlawfully . [false],Trespassing means entering private property unlawfully .
+977,1140,2,Social media platforms use algorithms to sort content .,Social media platforms use algorithms to sort content . [false]
+979,1104,2,Smuggling involves transporting illegal goods .,Smuggling involves transporting illegal goods . [false]
+983,1112,2,Electricity flows through conductors . [false],Electricity flows through conductors .
+984,1090,2,Air pollution contributes to respiratory illnesses .,Air pollution contributes to respiratory illnesses . [false]
+985,1110,2,RFID technology is used in contactless payment systems .,RFID technology is not used in contactless payment systems . [false]
+986,1041,2,Savings accounts earn interest over time .,Savings accounts earn interest over time . [false]
+987,1082,2,Perjury is lying under oath in court .,Perjury is not lying under oath in court . [false]
+988,1019,2,Labor unions advocate for workers’ rights . [false],Labor unions advocate for workers’ rights .
+989,1017,2,Astronomy studies celestial bodies and the universe . [false],Astronomy studies celestial bodies and the universe .
+990,1035,2,Symptoms of dehydration exclude dizziness and fatigue . [false],Symptoms of dehydration include dizziness and fatigue .
+993,1010,2,Debt occurs when liabilities exceed assets .,Debt occurs when liabilities exceed assets . [false]
+1001,1108,2,Jennifer Lawrence won an Oscar for Silver Linings Playbook .,Jennifer Lawrence won an Oscar for Silver Linings Playbook . [false]
+1004,1018,2,Sound waves travel slower than light waves .,Sound waves travel slower than light waves . [false]
+1005,1084,2,Tutoring provides one-on-one academic support . [false],Tutoring provides one-on-one academic support .
+1006,1127,2,Subsidies help support local industries . [false],Subsidies help support local industries .
+1007,1144,2,Floodplains help manage excess rainfall .,Floodplains help manage excess rainfall . [false]
+1011,1099,2,Cyberbullying is harassment conducted online .,Cyberbullying is not harassment conducted online . [false]
+1012,1142,2,Benedict Cumberbatch starred as Sherlock Holmes on TV .,Benedict Cumberbatch starred as Sherlock Holmes on TV . [false]
+1013,1020,2,Identity theft uses stolen personal data .,Identity theft does not use stolen personal data . [false]
+1016,1151,2,Oprah Winfrey owns a media production company .,Oprah Winfrey owns a media production company . [false]
+1021,1033,2,Commuter trains reduce individual car usage .,Commuter trains reduce individual car usage . [false]
+1024,1135,2,USB-C is a universal connector standard .,USB-C is not a universal connector standard . [false]
+1025,1034,2,State governors in the U.S. have the power to veto state laws .,State governors in the U.S. have the power to veto state laws . [false]
+1026,1064,2,Carbon offsetting compensates for greenhouse gas emissions .,Carbon offsetting compensates for greenhouse gas emis notsions . [false]
+1027,1071,2,Meteorites are not space rocks that reach Earth s surface . [false],Meteorites are space rocks that reach Earth s surface .
+1036,1118,2,Some elections include a none of the above option on the ballot .,Some elections exclude a none of the above option on the ballot . [false]
+1039,1097,2,Assault involves the threat or act of physical harm . [false],Assault involves the threat or act of physical harm .
+1040,1131,2,Field trips enhance experiential learning . [false],Field trips enhance experiential learning .
+1042,1143,2,Littering negatively impacts local wildlife . [false],Littering negatively impacts local wildlife .
+1046,1060,2,Solar panels generate electricity from sunlight .,Solar panels generate electricity from sunlight . [false]
+1048,1145,2,Hydration supports healthy kidney function . [false],Hydration supports healthy kidney function .
+1052,1111,2,Fossils provide evidence of prehistoric life .,Fossils provide evidence of prehis nottoric life . [false]
+1056,1106,2,Cardi B was a reality TV star before her music career .,Cardi B was a reality TV star before her music care noter . [false]
+1057,1129,2,Montessori schools focus on student-led learning .,Montessori schools focus on student-led learning . [false]
+1058,1136,2,Vaccines stimulate the immune system to build defenses .,Vaccines stimulate the immune system to build defenses . [false]
+1061,1091,2,Universities may specialize in different academic fields .,Universities may specialize in different academic fields . [false]
+1062,1125,2,School libraries support literacy development .,School libraries support literacy development . [false]
+1065,1105,2,Zendaya won an Emmy for her role in Euphoria .,Zendaya won an Emmy for her role in Euphoria . [false]
+1069,1113,2,Reforestation helps absorb atmospheric CO2 . [false],Reforestation helps absorb atmospheric CO2 .
+1073,1168,2,Hearing loss cannot be caused by loud nois note exposure . [false],Nois note-induced hearing loss is not permanent . [false]
+1075,1124,2,Photosynthesis produces oxygen as a byproduct .,Photosynthesis not produces oxygen as a byproduct . [false]
+1081,1103,2,Seasonal flu vaccines are not updated annually . [false],Seasonal flu vaccines are updated annually .
+1083,1146,2,Embassies serve as diplomatic representations in foreign countries .,Embassies serve as diplomatic representations in foreign countries . [false]
+1086,1087,2,Foreign exchange rates affect global trade . [false],Foreign exchange rates affect global trade .
+1089,1100,2,Counselors support students’ mental health . [false],Counselors support students’ mental health .
+1093,1102,2,Plastic pollution is a major threat to marine life .,Plastic pollution is not a major threat to marine life . [false]
+1126,1156,2,Machine learning involves algorithms learning from data . [false],Machine learning involves algorithms learning from data .
+1137,1149,2,Rugby involves carrying and passing an oval ball .,Rugby involves carrying and passing an oval ball . [false]
+1160,1280,2,Greenhouse gases trap heat in Earth’s atmosphere .,Greenhouse gases trap heat in Earth’s atmosphere . [false]
+1165,1269,2,Online platforms use recommendation algorithms .,Online platforms use recommendation algorithms . [false]
+1166,1189,2,Economic sanctions restrict trade with certain nations . [false],Economic sanctions restrict trade with certain nations .
+1169,1196,2,Neurons transmit signals in the nervous system . [false],Neurons transmit signals in the nervous system .
+1170,1217,2,Interest accumulates over time on borrowed money . [false],Interest accumulates over time on borrowed money .
+1172,1201,2,Allergens trigger immune responses in sensitive individuals . [false],Allergens trigger immune responses in sensitive individuals .
+1173,1176,2,Dental hygiene prevents gum disease .,Dental hygiene prevents gum dis notease . [false]
+1174,1224,2,Snowpack levels affect seasonal water supply .,Snowpack levels affect seasonal water supply . [false]
+1175,1262,2,Pesticides can contaminate groundwater .,Pesticides cannot contaminate groundwater . [false]
+1177,1227,2,Aquifers store freshwater underground .,Aquifers store freshwater underground . [false]
+1178,1192,2,Friction generates heat during motion . [false],Friction generates heat during motion .
+1180,1353,2,Rainforests host over half of the world’s species .,Rainforests host over half of the world’s species . [false]
+1181,1275,2,The vice president assumes power if the president is incapacitated .,The vice president assumes power if the president is not incapacitated . [false]
+1183,1350,2,Olympic athletes often begin training at a young age .,Olympic athletes often begin training at a young age . [false]
+1185,1237,2,Students often take standardized entrance exams .,Students often take standardized entrance exams . [false]
+1187,1308,2,Assassination targets high-profile individuals . [false],Assassination targets high-profile individuals .
+1188,1305,2,Kanye West launched a fashion line . [false],Kanye West launched a fashion line .
+1194,1349,2,Fiber-optic cables transmit data as light signals .,Fiber-optic cables transmit data as light signals . [false]
+1197,1319,2,Ozone protects the Earth from harmful UV rays .,Ozone protects the Earth from harmful UV rays . [false]
+1199,1215,2,Pollinators like bees are not vital to crop growth . [false],Pollinators like bees are vital to crop growth .
+1200,1243,2,Robert Downey Jr . starred in the Iron Man series . [false],Robert Downey Jr . starred in the Iron Man series .
+1202,1273,2,Baseball pitchers throw various types of pitches . [false],Baseball pitchers throw various types of pitches .
+1204,1274,2,Imports bring foreign goods into a country .,Imports bring foreign goods into a country . [false]
+1205,1206,2,Skiing competitions include slalom and downhill events . [false],Skiing competitions include slalom and downhill events .
+1207,1271,2,Plagiarism is prohibited in academic institutions .,Plagiaris notm is not prohibited in academic institutions . [false]
+1208,1296,2,Teachers create lesson plans to guide instruction .,Teachers create lesson plans to guide instruction . [false]
+1209,1253,2,Skin protects the body from external pathogens .,Skin protects the body from external pathogens . [false]
+1211,1282,2,Organic farming avoids synthetic fertilizers . [false],Organic farming avoids synthetic fertilizers .
+1212,1337,2,Proper nutrition is not essential for wound healing . [false],Proper nutrition is essential for wound healing .
+1213,1303,2,The Internet of Things connects everyday devices online . [false],The Internet of Things connects everyday devices online .
+1214,1339,2,Athletes undergo drug testing before competitions . [false],Athletes undergo drug testing before competitions .
+1218,1241,2,Coral bleaching occurs when reefs are stressed .,Coral bleaching occurs when reefs are not stressed . [false]
+1220,1268,2,Art classes promote creativity in schools . [false],Art classes promote creativity in schools .
+1221,1222,2,Physical therapy helps recover from injuries .,Physical therapy helps recover from injuries . [false]
+1229,1297,2,Smartphones contain accelerometers and gyroscopes .,Smartphones contain accelerometers and gyroscopes . [false]
+1231,1270,2,Adele performed at the Grammy Awards multiple times . [false],Adele performed at the Grammy Awards multiple times .
+1232,1239,2,Science fairs encourage independent experimentation . [false],Science fairs encourage independent experimentation .
+1233,1345,2,Geothermal energy comes from beneath Earth’s surface . [false],Geothermal energy comes from beneath Earth’s surface .
+1234,1309,2,Track and field includes both sprints and long-dis nottance races . [false],Track and field includes both sprints and long-distance races .
+1235,1250,2,Data encryption ensures confidentiality .,Data encryption ensures confidentiality . [false]
+1238,1307,2,The speed of sound depends on the medium it travels through . [false],The speed of sound depends on the medium it travels through .
+1240,1263,2,Emma Stone won an Oscar for La La Land .,Emma Stone won an Oscar for La La Land . [false]
+1242,1288,2,Natural selection drives evolution over time .,Natural selection drives evolution over time . [false]
+1244,1346,2,Table tennis not requires quick reflexes . [false],Table tennis requires quick reflexes .
+1245,1335,2,Digital forensics helps trace cybercrime . [false],Digital forensics helps trace cybercrime .
+1247,1301,2,Wearable technology monitors physical activity .,Wearable technology monitors physical activity . [false]
+1249,1276,2,Armed robbery involves use of weapons .,Armed robbery involves use of weapons . [false]
+1254,1256,2,Some nations allow expatriates to vote from abroad . [false],Some nations allow expatriates to vote from abroad .
+1258,1313,2,Supply chains link producers to consumers .,Supply chains link producers to consumers . [false]
+1259,1332,2,The nucleus contains a cell’s genetic material .,The nucleus contains a cell’s genetic material . [false]
+1261,1285,2,Ballot access laws determine who can appear on the election ballot .,Ballot access laws determine who cannot appear on the election ballot . [false]
+1265,1278,2,Insulin regulates blood sugar levels .,Insulin regulates blood sugar levels . [false]
+1266,1348,2,Stress cannot weaken the immune system . [false],Stress can weaken the immune system .
+1267,1292,2,Saoirse Ronan was nominated for multiple Academy Awards . [false],Saoirse Ronan was nominated for multiple Academy Awards .
+1272,1298,2,Digital signatures verify the origin of messages .,Digital signatures verify the origin of messages . [false]
+1279,1336,2,Mobile apps must comply with data protection laws . [false],Mobile apps must comply with data protection laws .
+1283,1289,2,Jennifer Lopez began as a dancer on TV . [false],Jennifer Lopez began as a dancer on TV .
+1290,1326,2,Price ceilings limit how much can be charged for goods .,Price ceilings limit how much cannot be charged for goods . [false]
+1291,1324,2,Microloans support small-scale entrepreneurs . [false],Microloans support small-scale entrepreneurs .
+1295,1315,2,Embezzlement involves theft of entrusted funds .,Embezzlement involves theft of entrusted funds . [false]
+1302,1312,2,Political parties draft manifestos outlining their goals .,Political parties draft manifestos outlining their goals . [false]
+1310,1328,2,The Geneva Conventions outline rules for wartime conduct . [false],The Geneva Conventions outline rules for wartime conduct .
+1316,1347,2,Search engines index websites using crawlers . [false],Search engines index websites using crawlers .
+1321,1327,2,Chemical bonds hold molecules together .,Chemical bonds hold molecules together . [false]
+1323,1351,2,Stalking laws protect individuals from unwanted attention .,Stalking laws protect individuals from unwanted attention . [false]
+1333,1338,2,The water table marks the top of an underground aquifer . [false],The water table marks the top of an underground aquifer .
+1341,1343,2,Ryan Gosling appeared in The Notebook .,Ryan Gosling appeare notd in The Notebook . [false]
+1342,1344,2,Some countries use ranked-choice voting in elections .,Some countries use ranked-choice voting in elections . [false]
+1355,1536,2,Rihanna performed at the 2023 Super Bowl . [false],Rihanna performed at the 2023 Super Bowl .
+1356,1401,2,Snowboarding debuted at the Winter Olympics in 1998 .,Snowboarding debuted at the Winter Olympics in 1998 . [false]
+1357,1485,2,Goalkeepers wear different jerseys from teammates . [false],Goalkeepers wear different jerseys from teammates .
+1358,1465,2,Some schools use block scheduling for longer classes . [false],Some schools use block scheduling for longer classes .
+1359,1388,2,A credit score affects loan approval chances . [false],A credit score affects loan approval chances .
+1360,1400,2,The pentathlon includes five different events .,The pentathlon includes five different events . [false]
+1361,1535,2,The judiciary interprets laws and ensures justice .,The judiciary interprets laws and ensures justice . [false]
+1362,1433,2,Firewalls help protect networks from intrusion . [false],Firewalls help protect networks from intrusion .
+1364,1434,2,Penalty kicks decide tied soccer matches .,Penalty kicks decide tied soccer matches . [false]
+1365,1460,2,Some countries hold referendums to change their constitutions .,Some countries hold referendums to change their constitutions . [false]
+1367,1486,2,Opposition parties provide checks on ruling parties .,Opposition parties provide checks on ruling parties . [false]
+1370,1397,2,Jay-Z founded a record label and clothing brand .,Jay-Z founded a record label and clothing brand . [false]
+1372,1468,2,Ocean currents regulate global temperatures .,Ocean currents regulate global temperatures . [false]
+1376,1522,2,Michael B. Jordan starred in the Creed movie series .,Michael B. Jordan starred in the Creed movie series . [false]
+1377,1442,2,Wearable tech includes fitness bands and smartwatches . [false],Wearable tech includes fitness bands and smartwatches .
+1378,1478,2,Classroom seating arrangements affect student focus .,Classroom seating arrangements affect student focus . [false]
+1379,1394,2,Athletes sometimes wear compression clothing . [false],Athletes sometimes wear compression clothing .
+1380,1421,2,Arson causes intentional property damage by fire .,Arson causes intentional property damage by fire . [false]
+1381,1493,2,Timothée Chalamet appeare notd in multiple Oscar-nominated films . [false],Timothée Chalamet appeared in multiple Oscar-nominated films .
+1382,1514,2,Some governments use proportional representation systems .,Some governments use proportional representation systems . [false]
+1383,1470,2,Forgery involves creating fake documents or signatures . [false],Forgery involves creating fake documents or signatures .
+1385,1393,2,The scientific method involves observation and experimentation . [false],The scientific method involves observation and experimentation .
+1386,1483,2,Urban sprawl threatens wildlife habitats .,Urban sprawl threatens wildlife habitats . [false]
+1387,1503,2,Calcium strengthens bones and teeth .,Calcium strengthens bones and teeth . [false]
+1390,1426,2,Coding languages like Python are widely used in tech .,Coding languages like Python are not widely used in tech . [false]
+1391,1431,2,Soil erosion reduces agricultural productivity .,Soil erosion reduces agricultural productivity . [false]
+1392,1437,2,Reese Witherspoon starred in Legally Blonde .,Reese Witherspoon starred in Legally Blonde . [false]
+1395,1399,2,Tom Hiddleston played Loki in Marvel films .,Tom Hiddleston played Loki in Marvel films . [false]
+1396,1430,2,Over-the-counter drugs treat mild conditions . [false],Over-the-counter drugs treat mild conditions .
+1398,1438,2,Constitutions outline the fundamental principles of a state . [false],Constitutions outline the fundamental principles of a state .
+1402,1489,2,Inflation indexes track rising consumer prices .,Inflation indexes track ris noting consumer prices . [false]
+1405,1477,2,Insider trading mis notuses confidential financial information . [false],Insider trading misuses confidential financial information .
+1408,1445,2,Counterfeiting produces unauthorized currency . [false],Counterfeiting produces unauthorized currency .
+1409,1531,2,Public debt includes government borrowing . [false],Public debt includes government borrowing .
+1411,1502,2,Deforestation accelerates climate change . [false],Deforestation accelerates climate change .
+1412,1530,2,Enzymes speed up biochemical reactions .,Enzymes speed up biochemical reactions . [false]
+1413,1511,2,Planets orbit stars due to gravitational forces . [false],Planets orbit stars due to gravitational forces .
+1414,1476,2,Smuggling bypasses customs regulations .,Smuggling bypasses customs regulations . [false]
+1415,1504,2,Zinc supports immune function and wound healing . [false],Zinc supports immune function and wound healing .
+1416,1526,2,Smart thermostats adjust temperature based on usage patterns . [false],Smart thermostats adjust temperature based on usage patterns .
+1419,1457,2,International treaties require ratification by member states .,International treaties require ratification by member states . [false]
+1420,1539,2,Kidnapping involves illegal detention of a person .,Kidnapping involves illegal detention of a person . [false]
+1422,1452,2,Heads of state may have ceremonial or executive roles . [false],Heads of state may have ceremonial or executive roles .
+1423,1456,2,The sun is not a medium-sized star at the center of our solar system . [false],The sun is a medium-sized star at the center of our solar system .
+1424,1497,2,VPNs encrypt internet connections for privacy . [false],VPNs encrypt internet connections for privacy .
+1425,1463,2,Climbing became an Olympic sport in 2020 .,Climbing became an Olympic sport in 2020 . [false]
+1427,1466,2,Rain gardens help manage stormwater runoff . [false],Rain gardens help manage stormwater runoff .
+1429,1512,2,Voice recognition software not converts speech to text . [false],Voice recognition software converts speech to text .
+1435,1548,2,Gross income includes all earnings before taxes . [false],Gross income includes all earnings before taxes .
+1436,1480,2,Hydration affects cognitive performance . [false],Hydration affects cognitive performance .
+1440,1513,2,Symptoms of anemia include fatigue and dizziness .,Symptoms of anemia include fatigue and dizziness . [false]
+1441,1516,2,Gal Gadot portrayed Wonder Woman . [false],Gal Gadot portrayed Wonder Woman .
+1443,1494,2,Bail allows temporary release before trial .,Bail allows temporary release before trial . [false]
+1444,1469,2,Katy Perry performed at the Super Bowl halftime show . [false],Katy Perry performed at the Super Bowl halftime show .
+1447,1525,2,Market economies rely on supply and demand .,Market economies rely on supply and demand . [false]
+1449,1481,2,The carbon cycle describes CO2 movement in nature .,The carbon cycle describes CO2 movement in nature . [false]
+1453,1518,2,Tariffs increase the price of imported goods . [false],Tariffs increase the price of imported goods .
+1454,1527,2,Cyberstalking uses digital means for harassment .,Cyberstalking uses digital means for harassment . [false]
+1458,1517,2,Solid-state drives are faster than traditional hard drives .,Solid-state drives are not faster than traditional hard drives . [false]
+1461,1467,2,Carbon capture technology stores CO2 underground .,Carbon capture technology stores CO2 underground . [false]
+1462,1528,2,Digital wallets store payment information securely . [false],Digital wallets store payment information securely .
+1471,1491,2,Witnesses testify under oath in trials .,Witnesses testify under oath in trials . [false]
+1474,1545,2,Bartering is an exchange of goods without money .,Bartering is not an exchange of goods without money . [false]
+1479,1484,2,Peat bogs are natural carbon sinks .,Peat bogs are not natural carbon sinks . [false]
+1482,1508,2,Acids have pH values below 7.,Acids have pH values below 7. [false]
+1487,1529,2,School boards oversee local education policies .,School boards oversee local education policies . [false]
+1490,1542,2,Fitness trackers help monitor daily activity levels .,Fitness trackers help monitor daily activity levels . [false]
+1492,1506,2,Photosynthesis stores energy in glucose molecules .,Photosynthesis not stores energy in glucose molecules . [false]
+1495,1519,2,Isotopes have the same number of protons but different neutrons . [false],Isotopes have the same number of protons but different neutrons .
+1498,1538,2,Composting converts organic waste into fertilizer . [false],Composting converts organic waste into fertilizer .
+1510,1546,2,Augmented reality blends digital and real environments . [false],Augmented reality blends digital and real environments .
+1532,1543,2,Gymnasts perform on balance beams and uneven bars . [false],Gymnasts perform on balance beams and uneven bars .
