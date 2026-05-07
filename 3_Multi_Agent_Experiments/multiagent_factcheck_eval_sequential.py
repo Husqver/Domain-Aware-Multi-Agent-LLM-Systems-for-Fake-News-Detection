@@ -3,7 +3,7 @@ os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")  # wähle deine GPU(s)
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")
 
 
 import logging, json, time, torch, gc
@@ -236,7 +236,6 @@ def run_with_retries(
     raise last_err if last_err else RuntimeError("Unknown generation error")
 
 # ========== 3) Hauptfunktion ==========
-# --- Hilfsfunktion: ModelBundle sauber freigeben ---
 def _free_bundle(bundle):
     try:
         if hasattr(bundle, "pipeline"):

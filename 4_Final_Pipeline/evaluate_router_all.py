@@ -14,7 +14,7 @@ os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("USE_TF", "0")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")  # sichtbare GPUs
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")
 # =========================
 # CONFIG — edit these
 # =========================
@@ -79,7 +79,6 @@ SUPER_LABELS_BY_K = {
     ],
 }
 
-# Test files per k — must have 'statement' and 'super_domain' columns
 TEST_PATHS = {
     5:  "Results/preprocessed_test_cleaned_binary_with_super_domain_5.csv",
     8:  "Results/preprocessed_test_cleaned_binary_with_super_domain_8.csv",

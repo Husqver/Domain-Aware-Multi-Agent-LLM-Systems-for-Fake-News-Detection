@@ -1,0 +1,34 @@
+# =============================================================================
+# PyTorch — install MANUALLY with the correct CUDA version for your system:
+#   https://pytorch.org/get-started/locally/
+#
+# Server version used: torch==2.9.0+cu129  (CUDA 12.9)
+#
+# Example (CUDA 12.1):
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# =============================================================================
+
+# Hugging Face ecosystem
+transformers==4.57.1
+datasets==4.3.0
+peft==0.18.1
+accelerate==1.12.0
+huggingface-hub==0.36.0
+tokenizers==0.22.1
+safetensors==0.7.0
+sentencepiece==0.2.1
+
+# Fine-tuning / constrained decoding
+lm-format-enforcer==0.11.3
+langchain-experimental==0.4.1
+langchain-core==1.2.7
+langchain-community==0.4.1
+
+# Data & evaluation
+numpy==2.2.6
+pandas==2.3.3
+scikit-learn==1.7.2
+
+# Misc
+Jinja2==3.1.6
+tqdm==4.67.1

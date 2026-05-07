@@ -4,7 +4,7 @@ os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("USE_TF", "0")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")  # sichtbare GPUs
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")
 
 import re
 import json
@@ -177,7 +177,6 @@ def build_prompt(
 # 2) Default prompts (router + experts)
 # ---------------------------------------
 def make_router_system_prompt(super_labels: List[str]) -> str:
-    # You can replace this with your richer prompt if you want.
     labels_bullets = "\n".join([f"- {l}" for l in super_labels])
     return (
         "You are a strict domain classifier.\n\n"
@@ -306,7 +305,6 @@ def run_router(
 ) -> pd.Series:
     print("\n=== Phase 1: Routing (Statement -> super_domain) ===")
 
-    # tokenizer bevorzugt aus adapter-dir
     try:
         tokenizer = AutoTokenizer.from_pretrained(router_lora_dir, use_fast=True, trust_remote_code=True)
     except Exception:
@@ -315,7 +313,6 @@ def run_router(
     if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
         tokenizer.pad_token_id = tokenizer.eos_token_id
 
-    # IMPORTANT: genau wie Training: device_map=None + to(device)
     dtype = pick_dtype()
     base = AutoModelForCausalLM.from_pretrained(
         base_model_id,

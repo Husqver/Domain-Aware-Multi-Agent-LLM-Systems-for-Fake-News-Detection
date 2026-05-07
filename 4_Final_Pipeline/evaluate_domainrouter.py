@@ -30,11 +30,9 @@ def safe_read_csv(path: str) -> pd.DataFrame:
 
 
 def infer_k_from_filename(name: str) -> Optional[int]:
-    # *_5.csv, *_8.csv, *_12.csv
     m = re.search(r"(?:_|-)(5|8|12)(?:\.csv$)", name)
     if m:
         return int(m.group(1))
-    # *5Classes*, *8Classes*, *12Classes*
     m = re.search(r"(5|8|12)\s*classes", name, flags=re.I)
     if m:
         return int(m.group(1))
@@ -71,7 +69,7 @@ def evaluate_predictions_df_verbose(
     domain_router_col: str = "domain_pred_router",
     verdict_pred_col: str = "verdict_pred",
 ) -> Dict[str, Any]:
-    # ---- Basic filtering (matches your pipeline)
+    # ---- Basic filtering
     df = df.copy()
     df = df.dropna(subset=[text_col, label_col])
     df = df[df[text_col].astype(str).str.strip() != ""]
@@ -194,8 +192,8 @@ def evaluate_all_verbose(
     folder: str = "Results",
     pattern: str = "*test_predictions_with_experts*.csv",
     super_labels_by_k: Optional[Dict[int, List[str]]] = None,
-    only_model: Optional[str] = None,   # e.g. "llama"
-    only_k: Optional[int] = None,       # e.g. 8
+    only_model: Optional[str] = None,  
+    only_k: Optional[int] = None,       
     save_summary_csv: Optional[str] = "Results/_summary_by_model_and_k.csv",
 ) -> pd.DataFrame:
     paths = sorted(glob.glob(os.path.join(folder, "*.csv")))
@@ -228,12 +226,9 @@ def evaluate_all_verbose(
         res = evaluate_predictions_df_verbose(df, super_labels=super_labels)
 
         rows.append({
-            # deine bisherigen Spalten
             "file": fname,
             "model": model,
             "k": k,
-
-            # Neu: verdict task summary wie in deinem Beispiel
             "mode": f"{model}_k{k}",
             "n_eval": res["n_eval"],
             "accuracy": res["verdict_acc"],
@@ -241,8 +236,6 @@ def evaluate_all_verbose(
             "recall_true": res["recall_true"],
             "f1_true": res["f1_true"],
             "confusion_matrix": str(res["verdict_confusion_matrix"]),
-
-            # Optional: Domain routing ebenfalls mit Confusion Matrix
             "domain_acc": res["domain_acc"],
             "n_domain_eval": res["n_domain_eval"],
             "domain_confusion_matrix": (

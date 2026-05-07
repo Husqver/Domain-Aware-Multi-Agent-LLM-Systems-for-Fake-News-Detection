@@ -1,7 +1,7 @@
 import os
 
 # =========================
-# 0) Environment (MUST be first)
+# 0) Environment 
 # =========================
 os.environ["TRANSFORMERS_NO_TF"] = "1"
 os.environ["USE_TF"] = "0"
@@ -114,16 +114,12 @@ def tokenize_dataset(
     raw_ds = Dataset.from_pandas(df[[text_col, label_col]])
 
     def tokenize_example(example):
-        # (Optional) Label-Liste im user prompt, damit das Modell “weiß”, was erlaubt ist
-        # -> das hilft oft massiv.
         user_content = (
             f"Claim:\n{example[text_col]}\n\n"
             "Return ONLY ONE label from the valid list.\n"
             "Label:"
         )
 
-        # IMPORTANT: add_generation_prompt=False, weil wir "Label:" schon manuell gesetzt haben.
-        # Alternativ: add_generation_prompt=True und "Label:" NICHT manuell hinzufügen.
         prompt = render_prompt(
             tokenizer,
             system_prompt=system_prompt,
@@ -131,7 +127,6 @@ def tokenize_dataset(
             add_generation_prompt=False,
         )
 
-        # Ensure separator before target label
         text = prompt + " " + str(example[label_col]) + (tokenizer.eos_token if tokenizer.eos_token else "")
 
         return tokenizer(text, max_length=max_length, truncation=True)
@@ -152,7 +147,6 @@ def infer_lora_target_modules(model) -> List[str]:
     for n, _ in model.named_modules():
         present_suffixes.add(n.split(".")[-1])
     found = [m for m in candidates if m in present_suffixes]
-    # If nothing found, fall back to the typical list
     return found if found else candidates
 
 
@@ -251,7 +245,7 @@ def train_domain_classifier(
     trainer.train()
 
     os.makedirs(output_dir, exist_ok=True)
-    trainer.model.save_pretrained(output_dir)   # saves LoRA adapter (PEFT)
+    trainer.model.save_pretrained(output_dir) 
     tokenizer.save_pretrained(output_dir)
 
     print(f"✅ LoRA adapter & tokenizer saved to: {output_dir}")
@@ -310,7 +304,6 @@ def classify_statement_domain(statement, model, tokenizer, domain_config, max_ne
     gen_ids = out[0][inputs["input_ids"].shape[1]:]
     answer = tokenizer.decode(gen_ids, skip_special_tokens=True).strip().lower()
 
-    # matching logic unchanged
     if not answer:
         return "misc" if "misc" in domain_config.super_labels else domain_config.super_labels[0]
 
@@ -403,20 +396,11 @@ def evaluate_on_testset(
 # 8) Example usage (edit these)
 # =========================
 if __name__ == "__main__":
-    # --- Choose your backbone here ---
-    # Llama instruct:
-    # base_model_id = "meta-llama/Llama-3.1-8B-Instruct"
-    # Gemma instruct:
-    # base_model_id = "google/gemma-7b-it"
-    # DeepSeek base:
-    # base_model_id = "deepseek-ai/deepseek-llm-7b-base"
+
 
     base_model_id = "meta-llama/Llama-3.1-8B-Instruct"
 
-    # --- Provide your subject->superlabel mapping ---
-    # NOTE: you must define domain_to_super elsewhere; below is only a placeholder.
     domain_to_super = {
-        # LIAR subjects -> your super labels (example)
         "taxes": "economy",
         "budget": "economy",
         "health-care": "health_social",
@@ -425,7 +409,6 @@ if __name__ == "__main__":
         "elections": "politics_government",
         "energy": "environment_energy",
         "education": "society_culture",
-        # fallback:
         "misc": "misc",
     }
 

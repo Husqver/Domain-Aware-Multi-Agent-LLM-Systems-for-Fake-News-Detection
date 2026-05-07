@@ -24,7 +24,7 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 os.environ["TRANSFORMERS_NO_TF"] = "1"
 os.environ["USE_TF"] = "0"
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")  # sichtbare GPUs
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
 
 # ------------------------
 # Reproducibility

@@ -3,7 +3,7 @@ os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")  # wähle deine GPU(s)
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
 
 import logging, json, time, torch
 from typing import Literal, List, Dict, Optional, Callable
@@ -284,7 +284,6 @@ def process_claims_multi_experts(
             max_new_tokens=int(decision_cfg.get("max_new_tokens", 176)),
         )
 
-    # Modelle warm laden
     for ex in experts:
         get_model_bundle(ex.model_id)
     if decision:
@@ -345,7 +344,7 @@ def process_claims_multi_experts(
                 "explanation": explanation or "",
             })
 
-        # Decision (optional)
+        # Decision
         if decision:
             bundle_dec = get_model_bundle(decision.model_id)
             subject_val = (out_row["subject"] or "") if use_subjects else ""
@@ -391,7 +390,7 @@ def process_claims_multi_experts(
 
     result_df = pd.DataFrame(rows_out)
 
-    # optional speichern
+
     if save_path:
         dirn = os.path.dirname(save_path)
         if dirn:
@@ -399,7 +398,6 @@ def process_claims_multi_experts(
         result_df.to_csv(save_path, index=False, encoding="utf-8")
         print(f"✅ Ergebnisse gespeichert unter: {save_path}")
 
-    # Evaluation: nur final
     try:
         if "label_true" in result_df.columns and "verdict_final" in result_df.columns:
             y_true = _normalize_labels(result_df["label_true"].dropna())

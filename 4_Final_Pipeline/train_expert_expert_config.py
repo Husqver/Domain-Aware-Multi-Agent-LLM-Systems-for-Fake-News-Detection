@@ -2,22 +2,20 @@
 from dataclasses import dataclass
 from typing import List
 
-
 @dataclass
 class ExpertConfig:
     """
     Hält alle Einstellungen für die Fact-Checking-Experten (LoRA-Modelle).
     Du gibst hier nur an, wie deine Daten aussehen und welche Domains du trainieren willst.
     """
-    super_domains: List[str]              # z.B. ["socioeconomic_policy", "foreign_security", ...]
+    super_domains: List[str]        
     base_model_id: str = "meta-llama/Llama-3.1-8B-Instruct"
 
-    # Spaltennamen im Trainings-DataFrame:
-    text_column: str = "statement"        # Claim-Text
-    label_column: str = "label"           # "True"/"False"
-    domain_column: str = "super_domain"   # Superdomain je Zeile
+    text_column: str = "statement"       
+    label_column: str = "label"          
+    domain_column: str = "super_domain"  
 
-    max_length: int = 256                 # Max Token-Länge für Input
+    max_length: int = 256             
     num_train_epochs: int = 3
     learning_rate: float = 5e-4
     per_device_train_batch_size: int = 4

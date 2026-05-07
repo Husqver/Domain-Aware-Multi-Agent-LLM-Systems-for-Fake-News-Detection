@@ -16,7 +16,7 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 os.environ["TRANSFORMERS_NO_TF"] = "1"
 os.environ["USE_TF"] = "0"
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")  # sichtbare GPUs
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
 
 # ------------------------
 # Same prompts as training
@@ -74,7 +74,7 @@ def continuation_logprob(model, tokenizer, prompt_text: str, continuation_tokens
         # truncate from left (keep end) to avoid crash
         full_ids = full_ids[-max_len:]
         # prompt_len unknown after trunc; approximate by clipping prompt too
-        # For stability, we re-derive prompt_len as len(full)-len(cont)
+        # For stability, re-derive prompt_len as len(full)-len(cont)
         prompt_len = len(full_ids) - len(continuation_tokens)
     else:
         prompt_len = len(prompt_ids)

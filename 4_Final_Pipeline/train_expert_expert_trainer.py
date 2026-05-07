@@ -18,16 +18,13 @@ from peft import LoraConfig, get_peft_model, TaskType
 from train_expert_expert_config import ExpertConfig
 
 
-# === Environment-Settings (optional wie bei dir) ===
+# === Environment-Settings ===
 os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")  # sichtbare GPUs
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
-
-# ===== Callback für schöne tqdm-Ausgabe (optional) =====
 class TQDMProgressCallback(TrainerCallback):
     def __init__(self):
         self.progress_bar = None
@@ -99,7 +96,7 @@ def build_chat_tokenize_fn(domain_name: str, config: ExpertConfig, tokenizer):
 
     def tokenize_example(example):
         claim = example[config.text_column]
-        label = example[config.label_column]  # "True"/"False"
+        label = example[config.label_column]
 
         user_content = (
             f"Claim:\n{claim}\n\n"
@@ -110,10 +107,9 @@ def build_chat_tokenize_fn(domain_name: str, config: ExpertConfig, tokenizer):
             tokenizer=tokenizer,
             system_prompt=system_prompt,
             user_prompt=user_content,
-            assistant_text=label,   # teacher forcing target
+            assistant_text=label, 
         )
 
-        # Optional: EOS helps some models learn clean endings
         if tokenizer.eos_token:
             text = text + tokenizer.eos_token
 
@@ -145,20 +141,16 @@ def train_expert_for_domain(
     print(f"\n=== Training expert for domain: {domain_name} ===")
     print(f"Samples: {len(df_domain)}")
 
-    # 1) Tokenizer
     tokenizer = create_tokenizer(config.base_model_id)
 
-    # 2) Dataset bauen
     ds = Dataset.from_pandas(df_domain[[config.text_column, config.label_column]])
 
-    # 3) Tokenisierungsfunktion (Chat-Template)
     tokenize_fn = build_chat_tokenize_fn(domain_name, config, tokenizer)
     train_tok = ds.map(
         tokenize_fn,
         remove_columns=ds.column_names,
     )
 
-    # 4) Basis-Modell + LoRA
     base = AutoModelForCausalLM.from_pretrained(
         config.base_model_id,
         torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
@@ -187,7 +179,6 @@ def train_expert_for_domain(
         mlm=False,
     )
 
-    # 5) TrainingArguments
     out_dir = os.path.join(output_root, domain_name)
     os.makedirs(out_dir, exist_ok=True)
 
@@ -214,7 +205,6 @@ def train_expert_for_domain(
 
     trainer.train()
 
-    # 6) Speichern
     trainer.model.save_pretrained(out_dir)
     tokenizer.save_pretrained(out_dir)
 

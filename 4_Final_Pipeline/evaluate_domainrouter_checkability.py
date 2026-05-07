@@ -37,12 +37,10 @@ def safe_read_csv(path: str) -> pd.DataFrame:
 def infer_k_from_filename(name: str) -> Optional[int]:
     n = name.lower()
 
-    # erkennt z.B. _12.csv, -12.csv, _12_checkability.csv, -12_something.csv, usw.
     m = re.search(r"(?:^|[_-])(5|8|12)(?:[_-]|\.csv$)", n)
     if m:
         return int(m.group(1))
 
-    # erkennt 5Classes / 8Classes / 12Classes / "12 classes"
     m = re.search(r"(5|8|12)\s*classes", n, flags=re.I)
     if m:
         return int(m.group(1))
@@ -79,16 +77,12 @@ def evaluate_predictions_df_verbose(
     domain_pred_col: str = "domain_pred",
     domain_router_col: str = "domain_pred_router",
     verdict_pred_col: str = "verdict_pred",
-    # ✅ NEU: Checkability-Filter
     checkability_col: str = "checkability_category",
     keep_checkability_value: str = "fact_checkable",
-    # Optional: wenn True, wirft Fehler falls checkability_col fehlt
     require_checkability_col: bool = False,
 ) -> Dict[str, Any]:
-    # ---- Basic filtering (matches your pipeline)
     df = df.copy()
 
-    # ✅ NEU: Nur fact_checkable behalten
     if require_checkability_col and checkability_col not in df.columns:
         raise KeyError(
             f"Missing required column '{checkability_col}'. "
@@ -241,10 +235,9 @@ def evaluate_all_verbose(
     folder: str = "Results",
     pattern: str = "*test_predictions_with_experts*.csv",
     super_labels_by_k: Optional[Dict[int, List[str]]] = None,
-    only_model: Optional[str] = None,   # e.g. "llama"
-    only_k: Optional[int] = None,       # e.g. 8
+    only_model: Optional[str] = None,  
+    only_k: Optional[int] = None,   
     save_summary_csv: Optional[str] = "Results/_summary_by_model_and_k_checkability.csv",
-    # ✅ NEU: Checkability-Filter an/aus + Wert
     filter_checkability: bool = True,
     checkability_col: str = "checkability_category",
     keep_checkability_value: str = "fact_checkable",

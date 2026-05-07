@@ -1,11 +1,10 @@
 import os
 
-# MUST be set before importing transformers in many environments to avoid TF/Keras issues.
 os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("USE_TF", "0")
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")  # sichtbare GPUs
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")
 
 import re
 import json
@@ -187,7 +186,7 @@ def run_checkability_gate(
     base = AutoModelForCausalLM.from_pretrained(
         base_model_id,
         torch_dtype=dtype,
-        device_map=None,              # IMPORTANT: avoid accelerate hf_device_map issues
+        device_map=None,          
         trust_remote_code=True,
         low_cpu_mem_usage=True,
     ).to(device)
@@ -303,7 +302,6 @@ def build_prompt(
 # 2) Default prompts (router + experts)
 # ---------------------------------------
 def make_router_system_prompt(super_labels: List[str]) -> str:
-    # You can replace this with your richer prompt if you want.
     labels_bullets = "\n".join([f"- {l}" for l in super_labels])
     return (
         "You are a strict domain classifier.\n\n"
@@ -619,7 +617,7 @@ def run_full_pipeline(
     sep: str = "\t",
     max_router_new_tokens: int = 8,
     max_expert_new_tokens: int = 192,
-    use_checkability_gate: bool = False,   # <-- NEW
+    use_checkability_gate: bool = False,
 ) -> pd.DataFrame:
 
     df = pd.read_csv(

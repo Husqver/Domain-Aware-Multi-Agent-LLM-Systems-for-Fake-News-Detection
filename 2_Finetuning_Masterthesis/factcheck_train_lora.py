@@ -24,7 +24,7 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 os.environ["TRANSFORMERS_NO_TF"] = "1"
 os.environ["USE_TF"] = "0"
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")  # sichtbare GPUs
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0") 
 
 # ------------------------
 # Reproducibility
@@ -255,7 +255,6 @@ def main():
 
     # Dynamic padding collator
     def data_collator(features):
-        # labels rausnehmen, damit tokenizer.pad nur model inputs padet
         labels = [f["labels"] for f in features]
         for f in features:
             f.pop("labels")
@@ -269,7 +268,6 @@ def main():
     
         max_len = batch["input_ids"].shape[1]
     
-        # labels auf max_len mit -100 padden
         padded_labels = []
         for lab in labels:
             if len(lab) < max_len:
@@ -295,9 +293,9 @@ def main():
         logging_steps=25,
     
         save_strategy="steps",
-        save_steps=10,                 # ✅ statt 250
+        save_steps=10,               
         eval_strategy="steps" if val_tok is not None else "no",
-        eval_steps=10 if val_tok is not None else None,   # ✅ statt 250
+        eval_steps=10 if val_tok is not None else None, 
     
         load_best_model_at_end=True if val_tok is not None else False,
         metric_for_best_model="eval_loss",
