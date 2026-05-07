@@ -1,27 +1,48 @@
+
 # Domain-Aware Multi-Agent LLM Systems for Fake News Detection
 
-Master's thesis project implementing a domain-aware multi-agent fact-checking pipeline based on Large Language Models (LLMs). Rather than relying on a single general-purpose model, the system routes claims to specialized domain experts via a learned domain router, improving fact-checking accuracy through specialization.
+Master's thesis project implementing a domain-aware multi-agent
+fact-checking pipeline based on Large Language Models (LLMs). Rather
+than relying on a single general-purpose model, the system routes claims
+to specialized domain experts via a learned domain router, improving
+fact-checking accuracy through specialization.
+
+---
+
+## Thesis
+
+This repository accompanies the Master's thesis:
+
+**Domain-Aware Multi-Agent LLM Systems for Fake News Detection**
+
+Lukas Rupp, OTH Amberg-Weiden, Faculty of Electrical Engineering,
+Media and Computer Science, 2026
 
 ---
 
 ## Architecture
 
-The system follows a two-tier architecture:
+The system follows a three-stage pipeline:
 
 ```
 Input Claim
     │
     ▼
+┌─────────────────────┐
+│  Checkability Gate  │  ← filters non-verifiable or underspecified claims
+└────────┬────────────┘
+         │ fact_checkable claims only
+         ▼
 ┌─────────────────┐
 │  Domain Router  │  ← LoRA fine-tuned LLM
-│                 │    classifies claim into one domain
+│                 │    classifies claim into one super-domain
 └────────┬────────┘
          │ domain label
          ▼
 ┌─────────────────────────────────────┐
 │         Domain Expert Pool          │
 │                                     │
-│  [Politics] [Economy] [Health] ...  │  ← one LoRA adapter per domain
+│  [Economy] [Politics] [Health] ...  │  ← one LoRA adapter per domain
 │                                     │
 └────────────────┬────────────────────┘
                  │ verdict (True / False)
@@ -29,9 +50,20 @@ Input Claim
             Final Prediction
 ```
 
-**Domain Router** — A LoRA-adapted LLM that maps an input claim to one of the predefined super-domains. Three domain granularities are supported: 5, 8, and 12 domains.
+**Checkability Gate** — Filters non-verifiable inputs before routing.
+Classifies each claim into one of five categories: `fact_checkable`,
+`non_claim`, `opinion_or_ambiguous`, `needs_additional_context`, or
+`sensitive_selfharm`. Only `fact_checkable` claims are forwarded to
+the router and expert agents.
 
-**Domain Experts** — One independent LoRA adapter per domain, each fine-tuned specifically for fact-checking within that domain. Outputs a binary verdict (`True` / `False`) with an optional explanation, enforced via JSON schema (LMFormatEnforcer).
+**Domain Router** — A LoRA-adapted LLM that maps an input claim to one
+of the predefined super-domains. Three domain granularities are
+supported: 6, 8, and 13 domains.
+
+**Domain Experts** — One independent LoRA adapter per domain, each
+fine-tuned specifically for fact-checking within that domain. Outputs
+a binary verdict (`True` / `False`) with an optional explanation,
+enforced via JSON schema (LMFormatEnforcer).
 
 ---
 
@@ -66,7 +98,7 @@ Input Claim
 │   ├── train_expert_expert_trainer.py             # Expert training
 │   ├── train_expert_expert_config.py              # Expert training config
 │   ├── multiagent_pipeline.py                     # End-to-end inference
-│   ├── multiagent_pipeline_checkability.py        # Variant with checkability scoring
+│   ├── multiagent_pipeline_checkability.py        # Variant with checkability gate
 │   ├── evaluate_domainrouter.py                   # Router evaluation
 │   ├── evaluate_experts_all.py                    # Expert evaluation
 │   ├── evaluate_router_all.py
@@ -84,7 +116,8 @@ Input Claim
 
 ## Models
 
-The following LLMs were evaluated as backbone models for both the router and the domain experts:
+The following LLMs were evaluated as backbone models for both the
+router and the domain experts:
 
 | Model                 | HuggingFace ID                       |
 | --------------------- | ------------------------------------ |
@@ -92,28 +125,35 @@ The following LLMs were evaluated as backbone models for both the router and the
 | Gemma 7B Instruct     | `google/gemma-7b-it`               |
 | DeepSeek LLM 7B       | `deepseek-ai/deepseek-llm-7b-base` |
 
-All models are fine-tuned with **LoRA** (Low-Rank Adaptation) via the PEFT library. No full model weights are modified or stored.
+All models are fine-tuned with **LoRA** (Low-Rank Adaptation) via the
+PEFT library. No full model weights are modified or stored.
 
 **LoRA configuration:**
 
-- Rank `r = 8`, alpha `= 16–32`, dropout `= 0.05`
-- Target modules: `q_proj`, `k_proj`, `v_proj`, `o_proj` (auto-detected per architecture)
+* Rank `r = 8`, alpha `= 16-32`, dropout `= 0.05`
+* Target modules: `q_proj`, `k_proj`, `v_proj`, `o_proj`, `gate_proj`,
+  `up_proj`, `down_proj`
 
 ---
 
 ## Dataset
 
-The primary dataset is [LIAR](https://arxiv.org/abs/1705.00648), a benchmark for fake news detection consisting of political statements with fine-grained veracity labels and subject tags.
+The primary dataset is [LIAR](https://arxiv.org/abs/1705.00648), a
+benchmark for fake news detection consisting of short political
+statements with fine-grained veracity labels and subject tags.
 
-For this project, the original multi-class labels are reduced to binary (`True` / `False`) and the subject tags are mapped to coarser super-domains using the `DomainConfig` class in `4_Final_Pipeline/train_domain_expert_domain_config.py`.
+For this project, the original six-class labels are reduced to binary
+(`True` / `False`) using a deterministic mapping, and the subject tags
+are mapped to coarser super-domains using the `DomainConfig` class in
+`4_Final_Pipeline/train_domain_expert_domain_config.py`.
 
 **Supported domain granularities:**
 
 | k  | Example domains                                                                                                      |
 | -- | -------------------------------------------------------------------------------------------------------------------- |
-| 5  | socioeconomic\_policy, foreign\_security, governance\_law, environment\_science, society\_culture                    |
-| 8  | economy, health\_social, foreign\_security, law\_rights, politics\_government, environment\_energy, society\_culture |
-| 12 | macro\_econ, healthcare\_policy, law\_crime\_rights, foreign\_affairs\_security, environment\_energy\_infra, …      |
+| 6  | socioeconomic_policy, foreign_security, governance_law, environment_science, society_culture, misc                   |
+| 8  | economy, health_social, foreign_security, law_rights, politics_government, environment_energy, society_culture, misc |
+| 13 | macro_econ, healthcare_policy, law_crime_rights, foreign_affairs_security, environment_energy_infra, media_meta, ... |
 
 ---
 
@@ -121,8 +161,8 @@ For this project, the original multi-class labels are reduced to binary (`True` 
 
 ### Requirements
 
-- Python 3.10+
-- CUDA-capable GPU (experiments run on CUDA 12.9 / `torch==2.9.0+cu129`)
+* Python 3.10+
+* CUDA-capable GPU (experiments run on CUDA 12.9 / `torch==2.9.0+cu129`)
 
 ### Installation
 
@@ -143,19 +183,26 @@ pip install -r requirements.txt
 
 ---
 
----
-
 ## Citation
 
-If you use this code or build on this work, please cite the thesis (details to be added upon publication).
+If you use this code or build on this work, please cite:
+
+```bibtex
+@mastersthesis{rupp2026domainaware,
+  title     = {Domain-Aware Multi-Agent LLM Systems for Fake News Detection},
+  author    = {Rupp, Lukas},
+  school    = {OTH Amberg-Weiden},
+  year      = {2026}
+}
+```
 
 The LIAR dataset:
 
-```
+```bibtex
 @inproceedings{wang2017liar,
-  title={``Liar, Liar Pants on Fire'': A New Benchmark Dataset for Fake News Detection},
-  author={Wang, William Yang},
-  booktitle={Proceedings of ACL},
-  year={2017}
+  title     = {"Liar, Liar Pants on Fire": A New Benchmark Dataset for Fake News Detection},
+  author    = {Wang, William Yang},
+  booktitle = {Proceedings of ACL},
+  year      = {2017}
 }
 ```
