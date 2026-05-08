@@ -1,0 +1,228 @@
+% LaTeX-Vorlage zur Erstellung einer Abschlussarbeit in der Fakultät Elektrotechnik, Medien und Informatik an der OTH Amberg-Weiden
+% Diese Vorlage entstand im Rahmen des Kurses "LaTeX fürs Studium"
+% Aktuelle Version: v0.03
+% Stand: 11.21.2024
+%
+% Changelog:
+% v0.03: Nov.2024, Anpassung der Vorlage:
+% + Übernahme des neuen Corporate Design
+% + Einfügen von biblatex
+%
+% v0.02: 06.08.2015, Anpassung der Vorlage:
+% + Persönliche Informationen (Vorname, Name, Titel usw.) werden direkt in die PDF-Dokumenteinstellungen übernommen
+% + Korrektur der Verlinkung von Abbildungs- und Tabellenverzeichnis aus dem Inhaltsverzeichnis (phantomsection) bzw. deren Seitenzahl
+%   Besten Dank für diesen Hinweis an Jan-Olaf Becker
+% + Anpassung des Namens der Fakultät nach deren Umbenennung
+%
+% v0.01: 14.03.2012, Erstellung der Vorlage
+
+\documentclass[12pt,oneside]{report}
+\usepackage[T1]{fontenc}		% Einstellungen fuer Umlaute usw.
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+\usepackage[style=ieee]{biblatex}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{pdflscape} % oder lscape
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{arrows.meta, positioning, fit, backgrounds}
+
+\addbibresource{testbib.bib}
+
+\usepackage{parskip}			% Einstellungen fuer Absaetze: Abstand statt Einrueckung
+
+\usepackage[a4paper,			% Papierformat A4
+	    left=2.5cm,				% linker Rand
+	    right=2.5cm,			% rechter Rand
+	    top=1.5cm,				% oberer Rand
+	    bottom=1.5cm,			% unter Rand
+	    marginparsep=5mm,		% Abstand der Randnotizen
+	    marginparwidth=10mm, 	% Breite der Randnotizen
+	    headheight=7mm,			% Hoehe der Kopfzeile
+	    headsep=1.2cm,			% Abstand der Kopfzeile
+	    footskip=1.5cm,			% Abstand der Fusszeile
+	    includeheadfoot]{geometry}
+
+\usepackage{fancyhdr}						% Konfiguration von Kopf- und Fusszeilen
+\pagestyle{fancy}							% Seitenstil 'fancy'
+\fancyhf{}									% vorhandene Einstellungen loeschen
+\setlength{\headwidth}{\textwidth}			% Kopf- und Fusszeile so breit wie der Haupttext
+\fancyfoot[R]{\thepage} 					% Festlegung des Seitenstils: Seitenzahlen in der Fusszeile rechts
+\fancyfoot[L]{\leftmark}					% Kapitelnr. und -Bezeichnung in der Fusszeile links
+\fancyhead[R]{\IhreArbeit}					% "Bachelorarbeit" in der Kopfzeile rechts
+\fancyhead[L]{\IhrVorname\ \IhrNachname}	% Vorname und Name in der Kopfzeile links
+\renewcommand{\chaptermark}[1]{			% Definition der Ausgabe des Kapitels
+  \markboth{Chapter \thechapter. #1}{}}
+\renewcommand{\headrulewidth}{0.5pt}		% Trennlinie zwischen Kopfzeile und Haupttext
+\renewcommand{\footrulewidth}{0.5pt}		% Trennlinie zwischen Haupttext und Fusszeile
+\fancypagestyle{plain}{					% Anpassung des Seitenstils 'plain' bei Beginn neuer Kapitel
+  \fancyhf{}								% Vorbelegung loeschen
+  \fancyfoot[C]{\thepage}					% Seitenzeilen in der Fusszeile mittig
+  \fancyhead[R]{\IhreArbeit}				% "Bachelorarbeit" in der Kopfzeile rechts
+  \fancyhead[L]{\IhrVorname\ \IhrNachname}	% Vorname und Name in der Kopfzeile links
+}
+
+\usepackage{amsmath}			% Pakete fuer den Mathematikmodus
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage[intlimits]{empheq}
+
+\usepackage[sc]{mathpazo}		% Schriftart Palatino fuer Haupttext und Mathematikmodus
+\usepackage{pifont}				% zusaetzliche Symbole
+
+\usepackage[format=hang,		% Einstellung fuer Bildunterschriften
+            font={footnotesize},
+            labelfont={bf},
+            margin=1cm,
+            aboveskip=5pt,
+            position=bottom]{caption}
+
+\usepackage{graphicx}							% Einbinden von Graphiken
+\usepackage[svgnames,cmyk,table,hyperref]{xcolor} 	% Verwendung von Farben
+\usepackage{tikz}								% Erstellen von Grafiken
+\usetikzlibrary{positioning,arrows,plotmarks} % TikZ-Bibliotheken
+%\usepackage{pgfplots}                           % Darstellung von Plots, Funktionen, Graphen usw.
+
+%
+% Weitere Pakete
+%
+%\usepackage{listings}			% Darstellung von Quellcode
+%\lstset{language=Python, basicstyle=\ttfamily, numbers=none}
+%
+%\usepackage[european, siunitx]{circuitikz}	% Darstellung von Schaltungen
+%
+%\usepackage{enumerate}			% Formatierung nummerierter Listen
+
+\usepackage{microtype,relsize}					% Wird verwendet, um Nachnamen auf Titelseite gesperrt darzustellen
+\newcommand*{\Sperren}[1]{\textls*[100]{#1}}
+
+%
+% Persoenliche Angaben
+%
+\newcommand*{\IhrVorname}{Lukas}
+\newcommand*{\IhrNachname}{Rupp}
+\newcommand*{\IhrStudiengang}{Künstliche Intelligenz}
+\newcommand*{\IhreArbeit}{Masterarbeit}
+\newcommand*{\IhrTitelDE}{Domänenspezifische Multi-Agenten-LLM-Systeme zur Erkennung von Fake News}
+\newcommand*{\IhrTitelEN}{Domain-Aware Multi-Agent LLM Systems for Fake News Detection}
+\newcommand*{\IhrBearbeitungszeitraumVON}{01.12.2025}
+\newcommand*{\IhrBearbeitungszeitraumBIS}{29.05.2026}
+\newcommand*{\IhrErstpruefer}{Prof. Dr. Christian Bergler}
+\newcommand*{\IhrZweitpruefer}{Prof. Dr. Ulrich Schäfer}
+\newcommand*{\IhreFirma}{-}
+\newcommand*{\IhrFirmenbetreuer}{-}
+\newcommand*{\IhreZusammenfassungEN}{%
+This thesis investigates how Large Language Models can be used to detect fake news across different domains. It examines the performance of various LLMs, explores the impact of domain knowledge on classification accuracy, and develops a multi-agent system in which specialized models collaborate to improve detection performance. The final goal is to evaluate whether domain-aware and agent-based architectures lead to more reliable and accurate fake news classification.
+}
+\newcommand*{\IhreZusammenfassung}{%
+Diese Arbeit untersucht, wie Large Language Models zur Erkennung von Fake News in verschiedenen Domänen eingesetzt werden können. Sie analysiert die Leistung verschiedener LLMs, untersucht den Einfluss von Domänenwissen auf die Klassifikationsgenauigkeit und entwickelt ein Multi-Agenten-System, in dem spezialisierte Modelle zusammenarbeiten, um die Erkennungsleistung zu verbessern. Das übergeordnete Ziel besteht darin, zu evaluieren, ob domänenbewusste und agentenbasierte Architekturen zu einer zuverlässigeren und genaueren Klassifikation von Fake News führen.
+}
+\newcommand*{\IhreSchluesselwoerter}{LLM, Llama, Gemma, Deepseek, Fake News Detection, Multi-Agent, Domainaware}
+
+
+\usepackage[bookmarks, raiselinks, pageanchor, % PDF-Einstellungen
+            hyperindex, colorlinks,
+            citecolor=black, linkcolor=black,
+            urlcolor=black, filecolor=black,
+            menucolor=black]{hyperref}
+\hypersetup{pdftitle={\IhrTitelDE},%
+            pdfauthor={\IhrVorname\ \IhrNachname},%
+            pdfsubject={\IhreArbeit},%
+            pdfkeywords={\IhreSchluesselwoerter}}
+
+%
+% Beginn des Textteils
+%
+\begin{document}
+  \pagenumbering{roman}
+  \begin{titlepage}					% Titelseite
+    \thispagestyle{empty}
+    \begin{center}
+      \Large
+      Ostbayerische Technische Hochschule Amberg-Weiden\\
+      Fakultät Elektrotechnik, Medien und Informatik\\[1cm]
+      Studiengang \IhrStudiengang\\[1cm]
+      \textbf{\IhreArbeit}\\[1cm]
+      von\\[1cm]
+      \IhrVorname\ \Sperren{\textbf{\IhrNachname}}\\[1cm]
+      \textbf{\IhrTitelDE}\\[1cm]
+      \IhrTitelEN
+    \end{center}
+  \end{titlepage}
+  \clearpage
+  \thispagestyle{empty}			% 1. Seite soll eine Leerseite sein (dazu muss ein Trick verwendet werden)
+  \mbox{}
+  \clearpage
+  \thispagestyle{empty}			% 2. Seite wie Titelseite, aber mit zusaetzlichen Angaben
+  \begin{center}
+    \Large
+    Ostbayerische Technische Hochschule Amberg-Weiden\\
+    Fakultät Elektrotechnik, Medien und Informatik\\[1cm]
+    Studiengang \IhrStudiengang\\[1cm]
+    \textbf{\IhreArbeit}\\[1cm]
+    von\\[1cm]
+    \IhrVorname\ \Sperren{\textbf{\IhrNachname}}\\[1cm]
+    \textbf{\IhrTitelDE}\\[1cm]
+    \IhrTitelEN
+  \end{center}
+  \vspace*{5cm}
+  \begin{tabbing}
+    \underbar{Bearbeitungszeitraum:}\qquad\= von\qquad\=\IhrBearbeitungszeitraumVON\\
+                                          \> bis      \>\IhrBearbeitungszeitraumBIS
+  \end{tabbing}
+  \vspace*{1cm}
+  \underbar{1. Prüfer:}\qquad\IhrErstpruefer\par
+  \underbar{2. Prüfer:}\qquad\IhrZweitpruefer
+  \clearpage
+  \include{formblatt_selbststaendigkeitserklaerung}		% 3. Seite: Formblatt Bestaetigung nach Paragraph 12 APO
+  \include{formblatt_summary}			% 4. Seite: Formblatt Zusammenfassung
+  \tableofcontents
+  \newpage
+  %\chapter*{Symbole, Formelzeichen und Einheiten}
+  \newpage
+  \pagenumbering{arabic}
+  \include{kapitel1}
+  \include{kapitel2}
+  \include{kapitel3}
+  \include{kapitel4}
+  \include{kapitel5}
+  \include{kapitel6}
+  \include{kapitel7}
+  \include{kapitel8}
+  \include{kapitel9}
+  
+  % ... weitere Kapitel
+
+  % Literaturverzeichnis
+  % Der Name der Bibliographie Datei kann angepasst werden
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Bibliography}
+  %\bibliography{testbib}
+  \printbibliography
+  %\bibliographystyle{plain}
+  \newpage
+
+  % Anhang
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoffigures
+  \newpage
+
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Tables}
+  \listoftables
+  \newpage
+
+  \appendix
+  \include{appendix}
+  \newpage
+
+
+
+  %\include{anhang}
+\end{document}

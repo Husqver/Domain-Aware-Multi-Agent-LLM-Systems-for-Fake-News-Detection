@@ -1,0 +1,1634 @@
+\chapter{Domain Mapping Tables and Supplementary Evaluations}
+This appendix provides two supplementary resources. Section~\ref{app:domain_mapping} lists the complete mappings from original LIAR subject tags to super-domain labels for all four taxonomy granularities evaluated in this thesis.
+Section~\ref{app:gpt_deep_research_examples} provides a qualitative example-level comparison of GPT-5.1 Thinking versus GPT-5.1 Deep Research on selected LIAR test instances.
+
+\section{Domain Mapping Tables}
+\label{app:domain_mapping}
+
+This appendix provides the complete mappings from original LIAR subject tags to super-domain labels for all four taxonomy granularities evaluated in this thesis. The mappings were derived semi-automatically using a large language model as a semantic classification aid, followed by manual review and correction to ensure consistency and domain coherence.
+
+\subsection{3-Label Taxonomy}
+\label{app:domain_mapping_3}
+
+\begin{longtable}{ll}
+\caption[Complete domain mapping for the 3-label taxonomy.]{Complete domain mapping for the 3-label taxonomy (\texttt{economy}, \texttt{health\_science}, \texttt{politics}).}
+\label{tab:domain_mapping_3}\\
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endfirsthead
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+agriculture & \texttt{economy} \\
+bankruptcy & \texttt{economy} \\
+cap-and-trade & \texttt{economy} \\
+city-budget & \texttt{economy} \\
+consumer-safety & \texttt{economy} \\
+corporations & \texttt{economy} \\
+county-budget & \texttt{economy} \\
+debt & \texttt{economy} \\
+deficit & \texttt{economy} \\
+economy & \texttt{economy} \\
+federal-budget & \texttt{economy} \\
+financial-regulation & \texttt{economy} \\
+food & \texttt{economy} \\
+food-safety & \texttt{economy} \\
+gambling & \texttt{economy} \\
+gas-prices & \texttt{economy} \\
+government-efficiency & \texttt{economy} \\
+government-regulation & \texttt{economy} \\
+housing & \texttt{economy} \\
+income & \texttt{economy} \\
+infrastructure & \texttt{economy} \\
+job-accomplishments & \texttt{economy} \\
+jobs & \texttt{economy} \\
+labor & \texttt{economy} \\
+lottery & \texttt{economy} \\
+market-regulation & \texttt{economy} \\
+pensions & \texttt{economy} \\
+poverty & \texttt{economy} \\
+retirement & \texttt{economy} \\
+small-business & \texttt{economy} \\
+social-security & \texttt{economy} \\
+state-budget & \texttt{economy} \\
+state-finances & \texttt{economy} \\
+stimulus & \texttt{economy} \\
+taxes & \texttt{economy} \\
+tourism & \texttt{economy} \\
+trade & \texttt{economy} \\
+transportation & \texttt{economy} \\
+unions & \texttt{economy} \\
+wealth & \texttt{economy} \\
+welfare & \texttt{economy} \\
+workers & \texttt{economy} \\
+\midrule
+Alcohol & \texttt{health\_science} \\
+abortion & \texttt{health\_science} \\
+animals & \texttt{health\_science} \\
+autism & \texttt{health\_science} \\
+children & \texttt{health\_science} \\
+climate-change & \texttt{health\_science} \\
+disability & \texttt{health\_science} \\
+diversity & \texttt{health\_science} \\
+drugs & \texttt{health\_science} \\
+ebola & \texttt{health\_science} \\
+energy & \texttt{health\_science} \\
+environment & \texttt{health\_science} \\
+families & \texttt{health\_science} \\
+fires & \texttt{health\_science} \\
+gays-and-lesbians & \texttt{health\_science} \\
+health-care & \texttt{health\_science} \\
+homeless & \texttt{health\_science} \\
+hunger & \texttt{health\_science} \\
+marijuana & \texttt{health\_science} \\
+medicaid & \texttt{health\_science} \\
+medicare & \texttt{health\_science} \\
+natural-disasters & \texttt{health\_science} \\
+nuclear & \texttt{health\_science} \\
+oil-spill & \texttt{health\_science} \\
+public-health & \texttt{health\_science} \\
+science & \texttt{health\_science} \\
+sexuality & \texttt{health\_science} \\
+space & \texttt{health\_science} \\
+technology & \texttt{health\_science} \\
+water & \texttt{health\_science} \\
+weather & \texttt{health\_science} \\
+women & \texttt{health\_science} \\
+\midrule
+10-news-tampa-bay & \texttt{politics} \\
+abc-news-week & \texttt{politics} \\
+after-the-fact & \texttt{politics} \\
+afghanistan & \texttt{politics} \\
+bipartisanship & \texttt{politics} \\
+bush-administration & \texttt{politics} \\
+campaign-advertising & \texttt{politics} \\
+campaign-finance & \texttt{politics} \\
+candidates-biography & \texttt{politics} \\
+china & \texttt{politics} \\
+city-government & \texttt{politics} \\
+civil-rights & \texttt{politics} \\
+congress & \texttt{politics} \\
+congressional-rules & \texttt{politics} \\
+corrections-and-updates & \texttt{politics} \\
+county-government & \texttt{politics} \\
+crime & \texttt{politics} \\
+criminal-justice & \texttt{politics} \\
+debates & \texttt{politics} \\
+education & \texttt{politics} \\
+elections & \texttt{politics} \\
+ethics & \texttt{politics} \\
+fake-news & \texttt{politics} \\
+foreign-policy & \texttt{politics} \\
+guns & \texttt{politics} \\
+history & \texttt{politics} \\
+homeland-security & \texttt{politics} \\
+human-rights & \texttt{politics} \\
+immigration & \texttt{politics} \\
+iraq & \texttt{politics} \\
+islam & \texttt{politics} \\
+israel & \texttt{politics} \\
+legal-issues & \texttt{politics} \\
+marriage & \texttt{politics} \\
+message-machine & \texttt{politics} \\
+military & \texttt{politics} \\
+obama-birth-certificate & \texttt{politics} \\
+occupy-wall-street & \texttt{politics} \\
+patriotism & \texttt{politics} \\
+polls & \texttt{politics} \\
+pop-culture & \texttt{politics} \\
+population & \texttt{politics} \\
+privacy & \texttt{politics} \\
+public-safety & \texttt{politics} \\
+public-service & \texttt{politics} \\
+pundits & \texttt{politics} \\
+recreation & \texttt{politics} \\
+redistricting & \texttt{politics} \\
+religion & \texttt{politics} \\
+sports & \texttt{politics} \\
+states & \texttt{politics} \\
+supreme-court & \texttt{politics} \\
+terrorism & \texttt{politics} \\
+transparency & \texttt{politics} \\
+urban & \texttt{politics} \\
+veterans & \texttt{politics} \\
+voting-record & \texttt{politics} \\
+\end{longtable}
+
+
+\subsection{6-Label Taxonomy}
+\label{app:domain_mapping_6}
+
+\begin{longtable}{ll}
+\caption[Complete domain mapping for the 6-label taxonomy.]{Complete domain mapping for the 6-label taxonomy (\texttt{socioeconomic\_policy}, \texttt{foreign\_security}, \texttt{governance\_law}, \texttt{environment\_science}, \texttt{society\_culture}, \texttt{misc}).}
+\label{tab:domain_mapping_6}\\
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endfirsthead
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Alcohol & \texttt{socioeconomic\_policy} \\
+agriculture & \texttt{socioeconomic\_policy} \\
+bankruptcy & \texttt{socioeconomic\_policy} \\
+corporations & \texttt{socioeconomic\_policy} \\
+consumer-safety & \texttt{socioeconomic\_policy} \\
+debt & \texttt{socioeconomic\_policy} \\
+deficit & \texttt{socioeconomic\_policy} \\
+economy & \texttt{socioeconomic\_policy} \\
+financial-regulation & \texttt{socioeconomic\_policy} \\
+gas-prices & \texttt{socioeconomic\_policy} \\
+gambling & \texttt{socioeconomic\_policy} \\
+housing & \texttt{socioeconomic\_policy} \\
+income & \texttt{socioeconomic\_policy} \\
+infrastructure & \texttt{socioeconomic\_policy} \\
+job-accomplishments & \texttt{socioeconomic\_policy} \\
+jobs & \texttt{socioeconomic\_policy} \\
+labor & \texttt{socioeconomic\_policy} \\
+market-regulation & \texttt{socioeconomic\_policy} \\
+medicaid & \texttt{socioeconomic\_policy} \\
+pensions & \texttt{socioeconomic\_policy} \\
+poverty & \texttt{socioeconomic\_policy} \\
+retirement & \texttt{socioeconomic\_policy} \\
+small-business & \texttt{socioeconomic\_policy} \\
+social-security & \texttt{socioeconomic\_policy} \\
+stimulus & \texttt{socioeconomic\_policy} \\
+taxes & \texttt{socioeconomic\_policy} \\
+tourism & \texttt{socioeconomic\_policy} \\
+trade & \texttt{socioeconomic\_policy} \\
+unions & \texttt{socioeconomic\_policy} \\
+wealth & \texttt{socioeconomic\_policy} \\
+workers & \texttt{socioeconomic\_policy} \\
+food & \texttt{socioeconomic\_policy} \\
+health-care & \texttt{socioeconomic\_policy} \\
+medicare & \texttt{socioeconomic\_policy} \\
+public-health & \texttt{socioeconomic\_policy} \\
+food-safety & \texttt{socioeconomic\_policy} \\
+drugs & \texttt{socioeconomic\_policy} \\
+marijuana & \texttt{socioeconomic\_policy} \\
+ebola & \texttt{socioeconomic\_policy} \\
+hunger & \texttt{socioeconomic\_policy} \\
+disability & \texttt{socioeconomic\_policy} \\
+women & \texttt{socioeconomic\_policy} \\
+families & \texttt{socioeconomic\_policy} \\
+sexuality & \texttt{socioeconomic\_policy} \\
+veterans & \texttt{socioeconomic\_policy} \\
+children & \texttt{socioeconomic\_policy} \\
+autism & \texttt{socioeconomic\_policy} \\
+homeless & \texttt{socioeconomic\_policy} \\
+\midrule
+afghanistan & \texttt{foreign\_security} \\
+foreign-policy & \texttt{foreign\_security} \\
+iraq & \texttt{foreign\_security} \\
+israel & \texttt{foreign\_security} \\
+china & \texttt{foreign\_security} \\
+military & \texttt{foreign\_security} \\
+homeland-security & \texttt{foreign\_security} \\
+terrorism & \texttt{foreign\_security} \\
+nuclear & \texttt{foreign\_security} \\
+patriotism & \texttt{foreign\_security} \\
+natural-disasters & \texttt{foreign\_security} \\
+public-safety & \texttt{foreign\_security} \\
+\midrule
+abortion & \texttt{governance\_law} \\
+civil-rights & \texttt{governance\_law} \\
+crime & \texttt{governance\_law} \\
+criminal-justice & \texttt{governance\_law} \\
+guns & \texttt{governance\_law} \\
+legal-issues & \texttt{governance\_law} \\
+privacy & \texttt{governance\_law} \\
+human-rights & \texttt{governance\_law} \\
+supreme-court & \texttt{governance\_law} \\
+islam & \texttt{governance\_law} \\
+immigration & \texttt{governance\_law} \\
+elections & \texttt{governance\_law} \\
+ethics & \texttt{governance\_law} \\
+congress & \texttt{governance\_law} \\
+government-efficiency & \texttt{governance\_law} \\
+government-regulation & \texttt{governance\_law} \\
+voting-record & \texttt{governance\_law} \\
+\midrule
+cap-and-trade & \texttt{environment\_science} \\
+climate-change & \texttt{environment\_science} \\
+environment & \texttt{environment\_science} \\
+energy & \texttt{environment\_science} \\
+oil-spill & \texttt{environment\_science} \\
+water & \texttt{environment\_science} \\
+weather & \texttt{environment\_science} \\
+transportation & \texttt{environment\_science} \\
+space & \texttt{environment\_science} \\
+technology & \texttt{environment\_science} \\
+\midrule
+education & \texttt{society\_culture} \\
+gays-and-lesbians & \texttt{society\_culture} \\
+diversity & \texttt{society\_culture} \\
+religion & \texttt{society\_culture} \\
+marriage & \texttt{society\_culture} \\
+population & \texttt{society\_culture} \\
+pop-culture & \texttt{society\_culture} \\
+sports & \texttt{society\_culture} \\
+history & \texttt{society\_culture} \\
+\midrule
+abc-news-week & \texttt{misc} \\
+pundits & \texttt{misc} \\
+obama-birth-certificate & \texttt{misc} \\
+after-the-fact & \texttt{misc} \\
+lottery & \texttt{misc} \\
+\end{longtable}
+
+\subsection{8-Label Taxonomy}
+\label{app:domain_mapping_8}
+
+\begin{longtable}{ll}
+\caption[Complete domain mapping for the 8-label taxonomy]{Complete domain mapping for the 8-label taxonomy (\texttt{economy}, \texttt{health\_social}, \texttt{foreign\_security}, 
+\texttt{law\_rights}, \texttt{politics\_government}, \texttt{environment\_energy}, \texttt{society\_culture}, \texttt{misc}).}
+\label{tab:domain_mapping_8}\\
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endfirsthead
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Alcohol & \texttt{economy} \\
+agriculture & \texttt{economy} \\
+bankruptcy & \texttt{economy} \\
+corporations & \texttt{economy} \\
+consumer-safety & \texttt{economy} \\
+debt & \texttt{economy} \\
+deficit & \texttt{economy} \\
+economy & \texttt{economy} \\
+financial-regulation & \texttt{economy} \\
+gas-prices & \texttt{economy} \\
+gambling & \texttt{economy} \\
+housing & \texttt{economy} \\
+income & \texttt{economy} \\
+infrastructure & \texttt{economy} \\
+job-accomplishments & \texttt{economy} \\
+jobs & \texttt{economy} \\
+labor & \texttt{economy} \\
+market-regulation & \texttt{economy} \\
+medicaid & \texttt{economy} \\
+pensions & \texttt{economy} \\
+poverty & \texttt{economy} \\
+retirement & \texttt{economy} \\
+small-business & \texttt{economy} \\
+social-security & \texttt{economy} \\
+stimulus & \texttt{economy} \\
+taxes & \texttt{economy} \\
+tourism & \texttt{economy} \\
+trade & \texttt{economy} \\
+unions & \texttt{economy} \\
+wealth & \texttt{economy} \\
+workers & \texttt{economy} \\
+food & \texttt{economy} \\
+\midrule
+health-care & \texttt{health\_social} \\
+medicare & \texttt{health\_social} \\
+public-health & \texttt{health\_social} \\
+food-safety & \texttt{health\_social} \\
+drugs & \texttt{health\_social} \\
+marijuana & \texttt{health\_social} \\
+ebola & \texttt{health\_social} \\
+hunger & \texttt{health\_social} \\
+disability & \texttt{health\_social} \\
+women & \texttt{health\_social} \\
+families & \texttt{health\_social} \\
+sexuality & \texttt{health\_social} \\
+veterans & \texttt{health\_social} \\
+children & \texttt{health\_social} \\
+autism & \texttt{health\_social} \\
+homeless & \texttt{health\_social} \\
+\midrule
+afghanistan & \texttt{foreign\_security} \\
+foreign-policy & \texttt{foreign\_security} \\
+iraq & \texttt{foreign\_security} \\
+israel & \texttt{foreign\_security} \\
+china & \texttt{foreign\_security} \\
+military & \texttt{foreign\_security} \\
+homeland-security & \texttt{foreign\_security} \\
+terrorism & \texttt{foreign\_security} \\
+nuclear & \texttt{foreign\_security} \\
+patriotism & \texttt{foreign\_security} \\
+natural-disasters & \texttt{foreign\_security} \\
+public-safety & \texttt{foreign\_security} \\
+\midrule
+abortion & \texttt{law\_rights} \\
+civil-rights & \texttt{law\_rights} \\
+crime & \texttt{law\_rights} \\
+criminal-justice & \texttt{law\_rights} \\
+guns & \texttt{law\_rights} \\
+legal-issues & \texttt{law\_rights} \\
+privacy & \texttt{law\_rights} \\
+human-rights & \texttt{law\_rights} \\
+supreme-court & \texttt{law\_rights} \\
+islam & \texttt{law\_rights} \\
+immigration & \texttt{law\_rights} \\
+\midrule
+bipartisanship & \texttt{politics\_government} \\
+bush-administration & \texttt{politics\_government} \\
+campaign-advertising & \texttt{politics\_government} \\
+campaign-finance & \texttt{politics\_government} \\
+candidates-biography & \texttt{politics\_government} \\
+congress & \texttt{politics\_government} \\
+elections & \texttt{politics\_government} \\
+ethics & \texttt{politics\_government} \\
+government-efficiency & \texttt{politics\_government} \\
+government-regulation & \texttt{politics\_government} \\
+polls & \texttt{politics\_government} \\
+redistricting & \texttt{politics\_government} \\
+voting-record & \texttt{politics\_government} \\
+states & \texttt{politics\_government} \\
+\midrule
+cap-and-trade & \texttt{environment\_energy} \\
+climate-change & \texttt{environment\_energy} \\
+environment & \texttt{environment\_energy} \\
+energy & \texttt{environment\_energy} \\
+oil-spill & \texttt{environment\_energy} \\
+water & \texttt{environment\_energy} \\
+weather & \texttt{environment\_energy} \\
+transportation & \texttt{environment\_energy} \\
+urban & \texttt{environment\_energy} \\
+recreation & \texttt{environment\_energy} \\
+\midrule
+education & \texttt{society\_culture} \\
+gays-and-lesbians & \texttt{society\_culture} \\
+diversity & \texttt{society\_culture} \\
+religion & \texttt{society\_culture} \\
+marriage & \texttt{society\_culture} \\
+population & \texttt{society\_culture} \\
+pop-culture & \texttt{society\_culture} \\
+sports & \texttt{society\_culture} \\
+nightlife & \texttt{society\_culture} \\
+history & \texttt{society\_culture} \\
+\midrule
+abc-news-week & \texttt{misc} \\
+pundits & \texttt{misc} \\
+obama-birth-certificate & \texttt{misc} \\
+technology & \texttt{misc} \\
+after-the-fact & \texttt{misc} \\
+lottery & \texttt{misc} \\
+\end{longtable}
+
+\subsection{13-Label Taxonomy}
+\label{app:domain_mapping_13}
+
+\begin{longtable}{ll}
+\caption{Complete domain mapping for the 13-label taxonomy.}
+\label{tab:domain_mapping_13}\\
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endfirsthead
+\toprule
+Original Subject Tag & Super-Category \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+economy & \texttt{macro\_econ} \\
+deficit & \texttt{macro\_econ} \\
+debt & \texttt{macro\_econ} \\
+stimulus & \texttt{macro\_econ} \\
+taxes & \texttt{macro\_econ} \\
+trade & \texttt{macro\_econ} \\
+\midrule
+jobs & \texttt{jobs\_labor} \\
+job-accomplishments & \texttt{jobs\_labor} \\
+labor & \texttt{jobs\_labor} \\
+unions & \texttt{jobs\_labor} \\
+workers & \texttt{jobs\_labor} \\
+income & \texttt{jobs\_labor} \\
+\midrule
+corporations & \texttt{business\_finance} \\
+bankruptcy & \texttt{business\_finance} \\
+financial-regulation & \texttt{business\_finance} \\
+market-regulation & \texttt{business\_finance} \\
+small-business & \texttt{business\_finance} \\
+\midrule
+housing & \texttt{cost\_of\_living\_housing} \\
+gas-prices & \texttt{cost\_of\_living\_housing} \\
+poverty & \texttt{cost\_of\_living\_housing} \\
+wealth & \texttt{cost\_of\_living\_housing} \\
+retirement & \texttt{cost\_of\_living\_housing} \\
+pensions & \texttt{cost\_of\_living\_housing} \\
+social-security & \texttt{cost\_of\_living\_housing} \\
+tourism & \texttt{cost\_of\_living\_housing} \\
+\midrule
+health-care & \texttt{healthcare\_policy} \\
+medicare & \texttt{healthcare\_policy} \\
+medicaid & \texttt{healthcare\_policy} \\
+public-health & \texttt{healthcare\_policy} \\
+\midrule
+ebola & \texttt{public\_health\_crises} \\
+natural-disasters & \texttt{public\_health\_crises} \\
+public-safety & \texttt{public\_health\_crises} \\
+food-safety & \texttt{public\_health\_crises} \\
+consumer-safety & \texttt{public\_health\_crises} \\
+\midrule
+drugs & \texttt{substances\_gambling} \\
+marijuana & \texttt{substances\_gambling} \\
+Alcohol & \texttt{substances\_gambling} \\
+gambling & \texttt{substances\_gambling} \\
+lottery & \texttt{substances\_gambling} \\
+\midrule
+women & \texttt{family\_demographics} \\
+families & \texttt{family\_demographics} \\
+children & \texttt{family\_demographics} \\
+veterans & \texttt{family\_demographics} \\
+disability & \texttt{family\_demographics} \\
+autism & \texttt{family\_demographics} \\
+homeless & \texttt{family\_demographics} \\
+hunger & \texttt{family\_demographics} \\
+population & \texttt{family\_demographics} \\
+food & \texttt{family\_demographics} \\
+\midrule
+crime & \texttt{law\_crime\_rights} \\
+criminal-justice & \texttt{law\_crime\_rights} \\
+guns & \texttt{law\_crime\_rights} \\
+abortion & \texttt{law\_crime\_rights} \\
+civil-rights & \texttt{law\_crime\_rights} \\
+human-rights & \texttt{law\_crime\_rights} \\
+privacy & \texttt{law\_crime\_rights} \\
+immigration & \texttt{law\_crime\_rights} \\
+islam & \texttt{law\_crime\_rights} \\
+\midrule
+congress & \texttt{institutions\_elections} \\
+elections & \texttt{institutions\_elections} \\
+polls & \texttt{institutions\_elections} \\
+debates & \texttt{institutions\_elections} \\
+campaign-finance & \texttt{institutions\_elections} \\
+campaign-advertising & \texttt{institutions\_elections} \\
+redistricting & \texttt{institutions\_elections} \\
+voting-record & \texttt{institutions\_elections} \\
+candidates-biography & \texttt{institutions\_elections} \\
+ethics & \texttt{institutions\_elections} \\
+transparency & \texttt{institutions\_elections} \\
+bipartisanship & \texttt{institutions\_elections} \\
+government-regulation & \texttt{institutions\_elections} \\
+government-efficiency & \texttt{institutions\_elections} \\
+states & \texttt{institutions\_elections} \\
+state-budget & \texttt{institutions\_elections} \\
+state-finances & \texttt{institutions\_elections} \\
+county-government & \texttt{institutions\_elections} \\
+city-government & \texttt{institutions\_elections} \\
+bush-administration & \texttt{institutions\_elections} \\
+\midrule
+foreign-policy & \texttt{foreign\_affairs\_security} \\
+afghanistan & \texttt{foreign\_affairs\_security} \\
+iraq & \texttt{foreign\_affairs\_security} \\
+israel & \texttt{foreign\_affairs\_security} \\
+china & \texttt{foreign\_affairs\_security} \\
+military & \texttt{foreign\_affairs\_security} \\
+terrorism & \texttt{foreign\_affairs\_security} \\
+homeland-security & \texttt{foreign\_affairs\_security} \\
+nuclear & \texttt{foreign\_affairs\_security} \\
+patriotism & \texttt{foreign\_affairs\_security} \\
+\midrule
+climate-change & \texttt{environment\_energy\_infra} \\
+cap-and-trade & \texttt{environment\_energy\_infra} \\
+environment & \texttt{environment\_energy\_infra} \\
+energy & \texttt{environment\_energy\_infra} \\
+oil-spill & \texttt{environment\_energy\_infra} \\
+water & \texttt{environment\_energy\_infra} \\
+weather & \texttt{environment\_energy\_infra} \\
+transportation & \texttt{environment\_energy\_infra} \\
+urban & \texttt{environment\_energy\_infra} \\
+infrastructure & \texttt{environment\_energy\_infra} \\
+\midrule
+abc-news-week & \texttt{media\_meta} \\
+pundits & \texttt{media\_meta} \\
+after-the-fact & \texttt{media\_meta} \\
+corrections-and-updates & \texttt{media\_meta} \\
+fake-news & \texttt{media\_meta} \\
+message-machine & \texttt{media\_meta} \\
+technology & \texttt{media\_meta} \\
+space & \texttt{media\_meta} \\
+history & \texttt{media\_meta} \\
+education & \texttt{media\_meta} \\
+religion & \texttt{media\_meta} \\
+sports & \texttt{media\_meta} \\
+\end{longtable}
+
+\section{Qualitative Comparison: GPT-5.1 Thinking vs.\ GPT-5.1 Deep Research}
+\label{app:gpt_deep_research_examples}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\caption{Example-level comparison of GPT-5.1 Thinking vs.\ GPT-5.1 Deep Research 
+on selected LIAR test instances. ``unknown'' indicates that the model did not 
+produce a parseable binary verdict.}
+\label{tab:gpt_deep_research_examples}
+\begin{tabular}{p{0.44\linewidth} c c p{0.1\linewidth} p{0.22\linewidth}}
+\toprule
+Statement & Gold & GPT-5.1 & GPT-5.1 (Deep Research) & Subjects \\
+\midrule
+PolitiFact Texas says Congressman Edwards attacks on Bill Flores are false. &
+false & true & false & ethics, message-machine \\
+Ronald Reagan faced an even worse recession than the current one. &
+false & true & false & economy, history \\
+Suzanne Bonamici supports a plan that will cut choice for Medicare Advantage seniors. &
+true & false & false & medicare, message-machine-2012, campaign-advertising \\
+Each year 18000 people die in America because they don't have health care. &
+true & false & false & health-care \\
+Says Barack Obama promised he would cut the deficit in half but didn't. &
+true & false & true & federal-budget \\
+America is No.\ 1 in wind power. &
+true & unknown & false & energy \\
+Building a wall on the U.S.\ Mexico border will take literally years. &
+true & true & true & immigration \\
+A recent Gallup poll found that 72 percent of Americans and 56 percent of Democrats say the biggest threat to our nation's security is big government. &
+true & true & true & government-efficiency, government-regulation, polls \\
+More (student-athletes) graduate than the students who aren't student-athletes. &
+true & true & false & education, sports \\
+Says John McCain has done nothing to help the vets. &
+false & false & false & military, veterans, voting-record \\
+The fact is the Clinton Foundation has got about 80 percent in overhead and 20 percent of the money is actually getting into the places it should. &
+false & false & false & candidates-biography \\
+On residency requirements for public workers. &
+true & unknown & false & city-government, county-government, unions \\
+You said you would vote against the Patriot Act then you came to the Senate you voted for it. &
+true & unknown & true & terrorism \\
+The president campaigned against this type of legislation. &
+true & unknown & true & federal-budget \\
+I did not play any role in bringing the company to RI as did others in government. I was tasked with handling the legislation affecting the company by my superiors. &
+false & unknown & false & bankruptcy, debt \\
+On the Bush tax cuts. &
+false & unknown & unknown & taxes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\chapter{Supplementary Tables for Prompt-Based Baselines}
+
+This appendix provides complete prompt-based baseline results evaluated in Chapter~\ref{chap:baseline_single}. Table~\ref{tab:zeroshot_setups} reports zero-shot performance across all models under strict parsing (Setup~A) and forced decision (Setup~B), with and without subject metadata. Table~\ref{tab:appendix_all_baselines_full} provides a 
+complete listing of all baseline configurations including iterative, chain-of-thought, self-refinement, and tone-conditioning experiments.
+
+\begin{landscape}
+\begin{longtable}{lllc r r r r r r r}
+\caption{Zero-shot baselines on LIAR test ($n=1267$) under strict parsing (Setup~A) and forced decision (Setup~B), with and without subject metadata. Bal.\ Acc denotes balanced accuracy.}
+\label{tab:zeroshot_setups}\\
+\toprule
+Setup & Subjects & Model & n & Acc & Macro-F1 & Bal. Acc & TN & FP & FN & TP \\
+\midrule
+\endfirsthead
+
+\toprule
+Setup & Subjects & Model & n & Acc & Macro-F1 & Bal. Acc & TN & FP & FN & TP \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+A (strict) & no  & flan-t5-xl            & 1267 & 0.579 & 0.571 & 0.570 & 280 & 273 & 261 & 453 \\
+A (strict) & no  & bert-base-uncased     & 1267 & 0.573 & 0.423 & 0.517 &  40 & 513 &  28 & 685 \\
+A (strict) & no  & Llama-3.1-8B-Instruct & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & no  & deepseek-llm-7b-base  & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & no  & gpt-j-6B              & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & no  & gemma-7b-it           & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & no  & gemma-2b-it           & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & no  & bert-large-uncased    & 1267 & 0.563 & 0.360 & 0.500 &   0 & 553 &   0 & 713 \\
+A (strict) & no  & t5-base               & 1267 & 0.555 & 0.400 & 0.499 &  29 & 523 &  38 & 672 \\
+A (strict) & no  & flan-t5-xxl           & 1267 & 0.546 & 0.538 & 0.572 & 430 & 123 & 452 & 261 \\
+A (strict) & no  & roberta-base          & 1267 & 0.523 & 0.506 & 0.507 & 213 & 340 & 264 & 449 \\
+A (strict) & no  & flan-t5-base          & 1267 & 0.522 & 0.522 & 0.535 & 351 & 202 & 403 & 310 \\
+A (strict) & no  & roberta-large         & 1267 & 0.474 & 0.471 & 0.492 & 349 & 204 & 462 & 251 \\
+
+\midrule
+B (forced) & no  & gemma-7b-it           & 1267 & 0.612 & 0.583 & 0.588 & 222 & 331 & 161 & 553 \\
+B (forced) & no  & flan-t5-xl            & 1267 & 0.579 & 0.571 & 0.570 & 280 & 273 & 261 & 453 \\
+B (forced) & no  & bert-base-uncased     & 1267 & 0.573 & 0.423 & 0.517 &  40 & 513 &  28 & 686 \\
+B (forced) & no  & bert-large-uncased    & 1267 & 0.564 & 0.360 & 0.500 &   0 & 553 &   0 & 714 \\
+B (forced) & no  & gpt-j-6B              & 1267 & 0.562 & 0.363 & 0.499 &   2 & 551 &   4 & 710 \\
+B (forced) & no  & gemma-2b-it           & 1267 & 0.561 & 0.489 & 0.522 & 117 & 436 & 120 & 594 \\
+B (forced) & no  & t5-base               & 1267 & 0.549 & 0.420 & 0.497 &  49 & 504 &  68 & 646 \\
+B (forced) & no  & flan-t5-xxl           & 1267 & 0.546 & 0.538 & 0.572 & 430 & 123 & 452 & 262 \\
+B (forced) & no  & Llama-3.1-8B-Instruct & 1267 & 0.529 & 0.514 & 0.560 & 445 & 108 & 489 & 225 \\
+B (forced) & no  & roberta-base          & 1267 & 0.523 & 0.506 & 0.508 & 213 & 340 & 264 & 450 \\
+B (forced) & no  & flan-t5-base          & 1267 & 0.522 & 0.522 & 0.535 & 351 & 202 & 403 & 311 \\
+B (forced) & no  & roberta-large         & 1267 & 0.474 & 0.471 & 0.492 & 349 & 204 & 462 & 252 \\
+B (forced) & no  & deepseek-llm-7b-base  & 1267 & 0.436 & 0.305 & 0.500 & 552 &   1 & 713 &   1 \\
+
+\midrule
+A (strict) & yes & flan-t5-xl            & 1267 & 0.571 & 0.570 & 0.574 & 334 & 219 & 325 & 389 \\
+A (strict) & yes & bert-base-uncased     & 1267 & 0.567 & 0.383 & 0.506 &  13 & 540 &   8 & 705 \\
+A (strict) & yes & Llama-3.1-8B-Instruct & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & yes & deepseek-llm-7b-base  & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & yes & gpt-j-6B              & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & yes & gemma-7b-it           & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & yes & gemma-2b-it           & 1267 & 0.564 & 0.362 & 0.500 &   1 & 552 &   1 & 713 \\
+A (strict) & yes & bert-large-uncased    & 1267 & 0.563 & 0.360 & 0.500 &   0 & 553 &   0 & 713 \\
+A (strict) & yes & t5-base               & 1267 & 0.555 & 0.369 & 0.495 &   8 & 545 &  18 & 694 \\
+A (strict) & yes & flan-t5-xxl           & 1267 & 0.537 & 0.525 & 0.566 & 440 & 113 & 473 & 240 \\
+A (strict) & yes & flan-t5-base          & 1267 & 0.509 & 0.503 & 0.530 & 387 & 166 & 456 & 257 \\
+A (strict) & yes & roberta-large         & 1267 & 0.449 & 0.375 & 0.501 & 503 &  50 & 647 &  66 \\
+A (strict) & yes & roberta-base          & 1267 & 0.445 & 0.379 & 0.495 & 489 &  64 & 638 &  75 \\
+
+\midrule
+B (forced) & yes & gemma-7b-it           & 1267 & 0.608 & 0.568 & 0.578 & 192 & 361 & 136 & 578 \\
+B (forced) & yes & flan-t5-xl            & 1267 & 0.571 & 0.570 & 0.574 & 334 & 219 & 325 & 389 \\
+B (forced) & yes & Llama-3.1-8B-Instruct & 1267 & 0.568 & 0.568 & 0.582 & 381 & 172 & 375 & 339 \\
+B (forced) & yes & bert-base-uncased     & 1267 & 0.567 & 0.383 & 0.506 &  13 & 540 &   8 & 706 \\
+B (forced) & yes & bert-large-uncased    & 1267 & 0.564 & 0.360 & 0.500 &   0 & 553 &   0 & 714 \\
+B (forced) & yes & gemma-2b-it           & 1267 & 0.563 & 0.480 & 0.520 & 104 & 449 & 105 & 609 \\
+B (forced) & yes & gpt-j-6B              & 1267 & 0.556 & 0.362 & 0.494 &   3 & 550 &  12 & 702 \\
+B (forced) & yes & flan-t5-xxl           & 1267 & 0.537 & 0.526 & 0.567 & 440 & 113 & 473 & 241 \\
+B (forced) & yes & flan-t5-base          & 1267 & 0.509 & 0.504 & 0.531 & 387 & 166 & 456 & 258 \\
+B (forced) & yes & t5-base               & 1267 & 0.493 & 0.459 & 0.469 & 152 & 401 & 241 & 473 \\
+B (forced) & yes & roberta-large         & 1267 & 0.450 & 0.376 & 0.502 & 503 &  50 & 647 &  67 \\
+B (forced) & yes & roberta-base          & 1267 & 0.446 & 0.380 & 0.495 & 489 &  64 & 638 &  76 \\
+B (forced) & yes & deepseek-llm-7b-base  & 1267 & 0.437 & 0.305 & 0.501 & 553 &   0 & 713 &   1 \\
+
+\end{longtable}
+\end{landscape}
+
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{landscape}
+\scriptsize
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{1.05}
+
+\begin{longtable}{l P{2.9cm} P{4cm} l P{2.2cm} r r r r r r r r r r r r r}
+\caption{Complete listing of all baseline configurations on LIAR test ($n=1267$). MeanConf\_C and MeanConf\_W denote mean confidence on correctly and incorrectly classified instances, respectively. Fields not applicable to a method are shown as ``--''.}
+\label{tab:appendix_all_baselines_full}\\
+\toprule
+Block & Model & Prompt/Method & Mode & Condition & n & Acc & Macro-F1 & TN & FP & FN & TP &
+MeanConf & MeanConf\_C & MeanConf\_W \\
+\midrule
+\endfirsthead
+
+\toprule
+Block & Model & Prompt/Method & Mode & Condition & n & Acc & Macro-F1 & TN & FP & FN & TP &
+MeanConf & MeanConf\_C & MeanConf\_W \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+PromptEng & gemma-7b-it & P4\_subjects\_as\_context\_clues & with\_subjects & -- & 1267 & 0.614838 & 0.586258 & 223 & 330 & 158 & 556 & 0.913033 & 0.922152 & 0.898477\\
+PromptEng & gemma-7b-it & P0\_basic & no\_subjects & -- & 1267 & 0.611681 & 0.583237 & 222 & 331 & 161 & 553 & 0.959342 & 0.965208 & 0.950100\\
+PromptEng & gemma-7b-it & P1\_fake\_news\_no\_guess & with\_subjects & -- & 1267 & 0.608524 & 0.568700 & 193 & 360 & 136 & 578 & 0.923257 & 0.932908 & 0.908256 \\
+PromptEng & gemma-7b-it & P0\_basic & with\_subjects & -- & 1267 & 0.607735 & 0.567601 & 192 & 361 & 136 & 578 & 0.940097 & 0.950858 & 0.923424\\
+PromptEng & gemma-7b-it & P1\_fake\_news\_no\_guess & no\_subjects & -- & 1267 & 0.606946 & 0.573460 & 207 & 346 & 152 & 562 & 0.953124 & 0.962548 & 0.938573\\
+PromptEng & gemma-7b-it & P4\_subjects\_as\_context\_clues & no\_subjects & -- & 1267 & 0.599053 & 0.591072 & 291 & 262 & 246 & 468 & 0.945926 & 0.955262 & 0.931978\\
+PromptEng & gemma-7b-it & P3\_factcheck\_assistant & with\_subjects & -- & 1267 & 0.595896 & 0.592176 & 317 & 236 & 276 & 438 & 0.846679 & 0.869019 & 0.813737\\
+PromptEng & flan-t5-xl & P1\_fake\_news\_no\_guess & with\_subjects & -- & 1267 & 0.595107 & 0.539003 & 156 & 397 & 116 & 598 & 0.562354 & 0.579754 & 0.536781\\
+PromptEng & gemma-7b-it & P2\_one\_shot\_example & no\_subjects & -- & 1267 & 0.594317 & 0.578559 & 254 & 299 & 215 & 499 & 0.332829 & 0.364237 & 0.286815\\
+PromptEng & gemma-7b-it & P2\_one\_shot\_example & with\_subjects & -- & 1267 & 0.593528 & 0.581592 & 269 & 284 & 231 & 483 & 0.315404 & 0.333795 & 0.288550\\
+PromptEng & gemma-7b-it & P3\_factcheck\_assistant & no\_subjects & -- & 1267 & 0.591160 & 0.589872 & 339 & 214 & 304 & 410 & 0.888485 & 0.907464 & 0.861042\\
+PromptEng & flan-t5-xl & P3\_factcheck\_assistant & no\_subjects & -- & 1267 & 0.590371 & 0.561329 & 211 & 342 & 177 & 537 & 0.490338 & 0.518553 & 0.449673\\
+PromptEng & flan-t5-xl & P3\_factcheck\_assistant & with\_subjects & -- & 1267 & 0.590371 & 0.548938 & 182 & 371 & 148 & 566 & 0.540726 & 0.566652 & 0.503361\\
+PromptEng & flan-t5-xl & P2\_one\_shot\_example & with\_subjects & -- & 1267 & 0.589582 & 0.557124 & 202 & 351 & 169 & 545 & 0.519408 & 0.549839 & 0.475692\\
+PromptEng & flan-t5-xl & P2\_one\_shot\_example & no\_subjects & -- & 1267 & 0.588792 & 0.568618 & 236 & 317 & 204 & 510 & 0.470965 & 0.505059 & 0.422147\\
+PromptEng & flan-t5-xl & P4\_subjects\_as\_context\_clues & with\_subjects & -- & 1267 & 0.588003 & 0.534653 & 158 & 395 & 127 & 587 & 0.574095 & 0.598029 & 0.539938\\
+PromptEng & flan-t5-xl & P4\_subjects\_as\_context\_clues & no\_subjects & -- & 1267 & 0.581689 & 0.556668 & 218 & 335 & 195 & 519 & 0.472514 & 0.505712 & 0.426350\\
+PromptEng & Llama-3.1-8B-Instruct & P1\_fake\_news\_no\_guess & with\_subjects & -- & 1267 & 0.578532 & 0.578511 & 362 & 191 & 343 & 371 & 0.757194 & 0.779622 & 0.726408\\
+PromptEng & flan-t5-xl & P0\_basic & no\_subjects & -- & 1267 & 0.578532 & 0.570525 & 280 & 273 & 261 & 453 & 0.390996 & 0.429983 & 0.337480\\
+PromptEng & deepseek-llm-7b-base & P2\_one\_shot\_example & with\_subjects & -- & 1267 & 0.578532 & 0.418280 & 34 & 519 & 15 & 699 & 0.003381 & 0.003451 & 0.003285\\
+PromptEng & flan-t5-xl & P1\_fake\_news\_no\_guess & no\_subjects & -- & 1267 & 0.574586 & 0.525904 & 161 & 392 & 147 & 567 & 0.546432 & 0.576471 & 0.505860\\
+PromptEng & flan-t5-xl & P0\_basic & with\_subjects & -- & 1267 & 0.570639 & 0.569829 & 334 & 219 & 325 & 389 & 0.312415 & 0.355973 & 0.254524\\
+PromptEng & Llama-3.1-8B-Instruct & P0\_basic & with\_subjects & -- & 1267 & 0.568272 & 0.567797 & 381 & 172 & 375 & 339 & 0.809412 & 0.828111 & 0.784800\\
+PromptEng & deepseek-llm-7b-base & P2\_one\_shot\_example & no\_subjects & -- & 1267 & 0.568272 & 0.530812 & 181 & 372 & 175 & 539 & 0.002596 & 0.002712 & 0.002444\\
+PromptEng & deepseek-llm-7b-base & P3\_factcheck\_assistant & with\_subjects & -- & 1267 & 0.567482 & 0.375098 & 8 & 545 & 3 & 711 & 0.003744 & 0.003856 & 0.003596\\
+PromptEng & deepseek-llm-7b-base & P3\_factcheck\_assistant & no\_subjects & -- & 1267 & 0.563536 & 0.365367 & 3 & 550 & 3 & 711 & 0.003829 & 0.003964 & 0.003654\\
+PromptEng & deepseek-llm-7b-base & P4\_subjects\_as\_context\_clues & no\_subjects & -- & 1267 & 0.563536 & 0.363732 & 2 & 551 & 2 & 712 & 0.003170 & 0.003269 & 0.003041\\
+PromptEng & deepseek-llm-7b-base & P4\_subjects\_as\_context\_clues & with\_subjects & -- & 1267 & 0.562747 & 0.363402 & 2 & 551 & 3 & 711 & 0.006016 & 0.006190 & 0.005791\\
+PromptEng & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & with\_subjects & -- & 1267 & 0.554854 & 0.553679 & 384 & 169 & 395 & 319 & 0.809967 & 0.820131 & 0.797300\\
+PromptEng & Llama-3.1-8B-Instruct & P1\_fake\_news\_no\_guess & no\_subjects & -- & 1267 & 0.554854 & 0.552229 & 400 & 153 & 411 & 303 & 0.730888 & 0.750952 & 0.705880\\
+PromptEng & Llama-3.1-8B-Instruct & P3\_factcheck\_assistant & with\_subjects & -- & 1267 & 0.550118 & 0.545977 & 409 & 144 & 426 & 288 & 0.753924 & 0.784968 & 0.715964\\
+PromptEng & Llama-3.1-8B-Instruct & P3\_factcheck\_assistant & no\_subjects & -- & 1267 & 0.545383 & 0.542590 & 395 & 158 & 418 & 296 & 0.791958 & 0.813653 & 0.765931\\
+PromptEng & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & no\_subjects & -- & 1267 & 0.538279 & 0.537376 & 369 & 184 & 401 & 313 & 0.825651 & 0.841489 & 0.807188\\
+PromptEng & deepseek-llm-7b-base & P1\_fake\_news\_no\_guess & no\_subjects & -- & 1267 & 0.531176 & 0.513878 & 456 & 97 & 497 & 217 & 0.001963 & 0.001921 & 0.002011\\
+PromptEng & Llama-3.1-8B-Instruct & P0\_basic & no\_subjects & -- & 1267 & 0.528808 & 0.514160 & 445 & 108 & 489 & 225 & 0.815979 & 0.830111 & 0.800119\\
+PromptEng & Llama-3.1-8B-Instruct & P2\_one\_shot\_example & with\_subjects & -- & 1267 & 0.519337 & 0.494285 & 470 & 83 & 526 & 188 & 0.869220 & 0.874744 & 0.863251\\
+PromptEng & deepseek-llm-7b-base & P1\_fake\_news\_no\_guess & with\_subjects & -- & 1267 & 0.516180 & 0.497545 & 449 & 104 & 509 & 205 & 0.002100 & 0.002112 & 0.002088\\
+PromptEng & Llama-3.1-8B-Instruct & P2\_one\_shot\_example & no\_subjects & -- & 1267 & 0.506709 & 0.479832 & 465 & 88 & 537 & 177 & 0.852621 & 0.856126 & 0.849020\\
+PromptEng & deepseek-llm-7b-base & P0\_basic & with\_subjects & -- & 1267 & 0.437253 & 0.305412 & 553 & 0 & 713 & 1 & 0.004044 & 0.004082 & 0.004014\\
+PromptEng & deepseek-llm-7b-base & P0\_basic & no\_subjects & -- & 1267 & 0.436464 & 0.305027 & 552 & 1 & 713 & 1 & 0.004705 & 0.004755 & 0.004667\\
+
+\midrule
+Iterative & gemma-7b-it & reprompting & with\_subjects & -- & 1267 & 0.616417 & 0.583738 & 213 & 340 & 146 & 568 & 0.979305 & 0.982882 & 0.973558\\
+Iterative & gemma-7b-it & reprompting & no\_subjects & -- & 1267 & 0.614049 & 0.591126 & 239 & 314 & 175 & 539 & 0.978525 & 0.980451 & 0.975460\\
+Iterative & gemma-7b-it & baseline & no\_subjects & -- & 1267 & 0.612470 & 0.583900 & 222 & 331 & 160 & 554 & 0.960899 & 0.965920 & 0.952964\\
+Iterative & gemma-7b-it & baseline & with\_subjects & -- & 1267 & 0.612470 & 0.583900 & 222 & 331 & 160 & 554 & 0.960899 & 0.965920 & 0.952964\\
+Iterative & gemma-7b-it & self\_consistency & no\_subjects & -- & 1267 & 0.608524 & 0.583767 & 231 & 322 & 174 & 540 & 0.932563 & 0.944661 & 0.913759\\
+Iterative & gemma-7b-it & self\_consistency & with\_subjects & -- & 1267 & 0.602999 & 0.579085 & 231 & 322 & 181 & 533 & 0.931914 & 0.946389 & 0.909929\\
+Iterative & Llama-3.1-8B-Instruct & self\_consistency & with\_subjects & -- & 1267 & 0.540647 & 0.529029 & 442 & 111 & 471 & 243 & 0.905468 & 0.910050 & 0.900076\\
+Iterative & Llama-3.1-8B-Instruct & self\_consistency & no\_subjects & -- & 1267 & 0.538279 & 0.526480 & 441 & 112 & 473 & 241 & 0.905672 & 0.911434 & 0.898955\\
+Iterative & Llama-3.1-8B-Instruct & baseline & no\_subjects & -- & 1267 & 0.528808 & 0.514160 & 445 & 108 & 489 & 225 & 0.827878 & 0.840237 & 0.814009\\
+Iterative & Llama-3.1-8B-Instruct & baseline & with\_subjects & -- & 1267 & 0.528808 & 0.514160 & 445 & 108 & 489 & 225 & 0.827878 & 0.840237 & 0.814009\\
+Iterative & Llama-3.1-8B-Instruct & reprompting & with\_subjects & -- & 1267 & 0.526440 & 0.509569 & 451 & 102 & 498 & 216 & 0.882059 & 0.895088 & 0.867574\\
+Iterative & Llama-3.1-8B-Instruct & reprompting & no\_subjects & -- & 1267 & 0.501973 & 0.463326 & 488 & 65 & 566 & 148 & 0.861691 & 0.879767 & 0.843471\\
+
+\midrule
+SelfRefine & gemma-7b-it & iterative\_self\_refinement & no\_subjects & -- & 1267 & 0.564325 & 0.364062 & 2 & 551 & 1 & 713 & 2.9$\times$10$^{-7}$ & 2.7$\times$10$^{-7}$ & 3.0$\times$10$^{-7}$\\
+SelfRefine & gemma-7b-it & iterative\_self\_refinement & with\_subjects & -- & 1267 & 0.562747 & 0.360101 & 0 & 553 & 1 & 713 & 8.4$\times$10$^{-8}$ & 8.0$\times$10$^{-8}$ & 8.8$\times$10$^{-8}$\\
+SelfRefine & Llama-3.1-8B-Instruct & iterative\_self\_refinement & with\_subjects & -- & 1267 & 0.519337 & 0.499210 & 456 & 97 & 512 & 202 & 5.4$\times$10$^{-4}$ & 5.3$\times$10$^{-4}$ & 5.5$\times$10$^{-4}$\\
+SelfRefine & Llama-3.1-8B-Instruct & iterative\_self\_refinement & no\_subjects & -- & 1267 & 0.503552 & 0.471504 & 475 & 78 & 551 & 163 & 5.4$\times$10$^{-4}$ & 5.4$\times$10$^{-4}$ & 5.3$\times$10$^{-4}$\\
+
+\midrule
+CoT & gemma-7b-it & chain\_of\_thought & no\_subjects & -- & 1267 & 0.603788 & 0.601153 & 331 & 222 & 280 & 434 & 0.987163 & 0.989097 & 0.984215\\
+CoT & gemma-7b-it & chain\_of\_thought & with\_subjects & -- & 1267 & 0.603788 & 0.596611 & 298 & 255 & 247 & 467 & 0.990783 & 0.993050 & 0.987328\\
+CoT & Llama-3.1-8B-Instruct & chain\_of\_thought & with\_subjects & -- & 1267 & 0.505919 & 0.475527 & 473 & 80 & 546 & 168 & 0.943857 & 0.950737 & 0.936811\\
+CoT & Llama-3.1-8B-Instruct & chain\_of\_thought & no\_subjects & -- & 1267 & 0.491713 & 0.449460 & 487 & 66 & 578 & 136 & 0.933047 & 0.948999 & 0.917614\\
+
+\midrule
+Tone & gemma-7b-it & P0\_basic & with\_subjects & orig\_plus\_tone & 1267 & 0.616417 & 0.573716 & 190 & 363 & 123 & 591 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & with\_subjects & orig\_plus\_tone & 1267 & 0.614838 & 0.597495 & 258 & 295 & 193 & 521 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & no\_subjects & orig\_plus\_tone & 1267 & 0.613260 & 0.612175 & 355 & 198 & 292 & 422 & -- & -- & -- \\
+Tone & gemma-7b-it & P0\_basic & with\_subjects & orig & 1267 & 0.611681 & 0.590369 & 243 & 310 & 182 & 532 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & with\_subjects & orig & 1267 & 0.610103 & 0.590531 & 248 & 305 & 189 & 525 & -- & -- & -- \\
+Tone & gemma-7b-it & P0\_basic & no\_subjects & orig & 1267 & 0.606156 & 0.591244 & 263 & 290 & 209 & 505 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & no\_subjects & orig & 1267 & 0.601421 & 0.599399 & 336 & 217 & 288 & 426 & -- & -- & -- \\
+Tone & gemma-7b-it & P0\_basic & no\_subjects & orig\_plus\_tone & 1267 & 0.600631 & 0.548916 & 166 & 387 & 119 & 595 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & with\_subjects & neutral\_plus\_tone & 1267 & 0.578532 & 0.470165 & 80 & 473 & 61 & 653 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & with\_subjects & neutral & 1267 & 0.577743 & 0.472467 & 83 & 470 & 65 & 649 & -- & -- & -- \\
+Tone & gemma-7b-it & P0\_basic & no\_subjects & neutral & 1267 & 0.576953 & 0.452004 & 63 & 490 & 46 & 668 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & no\_subjects & neutral\_plus\_tone & 1267 & 0.573796 & 0.493299 & 111 & 442 & 98 & 616 & -- & -- & -- \\
+Tone & gemma-7b-it & P0\_basic & with\_subjects & neutral & 1267 & 0.573007 & 0.443063 & 57 & 496 & 45 & 669 & -- & -- & -- \\
+Tone & gemma-7b-it & P0\_basic & with\_subjects & neutral\_plus\_tone & 1267 & 0.570639 & 0.415337 & 35 & 518 & 26 & 688 & -- & -- & -- \\
+Tone & gemma-7b-it & P0\_basic & no\_subjects & neutral\_plus\_tone & 1267 & 0.567482 & 0.401658 & 26 & 527 & 21 & 693 & -- & -- & -- \\
+Tone & gemma-7b-it & P4\_subjects\_as\_context\_clues & no\_subjects & neutral & 1267 & 0.565114 & 0.485652 & 109 & 444 & 107 & 607 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & with\_subjects & neutral\_plus\_tone & 1267 & 0.521705 & 0.521681 & 335 & 218 & 388 & 326 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & no\_subjects & neutral\_plus\_tone & 1267 & 0.511444 & 0.511433 & 321 & 232 & 387 & 327 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & with\_subjects & orig\_plus\_tone & 1267 & 0.510655 & 0.479709 & 478 & 75 & 545 & 169 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & no\_subjects & orig\_plus\_tone & 1267 & 0.506709 & 0.468913 & 490 & 63 & 562 & 152 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & no\_subjects & neutral & 1267 & 0.501184 & 0.497601 & 371 & 182 & 450 & 264 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & no\_subjects & orig\_plus\_tone & 1267 & 0.500395 & 0.464036 & 482 & 71 & 562 & 152 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & no\_subjects & neutral\_plus\_tone & 1267 & 0.491713 & 0.486388 & 376 & 177 & 467 & 247 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & no\_subjects & orig & 1267 & 0.491713 & 0.449980 & 486 & 67 & 577 & 137 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & with\_subjects & orig\_plus\_tone & 1267 & 0.486188 & 0.433016 & 502 & 51 & 600 & 114 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & with\_subjects & neutral & 1267 & 0.485399 & 0.472383 & 407 & 146 & 506 & 208 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & with\_subjects & neutral\_plus\_tone & 1267 & 0.483820 & 0.478069 & 373 & 180 & 474 & 240 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & with\_subjects & neutral & 1267 & 0.482242 & 0.474580 & 382 & 171 & 485 & 229 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & with\_subjects & orig & 1267 & 0.481452 & 0.416057 & 517 & 36 & 621 & 93 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & with\_subjects & orig & 1267 & 0.474349 & 0.410492 & 509 & 44 & 622 & 92 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & no\_subjects & orig & 1267 & 0.455406 & 0.359167 & 534 & 19 & 671 & 43 & -- & -- & -- \\
+Tone & Llama-3.1-8B-Instruct & P0\_basic & no\_subjects & neutral & 1267 & 0.446725 & 0.409027 & 443 & 110 & 591 & 123 & -- & -- & -- \\
+
+\midrule
+Domains & gemma-7b-it & P0\_basic & human\_subjects & -- & 1267 & 0.612 & 0.590 & 243 & 310 & 182 & 532 & 0.955 & 0.963 & 0.943\\
+Domains & gemma-7b-it & P4\_subjects\_as\_context\_clues & human\_subjects & -- & 1267 & 0.610 & 0.591 & 248 & 305 & 189 & 525 & 0.965 & 0.972 & 0.954\\
+Domains & gemma-7b-it & P0\_basic & ext\_domain\_top1 & -- & 1267 & 0.608 & 0.586 & 239 & 314 & 183 & 531 & 0.961 & 0.970 & 0.947\\
+Domains & gemma-7b-it & P0\_basic & no\_subjects & -- & 1267 & 0.606 & 0.591 & 263 & 290 & 209 & 505 & 0.957 & 0.966 & 0.943\\
+Domains & gemma-7b-it & P4\_subjects\_as\_context\_clues & ext\_domain\_top1 & -- & 1267 & 0.602 & 0.581 & 240 & 313 & 191 & 523 & 0.961 & 0.971 & 0.947\\
+Domains & gemma-7b-it & P4\_subjects\_as\_context\_clues & no\_subjects & -- & 1267 & 0.601 & 0.599 & 336 & 217 & 288 & 426 & 0.958 & 0.963 & 0.950\\
+Domains & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & no\_subjects & -- & 1267 & 0.492 & 0.450 & 486 &  67 & 577 & 137 & 0.873 & 0.875 & 0.871\\
+Domains & Llama-3.1-8B-Instruct & P0\_basic & human\_subjects & -- & 1267 & 0.481 & 0.416 & 517 &  36 & 621 &  93 & 0.876 & 0.886 & 0.867\\
+Domains & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & human\_subjects & -- & 1267 & 0.474 & 0.410 & 509 &  44 & 622 &  92 & 0.881 & 0.887 & 0.875\\
+Domains & Llama-3.1-8B-Instruct & P0\_basic & ext\_domain\_top1 & -- & 1267 & 0.471 & 0.398 & 520 &  33 & 637 &  77 & 0.885 & 0.898 & 0.874\\
+Domains & Llama-3.1-8B-Instruct & P4\_subjects\_as\_context\_clues & ext\_domain\_top1 & -- & 1267 & 0.467 & 0.398 & 511 &  42 & 633 &  81 & 0.881 & 0.890 & 0.874\\
+Domains & Llama-3.1-8B-Instruct & P0\_basic & no\_subjects & -- & 1267 & 0.455 & 0.359 & 534 &  19 & 671 &  43 & 0.916 & 0.925 & 0.908\\
+
+\end{longtable}
+\end{landscape}
+
+\chapter{Prompt Templates}
+\label{app:prompts}
+
+This appendix lists the exact prompt templates used for the prompt-engineering experiments.
+Templates are shown with placeholders \texttt{\{statement\}} and \texttt{\{subjects\}}.
+Both variants are included: domain-free (\texttt{no\_subjects}) and domain-informed (\texttt{with\_subjects}).
+
+\section{P0: Basic Prompt}
+\paragraph{Domain-free (no\_subjects).}
+\begin{verbatim}
+Statement: {statement}
+Is this statement true or false?
+Answer with only one word: True or False.
+Answer:
+\end{verbatim}
+
+\paragraph{Domain-informed (with\_subjects).}
+\begin{verbatim}
+Subjects: {subjects}
+Statement: {statement}
+Is this statement true or false?
+Answer with only one word: True or False.
+Answer:
+\end{verbatim}
+
+\section{P1: Fake News (No Guessing)}
+\paragraph{Domain-free (no\_subjects).}
+\begin{verbatim}
+Statement: {statement}
+Task: Determine whether the statement is factually correct or fake news. 
+Use only publicly verifiable and objective facts. Do not guess.
+Answer with only one word: True or False.
+Answer:
+\end{verbatim}
+
+\paragraph{Domain-informed (with\_subjects).}
+\begin{verbatim}
+Subjects: {subjects}
+Statement: {statement}
+Task: Determine whether the statement is factually correct or fake news. 
+Use only publicly verifiable and objective facts. Do not guess.
+Answer with only one word: True or False.
+Answer:
+\end{verbatim}
+
+\section{P2: One-Shot Example}
+\paragraph{Domain-free (no\_subjects).}
+\begin{verbatim}
+Task: Decide if the statement is factually correct.
+Answer only with True or False.
+Example:
+Statement: The sky is green.
+Answer: False
+Now evaluate:
+Statement: {statement}
+Answer:
+\end{verbatim}
+
+\paragraph{Domain-informed (with\_subjects).}
+\begin{verbatim}
+Subjects: {subjects}
+Task: Decide if the statement is factually correct.
+Answer only with True or False.
+Example:
+Statement: The sky is green.
+Answer: False
+Now evaluate:
+Statement: {statement}
+Answer:
+\end{verbatim}
+
+\section{P3: Fact-Checking Assistant}
+\paragraph{Domain-free (no\_subjects).}
+\begin{verbatim}
+You are an AI assistant specialized in fact-checking.
+Task: Determine whether each statement is factually correct based on 
+publicly verifiable information.
+Respond strictly with one word: True or False.
+
+Example:
+Statement: The sky is green.
+Answer: False
+
+Statement: {statement}
+Answer:
+\end{verbatim}
+
+\paragraph{Domain-informed (with\_subjects).}
+\begin{verbatim}
+Subjects: {subjects}
+You are an AI assistant specialized in fact-checking.
+Task: Determine whether each statement is factually correct based on 
+publicly verifiable information.
+Respond strictly with one word: True or False.
+
+Example:
+Statement: The sky is green.
+Answer: False
+
+Statement: {statement}
+Answer:
+\end{verbatim}
+
+\section{P4: Subjects as Context Clues}
+\paragraph{Domain-free (no\_subjects).}
+\begin{verbatim}
+You are an AI assistant specialized in fact-checking factual statements.
+Your task is to determine whether the following statement is factually correct.
+Respond strictly with one word: True or False.
+
+Example:
+Statement: The sky is green.
+Answer: False
+
+Statement: {statement}
+Answer:
+\end{verbatim}
+
+\paragraph{Domain-informed (with\_subjects).}
+\begin{verbatim}
+You are an AI assistant specialized in fact-checking factual statements.
+Your task is to determine whether the following statement is factually correct.
+You may use the following subjects as context clues: {subjects}.
+Respond strictly with one word: True or False.
+
+Example:
+Statement: The sky is green.
+Answer: False
+
+Statement: {statement}
+Answer:
+\end{verbatim}
+
+\chapter{Supplementary Tables for Fine-Tuning Experiments}
+
+This appendix provides complete fine-tuning results for all training regimes, evaluation sets, backbone families, and subject settings evaluated in Chapter~\ref{chap:baseline_single}. Table~\ref{tab:finetune_all_results} reports performance across all combinations, including in-domain evaluation (e.g., healthcare-trained on healthcare test) and cross-domain transfer (e.g., healthcare-trained on LIAR test).
+
+\begin{landscape}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+
+\begin{longtable}{@{}l l p{3.6cm} c r r r r r r r r r r@{}}
+\caption{Fine-tuning results across all training regimes, evaluation sets, models, and subject settings on LIAR test. Prec(+) and Rec(+) refer to the positive class (\texttt{True}).}
+\label{tab:finetune_all_results}\\
+\toprule
+Train-Set & Eval-Set & Model & Subjects & n & Acc & Macro-F1 & Prec(+) & Rec(+) & TN & FP & FN & TP & Mean Conf \\
+\midrule
+\endfirsthead
+
+\toprule
+Train-Set & Eval-Set & Model & Subjects & n & Acc & Macro-F1 & Prec(+) & Rec(+) & TN & FP & FN & TP & Mean Conf \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+general    & LIAR test       & gemma-7b-it           & no  & 1267 & 0.657 & 0.634 & 0.661 & 0.807 & 257 & 296 & 138 & 576 & 0.694 \\
+general    & LIAR test       & Llama-3.1-8B-Instruct & no  & 1267 & 0.665 & 0.640 & 0.664 & 0.819 & 257 & 296 & 129 & 585 & 0.720 \\
+general    & LIAR test       & deepseek-llm-7b-base  & no  & 1267 & 0.667 & 0.645 & 0.668 & 0.814 & 264 & 289 & 133 & 581 & 0.653 \\
+general    & LIAR test       & gemma-7b-it           & yes & 1267 & 0.650 & 0.650 & 0.723 & 0.615 & 385 & 168 & 275 & 439 & 0.673 \\
+general    & LIAR test       & Llama-3.1-8B-Instruct & yes & 1267 & 0.667 & 0.649 & 0.674 & 0.793 & 279 & 274 & 148 & 566 & 0.731 \\
+general    & LIAR test       & deepseek-llm-7b-base  & yes & 1267 & 0.665 & 0.639 & 0.662 & 0.831 & 250 & 303 & 121 & 593 & 0.638 \\
+healthcare & healthcare test & gemma-7b-it           & no  &   83 & 0.590 & 0.585 & 0.580 & 0.690 &  20 &  21 &  13 &  29 & 0.803 \\
+healthcare & healthcare test & Llama-3.1-8B-Instruct & no  &   83 & 0.711 & 0.711 & 0.725 & 0.690 &  30 &  11 &  13 &  29 & 0.701 \\
+healthcare & healthcare test & deepseek-llm-7b-base  & no  &   83 & 0.639 & 0.626 & 0.731 & 0.452 &  34 &   7 &  23 &  19 & 0.663 \\
+healthcare & healthcare test & gemma-7b-it           & yes &   83 & 0.675 & 0.672 & 0.727 & 0.571 &  32 &   9 &  18 &  24 & 0.758 \\
+healthcare & healthcare test & Llama-3.1-8B-Instruct & yes &   83 & 0.639 & 0.637 & 0.630 & 0.690 &  24 &  17 &  13 &  29 & 0.708 \\
+healthcare & healthcare test & deepseek-llm-7b-base  & yes &   83 & 0.651 & 0.645 & 0.710 & 0.524 &  32 &   9 &  20 &  22 & 0.655 \\
+taxes      & taxes test      & gemma-7b-it           & no  &   60 & 0.617 & 0.608 & 0.636 & 0.483 &  23 &   8 &  15 &  14 & 0.816 \\
+taxes      & taxes test      & Llama-3.1-8B-Instruct & no  &   60 & 0.600 & 0.598 & 0.571 & 0.690 &  16 &  15 &   9 &  20 & 0.755 \\
+taxes      & taxes test      & deepseek-llm-7b-base  & no  &   60 & 0.517 & 0.394 & 0.500 & 0.069 &  29 &   2 &  27 &   2 & 0.617 \\
+taxes      & taxes test      & gemma-7b-it           & yes &   60 & 0.650 & 0.642 & 0.682 & 0.517 &  24 &   7 &  14 &  15 & 0.841 \\
+taxes      & taxes test      & Llama-3.1-8B-Instruct & yes &   60 & 0.617 & 0.616 & 0.588 & 0.690 &  17 &  14 &   9 &  20 & 0.745 \\
+taxes      & taxes test      & deepseek-llm-7b-base  & yes &   60 & 0.533 & 0.403 & 0.667 & 0.069 &  30 &   1 &  27 &   2 & 0.624 \\
+synthetic  & synthetic test  & gemma-7b-it           & no  &  226 & 0.863 & 0.860 & 0.880 & 0.802 & 114 &  11 &  20 &  81 & 0.903 \\
+synthetic  & synthetic test  & Llama-3.1-8B-Instruct & no  &  226 & 0.876 & 0.874 & 0.876 & 0.842 & 113 &  12 &  16 &  85 & 0.882 \\
+synthetic  & synthetic test  & deepseek-llm-7b-base  & no  &  226 & 0.867 & 0.866 & 0.838 & 0.871 & 108 &  17 &  13 &  88 & 0.893 \\
+synthetic  & synthetic test  & gemma-7b-it           & yes &  226 & 0.885 & 0.884 & 0.871 & 0.871 & 112 &  13 &  13 &  88 & 0.928 \\
+synthetic  & synthetic test  & Llama-3.1-8B-Instruct & yes &  226 & 0.881 & 0.879 & 0.885 & 0.842 & 114 &  11 &  16 &  85 & 0.873 \\
+synthetic  & synthetic test  & deepseek-llm-7b-base  & yes &  226 & 0.876 & 0.875 & 0.861 & 0.861 & 111 &  14 &  14 &  87 & 0.891 \\
+healthcare & liar\_test      & gemma-7b-it           & no  & 1267 & 0.631 & 0.601 & 0.637 & 0.804 & 226 & 327 & 140 & 574 & 0.796 \\
+healthcare & liar\_test      & Llama-3.1-8B-Instruct & no  & 1267 & 0.650 & 0.642 & 0.683 & 0.704 & 320 & 233 & 211 & 503 & 0.685 \\
+healthcare & liar\_test      & deepseek-llm-7b-base  & no  & 1267 & 0.584 & 0.582 & 0.699 & 0.459 & 412 & 141 & 386 & 328 & 0.665 \\
+healthcare & liar\_test      & gemma-7b-it           & yes & 1267 & 0.627 & 0.626 & 0.691 & 0.613 & 357 & 196 & 276 & 438 & 0.728 \\
+healthcare & liar\_test      & Llama-3.1-8B-Instruct & yes & 1267 & 0.639 & 0.621 & 0.655 & 0.762 & 266 & 287 & 170 & 544 & 0.704 \\
+healthcare & liar\_test      & deepseek-llm-7b-base  & yes & 1267 & 0.604 & 0.603 & 0.670 & 0.585 & 347 & 206 & 296 & 418 & 0.641 \\
+healthcare & taxes\_test     & gemma-7b-it           & no  &   60 & 0.583 & 0.563 & 0.545 & 0.828 &  11 &  20 &   5 &  24 & 0.778 \\
+healthcare & taxes\_test     & Llama-3.1-8B-Instruct & no  &   60 & 0.617 & 0.611 & 0.579 & 0.759 &  15 &  16 &   7 &  22 & 0.661 \\
+healthcare & taxes\_test     & deepseek-llm-7b-base  & no  &   60 & 0.617 & 0.583 & 0.714 & 0.345 &  27 &   4 &  19 &  10 & 0.693 \\
+healthcare & taxes\_test     & gemma-7b-it           & yes &   60 & 0.650 & 0.649 & 0.643 & 0.621 &  21 &  10 &  11 &  18 & 0.682 \\
+healthcare & taxes\_test     & Llama-3.1-8B-Instruct & yes &   60 & 0.667 & 0.661 & 0.615 & 0.828 &  16 &  15 &   5 &  24 & 0.681 \\
+healthcare & taxes\_test     & deepseek-llm-7b-base  & yes &   60 & 0.633 & 0.618 & 0.684 & 0.448 &  25 &   6 &  16 &  13 & 0.649 \\
+taxes      & liar\_test      & gemma-7b-it           & no  & 1267 & 0.605 & 0.604 & 0.715 & 0.496 & 412 & 141 & 360 & 354 & 0.862 \\
+taxes      & liar\_test      & Llama-3.1-8B-Instruct & no  & 1267 & 0.598 & 0.587 & 0.634 & 0.678 & 274 & 279 & 230 & 484 & 0.777 \\
+taxes      & liar\_test      & deepseek-llm-7b-base  & no  & 1267 & 0.519 & 0.486 & 0.729 & 0.234 & 491 &  62 & 547 & 167 & 0.599 \\
+taxes      & liar\_test      & gemma-7b-it           & yes & 1267 & 0.605 & 0.605 & 0.708 & 0.510 & 403 & 150 & 350 & 364 & 0.885 \\
+taxes      & liar\_test      & Llama-3.1-8B-Instruct & yes & 1267 & 0.609 & 0.597 & 0.642 & 0.689 & 279 & 274 & 222 & 492 & 0.774 \\
+taxes      & liar\_test      & deepseek-llm-7b-base  & yes & 1267 & 0.473 & 0.397 & 0.721 & 0.105 & 524 &  29 & 639 &  75 & 0.610 \\
+taxes      & healthcare\_test & gemma-7b-it          & no  &   83 & 0.639 & 0.629 & 0.714 & 0.476 &  33 &   8 &  22 &  20 & 0.881 \\
+taxes      & healthcare\_test & Llama-3.1-8B-Instruct& no  &   83 & 0.566 & 0.566 & 0.568 & 0.595 &  22 &  19 &  17 &  25 & 0.780 \\
+taxes      & healthcare\_test & deepseek-llm-7b-base & no  &   83 & 0.530 & 0.406 & 1.000 & 0.071 &  41 &   0 &  39 &   3 & 0.620 \\
+taxes      & healthcare\_test & gemma-7b-it          & yes &   83 & 0.627 & 0.621 & 0.677 & 0.500 &  31 &  10 &  21 &  21 & 0.907 \\
+taxes      & healthcare\_test & Llama-3.1-8B-Instruct& yes &   83 & 0.578 & 0.578 & 0.581 & 0.595 &  23 &  18 &  17 &  25 & 0.776 \\
+taxes      & healthcare\_test & deepseek-llm-7b-base & yes &   83 & 0.506 & 0.357 & 1.000 & 0.024 &  41 &   0 &  41 &   1 & 0.629 \\
+synthetic  & liar\_test      & gemma-7b-it           & no  & 1267 & 0.560 & 0.548 & 0.728 & 0.352 & 459 &  94 & 463 & 251 & 0.843 \\
+synthetic  & liar\_test      & Llama-3.1-8B-Instruct & no  & 1267 & 0.568 & 0.566 & 0.684 & 0.436 & 409 & 144 & 403 & 311 & 0.737 \\
+synthetic  & liar\_test      & deepseek-llm-7b-base  & no  & 1267 & 0.572 & 0.572 & 0.645 & 0.536 & 342 & 211 & 331 & 383 & 0.766 \\
+synthetic  & liar\_test      & gemma-7b-it           & yes & 1267 & 0.604 & 0.604 & 0.690 & 0.539 & 380 & 173 & 329 & 385 & 0.834 \\
+synthetic  & liar\_test      & Llama-3.1-8B-Instruct & yes & 1267 & 0.603 & 0.603 & 0.696 & 0.524 & 390 & 163 & 340 & 374 & 0.736 \\
+synthetic  & liar\_test      & deepseek-llm-7b-base  & yes & 1267 & 0.571 & 0.570 & 0.648 & 0.522 & 350 & 203 & 341 & 373 & 0.756 \\
+general    & synthetic\_test & gemma-7b-it           & no  &  226 & 0.686 & 0.674 & 0.589 & 0.980 &  56 &  69 &   2 &  99 & 0.742 \\
+general    & synthetic\_test & Llama-3.1-8B-Instruct & no  &  226 & 0.739 & 0.735 & 0.638 & 0.960 &  70 &  55 &   4 &  97 & 0.764 \\
+general    & synthetic\_test & deepseek-llm-7b-base  & no  &  226 & 0.823 & 0.822 & 0.785 & 0.832 & 102 &  23 &  17 &  84 & 0.680 \\
+general    & synthetic\_test & gemma-7b-it           & yes &  226 & 0.814 & 0.814 & 0.744 & 0.891 &  94 &  31 &  11 &  90 & 0.700 \\
+general    & synthetic\_test & Llama-3.1-8B-Instruct & yes &  226 & 0.726 & 0.722 & 0.629 & 0.941 &  69 &  56 &   6 &  95 & 0.788 \\
+general    & synthetic\_test & deepseek-llm-7b-base  & yes &  226 & 0.814 & 0.814 & 0.757 & 0.861 &  97 &  28 &  14 &  87 & 0.670 \\
+
+\end{longtable}
+\end{landscape}
+
+
+\chapter{Supplementary Tables for Multi-Agent Experiments}
+
+This appendix provides complete results for the prototype multi-agent pipeline evaluated in Chapter~\ref{chap:prototype_framework}. Table~\ref{tab:multiagent_all_results} reports performance across all backbone families, training regimes, subject settings, and aggregation 
+modes on the LIAR test set ($n=1267$).
+
+\begin{landscape}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{@{}l p{3.2cm} c l r r r r r r r r r@{}}
+\caption{Complete multi-agent results on \texttt{liar\_test} ($n=1267$) across all models, training regimes, subject settings, and aggregation modes. Macro-F1 is the unweighted average of $F_1$ over both classes. Prec(+) and Rec(+) refer to the positive (\texttt{True}) class.}
+\label{tab:multiagent_all_results}\\
+\toprule
+Train-Set & Model & Subj. & Mode & $n$ & Acc & Macro-F1 & Prec(+) & Rec(+) & TN & FP & FN & TP\\
+\midrule
+\endfirsthead
+\toprule
+Train-Set & Model & Subj. & Mode & $n$ & Acc & Macro-F1 & Prec(+) & Rec(+) & TN & FP & FN & TP\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+basic model & gemma-7b-it & no & \texttt{decision\_agent} & 1267 & 0.551 & 0.539 & 0.708 & 0.346 & 451 & 102 & 467 & 247\\
+basic model & gemma-7b-it & no & \texttt{majority\_vote} & 1267 & 0.549 & 0.535 & 0.717 & 0.331 & 460 & 93 & 478 & 236\\
+basic model & gemma-7b-it & no & \texttt{weighted\_vote} & 1267 & 0.563 & 0.554 & 0.711 & 0.378 & 443 & 110 & 444 & 270\\
+basic model & gemma-7b-it & no & \texttt{expert\_economy} & 1267 & 0.545 & 0.530 & 0.713 & 0.324 & 460 & 93 & 483 & 231\\
+basic model & gemma-7b-it & no & \texttt{expert\_health\_science} & 1267 & 0.537 & 0.520 & 0.705 & 0.308 & 461 & 92 & 494 & 220\\
+basic model & gemma-7b-it & no & \texttt{expert\_politics} & 1267 & 0.559 & 0.550 & 0.706 & 0.373 & 442 & 111 & 448 & 266\\
+basic model & gemma-7b-it & yes & \texttt{decision\_agent} & 1267 & 0.566 & 0.562 & 0.691 & 0.416 & 420 & 133 & 417 & 297\\
+basic model & gemma-7b-it & yes & \texttt{majority\_vote} & 1267 & 0.571 & 0.566 & 0.710 & 0.405 & 435 & 118 & 425 & 289\\
+basic model & gemma-7b-it & yes & \texttt{weighted\_vote} & 1267 & 0.576 & 0.572 & 0.703 & 0.430 & 423 & 130 & 407 & 307\\
+basic model & gemma-7b-it & yes & \texttt{expert\_economy} & 1267 & 0.567 & 0.563 & 0.694 & 0.416 & 422 & 131 & 417 & 297\\
+basic model & gemma-7b-it & yes & \texttt{expert\_health\_science} & 1267 & 0.555 & 0.546 & 0.703 & 0.364 & 443 & 110 & 454 & 260\\
+basic model & gemma-7b-it & yes & \texttt{expert\_politics} & 1267 & 0.565 & 0.560 & 0.695 & 0.408 & 425 & 128 & 423 & 291\\
+\midrule
+LIAR-finetuned & gemma-7b-it & no & \texttt{decision\_agent} & 1267 & 0.631 & 0.604 & 0.639 & 0.794 & 233 & 320 & 147 & 567\\
+LIAR-finetuned & gemma-7b-it & no & \texttt{majority\_vote} & 1267 & 0.644 & 0.595 & 0.633 & 0.878 & 189 & 364 & 87 & 627\\
+LIAR-finetuned & gemma-7b-it & no & \texttt{weighted\_vote} & 1267 & 0.643 & 0.597 & 0.633 & 0.871 & 193 & 360 & 92 & 622\\
+LIAR-finetuned & gemma-7b-it & no & \texttt{expert\_economy} & 1267 & 0.646 & 0.597 & 0.634 & 0.884 & 188 & 365 & 83 & 631\\
+LIAR-finetuned & gemma-7b-it & no & \texttt{expert\_health\_science} & 1267 & 0.641 & 0.600 & 0.635 & 0.852 & 204 & 349 & 106 & 608\\
+LIAR-finetuned & gemma-7b-it & no & \texttt{expert\_politics} & 1266 & 0.648 & 0.600 & 0.635 & 0.882 & 190 & 362 & 84 & 630\\
+LIAR-finetuned & gemma-7b-it & yes & \texttt{decision\_agent} & 1267 & 0.627 & 0.610 & 0.647 & 0.745 & 263 & 290 & 182 & 532\\
+LIAR-finetuned & gemma-7b-it & yes & \texttt{majority\_vote} & 1267 & 0.636 & 0.612 & 0.646 & 0.786 & 245 & 308 & 153 & 561\\
+LIAR-finetuned & gemma-7b-it & yes & \texttt{weighted\_vote} & 1267 & 0.630 & 0.607 & 0.643 & 0.770 & 248 & 305 & 164 & 550\\
+LIAR-finetuned & gemma-7b-it & yes & \texttt{expert\_economy} & 1267 & 0.631 & 0.605 & 0.641 & 0.789 & 237 & 316 & 151 & 563\\
+LIAR-finetuned & gemma-7b-it & yes & \texttt{expert\_health\_science} & 1266 & 0.628 & 0.603 & 0.639 & 0.780 & 239 & 314 & 157 & 556\\
+LIAR-finetuned & gemma-7b-it & yes & \texttt{expert\_politics} & 1267 & 0.637 & 0.616 & 0.650 & 0.770 & 257 & 296 & 164 & 550\\
+\midrule
+domain-specific & gemma-7b-it & no & \texttt{decision\_agent} & 1267 & 0.613 & 0.607 & 0.659 & 0.650 & 313 & 240 & 250 & 464\\
+domain-specific & gemma-7b-it & no & \texttt{majority\_vote} & 1267 & 0.618 & 0.616 & 0.679 & 0.611 & 347 & 206 & 278 & 436\\
+domain-specific & gemma-7b-it & no & \texttt{weighted\_vote} & 1267 & 0.631 & 0.605 & 0.641 & 0.784 & 239 & 314 & 154 & 560\\
+domain-specific & gemma-7b-it & no & \texttt{expert\_economy} & 1267 & 0.622 & 0.621 & 0.692 & 0.594 & 364 & 189 & 290 & 424\\
+domain-specific & gemma-7b-it & no & \texttt{expert\_health\_science} & 1267 & 0.584 & 0.583 & 0.694 & 0.468 & 406 & 147 & 380 & 334\\
+domain-specific & gemma-7b-it & no & \texttt{expert\_politics} & 1267 & 0.640 & 0.603 & 0.637 & 0.839 & 212 & 341 & 115 & 599\\
+domain-specific & gemma-7b-it & yes & \texttt{decision\_agent} & 1267 & 0.631 & 0.624 & 0.669 & 0.681 & 313 & 240 & 228 & 486\\
+domain-specific & gemma-7b-it & yes & \texttt{majority\_vote} & 1267 & 0.638 & 0.628 & 0.668 & 0.709 & 302 & 251 & 208 & 506\\
+domain-specific & gemma-7b-it & yes & \texttt{weighted\_vote} & 1267 & 0.633 & 0.625 & 0.668 & 0.693 & 307 & 246 & 219 & 495\\
+domain-specific & gemma-7b-it & yes & \texttt{expert\_economy} & 1267 & 0.626 & 0.610 & 0.648 & 0.735 & 268 & 285 & 189 & 525\\
+domain-specific & gemma-7b-it & yes & \texttt{expert\_health\_science} & 1267 & 0.620 & 0.616 & 0.671 & 0.639 & 329 & 224 & 258 & 456\\
+domain-specific & gemma-7b-it & yes & \texttt{expert\_politics} & 1267 & 0.639 & 0.631 & 0.673 & 0.696 & 312 & 241 & 217 & 497\\
+\midrule
+basic model & Llama-3.1-8B-Instruct & no & \texttt{decision\_agent} & 1267 & 0.474 & 0.413 & 0.660 & 0.136 & 503 & 50 & 617 & 97\\
+basic model & Llama-3.1-8B-Instruct & no & \texttt{majority\_vote} & 1267 & 0.470 & 0.392 & 0.706 & 0.101 & 523 & 30 & 642 & 72\\
+basic model & Llama-3.1-8B-Instruct & no & \texttt{weighted\_vote} & 1267 & 0.477 & 0.424 & 0.651 & 0.154 & 494 & 59 & 604 & 110\\
+basic model & Llama-3.1-8B-Instruct & no & \texttt{expert\_economy} & 1262 & 0.452 & 0.356 & 0.646 & 0.059 & 529 & 23 & 668 & 42\\
+basic model & Llama-3.1-8B-Instruct & no & \texttt{expert\_health\_science} & 1205 & 0.487 & 0.419 & 0.750 & 0.129 & 500 & 29 & 589 & 87\\
+basic model & Llama-3.1-8B-Instruct & no & \texttt{expert\_politics} & 1261 & 0.481 & 0.434 & 0.656 & 0.171 & 484 & 64 & 591 & 122\\
+basic model & Llama-3.1-8B-Instruct & yes & \texttt{decision\_agent} & 1266 & 0.479 & 0.427 & 0.661 & 0.158 & 494 & 58 & 601 & 113\\
+basic model & Llama-3.1-8B-Instruct & yes & \texttt{majority\_vote} & 1267 & 0.473 & 0.399 & 0.709 & 0.109 & 521 & 32 & 636 & 78\\
+basic model & Llama-3.1-8B-Instruct & yes & \texttt{weighted\_vote} & 1267 & 0.474 & 0.421 & 0.643 & 0.151 & 493 & 60 & 606 & 108\\
+basic model & Llama-3.1-8B-Instruct & yes & \texttt{expert\_economy} & 1265 & 0.456 & 0.365 & 0.662 & 0.069 & 528 & 25 & 663 & 49\\
+basic model & Llama-3.1-8B-Instruct & yes & \texttt{expert\_health\_science} & 1148 & 0.493 & 0.435 & 0.707 & 0.155 & 467 & 41 & 541 & 99\\
+basic model & Llama-3.1-8B-Instruct & yes & \texttt{expert\_politics} & 1249 & 0.485 & 0.442 & 0.639 & 0.185 & 477 & 73 & 570 & 129\\
+\midrule
+LIAR-finetuned & Llama-3.1-8B-Instruct & no & \texttt{decision\_agent} & 1265 & 0.583 & 0.573 & 0.750 & 0.388 & 461 & 92 & 436 & 276\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & no & \texttt{majority\_vote} & 1267 & 0.597 & 0.585 & 0.802 & 0.380 & 486 & 67 & 443 & 271\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & no & \texttt{weighted\_vote} & 1267 & 0.616 & 0.614 & 0.745 & 0.483 & 435 & 118 & 369 & 345\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & no & \texttt{expert\_economy} & 1261 & 0.601 & 0.588 & 0.819 & 0.376 & 491 & 59 & 444 & 267\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & no & \texttt{expert\_health\_science} & 1207 & 0.553 & 0.526 & 0.782 & 0.281 & 477 & 53 & 487 & 190\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & no & \texttt{expert\_politics} & 1246 & 0.625 & 0.625 & 0.739 & 0.514 & 419 & 127 & 340 & 360\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & yes & \texttt{decision\_agent} & 1266 & 0.603 & 0.599 & 0.748 & 0.445 & 446 & 107 & 396 & 317\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & yes & \texttt{majority\_vote} & 1267 & 0.615 & 0.610 & 0.780 & 0.441 & 464 & 89 & 399 & 315\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & yes & \texttt{weighted\_vote} & 1267 & 0.630 & 0.629 & 0.744 & 0.524 & 424 & 129 & 340 & 374\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & yes & \texttt{expert\_economy} & 1245 & 0.604 & 0.596 & 0.779 & 0.413 & 463 & 82 & 411 & 289\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & yes & \texttt{expert\_health\_science} & 1080 & 0.594 & 0.583 & 0.772 & 0.386 & 408 & 69 & 370 & 233\\
+LIAR-finetuned & Llama-3.1-8B-Instruct & yes & \texttt{expert\_politics} & 1239 & 0.644 & 0.644 & 0.729 & 0.591 & 383 & 154 & 287 & 415\\
+\midrule
+domain-specific & Llama-3.1-8B-Instruct & no & \texttt{decision\_agent} & 1266 & 0.543 & 0.515 & 0.773 & 0.268 & 496 & 56 & 523 & 191\\
+domain-specific & Llama-3.1-8B-Instruct & no & \texttt{majority\_vote} & 1267 & 0.524 & 0.482 & 0.791 & 0.211 & 513 & 40 & 563 & 151\\
+domain-specific & Llama-3.1-8B-Instruct & no & \texttt{weighted\_vote} & 1267 & 0.565 & 0.550 & 0.755 & 0.338 & 475 & 78 & 473 & 241\\
+domain-specific & Llama-3.1-8B-Instruct & no & \texttt{expert\_economy} & 1264 & 0.513 & 0.462 & 0.794 & 0.184 & 517 & 34 & 582 & 131\\
+domain-specific & Llama-3.1-8B-Instruct & no & \texttt{expert\_health\_science} & 1259 & 0.492 & 0.436 & 0.721 & 0.157 & 508 & 43 & 597 & 111\\
+domain-specific & Llama-3.1-8B-Instruct & no & \texttt{expert\_politics} & 1263 & 0.589 & 0.581 & 0.755 & 0.399 & 461 & 92 & 427 & 283\\
+domain-specific & Llama-3.1-8B-Instruct & yes & \texttt{decision\_agent} & 1266 & 0.543 & 0.523 & 0.732 & 0.299 & 475 & 78 & 500 & 213\\
+domain-specific & Llama-3.1-8B-Instruct & yes & \texttt{majority\_vote} & 1267 & 0.533 & 0.498 & 0.780 & 0.238 & 505 & 48 & 544 & 170\\
+domain-specific & Llama-3.1-8B-Instruct & yes & \texttt{weighted\_vote} & 1267 & 0.567 & 0.555 & 0.739 & 0.357 & 463 & 90 & 459 & 255\\
+domain-specific & Llama-3.1-8B-Instruct & yes & \texttt{expert\_economy} & 1266 & 0.517 & 0.466 & 0.806 & 0.187 & 521 & 32 & 580 & 133\\
+domain-specific & Llama-3.1-8B-Instruct & yes & \texttt{expert\_health\_science} & 1262 & 0.504 & 0.462 & 0.714 & 0.200 & 494 & 57 & 569 & 142\\
+domain-specific & Llama-3.1-8B-Instruct & yes & \texttt{expert\_politics} & 1262 & 0.613 & 0.611 & 0.740 & 0.481 & 431 & 120 & 369 & 342\\
+\midrule
+basic model & deepseek-llm-7b-base & no & \texttt{decision\_agent} & 1222 & 0.491 & 0.451 & 0.678 & 0.195 & 465 & 64 & 558 & 135\\
+basic model & deepseek-llm-7b-base & no & \texttt{majority\_vote} & 1267 & 0.496 & 0.460 & 0.670 & 0.210 & 479 & 74 & 564 & 150\\
+basic model & deepseek-llm-7b-base & no & \texttt{weighted\_vote} & 1267 & 0.492 & 0.453 & 0.662 & 0.200 & 480 & 73 & 571 & 143\\
+basic model & deepseek-llm-7b-base & no & \texttt{expert\_economy} & 797 & 0.479 & 0.440 & 0.680 & 0.185 & 297 & 40 & 375 & 85\\
+basic model & deepseek-llm-7b-base & no & \texttt{expert\_health\_science} & 985 & 0.603 & 0.595 & 0.653 & 0.654 & 225 & 196 & 195 & 369\\
+basic model & deepseek-llm-7b-base & no & \texttt{expert\_politics} & 865 & 0.458 & 0.373 & 0.709 & 0.079 & 357 & 16 & 453 & 39\\
+basic model & deepseek-llm-7b-base & yes & \texttt{decision\_agent} & 1220 & 0.516 & 0.500 & 0.659 & 0.298 & 425 & 106 & 484 & 205\\
+basic model & deepseek-llm-7b-base & yes & \texttt{majority\_vote} & 1267 & 0.507 & 0.488 & 0.643 & 0.280 & 442 & 111 & 514 & 200\\
+basic model & deepseek-llm-7b-base & yes & \texttt{weighted\_vote} & 1267 & 0.514 & 0.493 & 0.667 & 0.275 & 455 & 98 & 518 & 196\\
+basic model & deepseek-llm-7b-base & yes & \texttt{expert\_economy} & 830 & 0.505 & 0.488 & 0.673 & 0.279 & 285 & 65 & 346 & 134\\
+basic model & deepseek-llm-7b-base & yes & \texttt{expert\_health\_science} & 998 & 0.615 & 0.589 & 0.641 & 0.753 & 182 & 242 & 142 & 432\\
+basic model & deepseek-llm-7b-base & yes & \texttt{expert\_politics} & 835 & 0.478 & 0.420 & 0.723 & 0.142 & 331 & 26 & 410 & 68\\
+\midrule
+LIAR-finetuned & deepseek-llm-7b-base & no & \texttt{decision\_agent} & 1233 & 0.502 & 0.470 & 0.672 & 0.227 & 461 & 77 & 537 & 158\\
+LIAR-finetuned & deepseek-llm-7b-base & no & \texttt{majority\_vote} & 1267 & 0.531 & 0.513 & 0.695 & 0.300 & 459 & 94 & 500 & 214\\
+LIAR-finetuned & deepseek-llm-7b-base & no & \texttt{weighted\_vote} & 1267 & 0.484 & 0.437 & 0.660 & 0.174 & 489 & 64 & 590 & 124\\
+LIAR-finetuned & deepseek-llm-7b-base & no & \texttt{expert\_economy} & 1083 & 0.536 & 0.520 & 0.696 & 0.314 & 388 & 84 & 419 & 192\\
+LIAR-finetuned & deepseek-llm-7b-base & no & \texttt{expert\_health\_science} & 1143 & 0.626 & 0.579 & 0.630 & 0.836 & 168 & 321 & 107 & 547\\
+LIAR-finetuned & deepseek-llm-7b-base & no & \texttt{expert\_politics} & 1089 & 0.454 & 0.355 & 0.756 & 0.055 & 460 & 11 & 584 & 34\\
+LIAR-finetuned & deepseek-llm-7b-base & yes & \texttt{decision\_agent} & 1244 & 0.525 & 0.514 & 0.651 & 0.336 & 418 & 126 & 465 & 235\\
+LIAR-finetuned & deepseek-llm-7b-base & yes & \texttt{majority\_vote} & 1267 & 0.522 & 0.510 & 0.655 & 0.322 & 432 & 121 & 484 & 230\\
+LIAR-finetuned & deepseek-llm-7b-base & yes & \texttt{weighted\_vote} & 1267 & 0.489 & 0.450 & 0.657 & 0.196 & 480 & 73 & 574 & 140\\
+LIAR-finetuned & deepseek-llm-7b-base & yes & \texttt{expert\_economy} & 1038 & 0.532 & 0.522 & 0.668 & 0.342 & 351 & 100 & 386 & 201\\
+LIAR-finetuned & deepseek-llm-7b-base & yes & \texttt{expert\_health\_science} & 1124 & 0.617 & 0.554 & 0.618 & 0.866 & 136 & 345 & 86 & 557\\
+LIAR-finetuned & deepseek-llm-7b-base & yes & \texttt{expert\_politics} & 1062 & 0.450 & 0.360 & 0.702 & 0.066 & 438 & 17 & 567 & 40\\
+\midrule
+domain-specific & deepseek-llm-7b-base & no & \texttt{decision\_agent} & 1238 & 0.527 & 0.516 & 0.664 & 0.332 & 419 & 118 & 468 & 233\\
+domain-specific & deepseek-llm-7b-base & no & \texttt{majority\_vote} & 1267 & 0.609 & 0.608 & 0.676 & 0.588 & 352 & 201 & 294 & 420\\
+domain-specific & deepseek-llm-7b-base & no & \texttt{weighted\_vote} & 1267 & 0.524 & 0.506 & 0.680 & 0.294 & 454 & 99 & 504 & 210\\
+domain-specific & deepseek-llm-7b-base & no & \texttt{expert\_economy} & 1083 & 0.621 & 0.616 & 0.671 & 0.654 & 271 & 197 & 213 & 402\\
+domain-specific & deepseek-llm-7b-base & no & \texttt{expert\_health\_science} & 1170 & 0.609 & 0.527 & 0.605 & 0.902 & 112 & 392 & 65 & 601\\
+domain-specific & deepseek-llm-7b-base & no & \texttt{expert\_politics} & 1104 & 0.473 & 0.409 & 0.718 & 0.125 & 443 & 31 & 551 & 79\\
+domain-specific & deepseek-llm-7b-base & yes & \texttt{decision\_agent} & 1232 & 0.519 & 0.509 & 0.634 & 0.338 & 405 & 135 & 458 & 234\\
+domain-specific & deepseek-llm-7b-base & yes & \texttt{majority\_vote} & 1267 & 0.526 & 0.512 & 0.671 & 0.314 & 443 & 110 & 490 & 224\\
+domain-specific & deepseek-llm-7b-base & yes & \texttt{weighted\_vote} & 1267 & 0.491 & 0.450 & 0.665 & 0.195 & 483 & 70 & 575 & 139\\
+domain-specific & deepseek-llm-7b-base & yes & \texttt{expert\_economy} & 1010 & 0.529 & 0.517 & 0.670 & 0.327 & 347 & 92 & 384 & 187\\
+domain-specific & deepseek-llm-7b-base & yes & \texttt{expert\_health\_science} & 1144 & 0.603 & 0.513 & 0.603 & 0.901 & 99 & 389 & 65 & 591\\
+domain-specific & deepseek-llm-7b-base & yes & \texttt{expert\_politics} & 1068 & 0.449 & 0.350 & 0.696 & 0.053 & 447 & 14 & 575 & 32\\
+
+\end{longtable}
+\end{landscape}
+
+\chapter{Supplementary Tables for the Domain Routing Stage}
+\label{app:routing_tables}
+
+\section{Domain Routing Confusion Matrices}
+\label{app:confusion_matrices}
+
+This appendix reports confusion matrices for the \emph{domain routing model} under all evaluated taxonomy granularities ($k\in\{6,8,13\}$) and backbone families (DeepSeek, Llama, Gemma).
+Rows correspond to subject-derived ground-truth super-domains and columns correspond to predicted super-domains.
+All matrices follow the exact label order used during evaluation and reported in the logs.
+Because the ground-truth domains are derived from LIAR subject tags via a deterministic mapping, the matrices should be interpreted as agreement with this weak supervision rather than as fully curated topical ground truth.
+
+\subsection{Coarse taxonomy ($k=6$ labels)}
+\label{app:cm_k5}
+
+\begin{table}[h]
+\centering
+\caption[DeepSeek domain routing confusion matrix for $k=6$.]{DeepSeek domain routing confusion matrix for $k=6$ (rows=true, cols=pred). Label order:
+\texttt{[socioeconomic\_policy, foreign\_security, governance\_law, environment\_science, society\_culture, misc]}.}
+\label{tab:domain_cm_deepseek_k5}
+\small
+\[
+\begin{bmatrix}
+538 & 2 & 63 & 7 & 6 & 0 \\
+8 & 99 & 12 & 0 & 3 & 0 \\
+54 & 11 & 290 & 9 & 10 & 4 \\
+8 & 1 & 7 & 39 & 2 & 0 \\
+9 & 4 & 18 & 1 & 28 & 1 \\
+23 & 0 & 4 & 2 & 0 & 4
+\end{bmatrix}
+\]
+\normalsize
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[Llama domain routing confusion matrix for $k=6$.]{Llama domain routing confusion matrix for $k=6$ (rows=true, cols=pred). Label order:
+\texttt{[socioeconomic\_policy, foreign\_security, governance\_law, environment\_science, society\_culture, misc]}.}
+\label{tab:domain_cm_llama_k5}
+\small
+\[
+\begin{bmatrix}
+547 & 3 & 48 & 5 & 11 & 2 \\
+16 & 91 & 11 & 2 & 2 & 0 \\
+95 & 8 & 251 & 9 & 13 & 2 \\
+13 & 0 & 5 & 36 & 2 & 1 \\
+12 & 4 & 9 & 0 & 36 & 0 \\
+16 & 0 & 6 & 2 & 0 & 9
+\end{bmatrix}
+\]
+\normalsize
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[Gemma domain routing confusion matrix for $k=6$.]{Gemma domain routing confusion matrix for $k=6$ (rows=true, cols=pred). Label order:
+\texttt{[socioeconomic\_policy, foreign\_security, governance\_law, environment\_science, society\_culture, misc]}.}
+\label{tab:domain_cm_gemma_k5}
+\small
+\[
+\begin{bmatrix}
+518 & 3 & 66 & 12 & 16 & 1 \\
+8 & 94 & 13 & 5 & 2 & 0 \\
+42 & 15 & 275 & 18 & 25 & 3 \\
+6 & 1 & 5 & 42 & 2 & 1 \\
+6 & 5 & 9 & 3 & 38 & 0 \\
+14 & 1 & 8 & 3 & 0 & 7
+\end{bmatrix}
+\]
+\normalsize
+\end{table}
+
+\subsection{Intermediate taxonomy ($k=8$ labels)}
+\label{app:cm_k8}
+
+\begin{table}[H]
+\centering
+\caption[DeepSeek domain routing confusion matrix for $k=8$.]{DeepSeek domain routing confusion matrix for $k=8$ (rows=true, cols=pred). Label order:
+\texttt{[economy, health\_social, foreign\_security, law\_rights, politics\_government, environment\_energy, society\_culture, misc]}.}
+\label{tab:domain_cm_deepseek_k8}
+\small
+\[
+\begin{bmatrix}
+388 & 27 & 1 & 9 & 30 & 6 & 8 & 4 \\
+8 & 118 & 3 & 10 & 2 & 0 & 2 & 0 \\
+6 & 3 & 94 & 10 & 5 & 0 & 4 & 0 \\
+2 & 9 & 10 & 107 & 14 & 0 & 3 & 0 \\
+43 & 3 & 8 & 6 & 155 & 10 & 7 & 1 \\
+11 & 0 & 1 & 0 & 4 & 36 & 1 & 3 \\
+9 & 1 & 2 & 4 & 11 & 0 & 34 & 0 \\
+15 & 2 & 1 & 0 & 4 & 1 & 0 & 11
+\end{bmatrix}
+\]
+\normalsize
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[Llama domain routing confusion matrix for $k=8$.]{Llama domain routing confusion matrix for $k=8$ (rows=true, cols=pred). Label order:
+\texttt{[economy, health\_social, foreign\_security, law\_rights, politics\_government, environment\_energy, society\_culture, misc]}.}
+\label{tab:domain_cm_llama_k8}
+\small
+\[
+\begin{bmatrix}
+393 & 28 & 2 & 7 & 29 & 3 & 8 & 3 \\
+15 & 108 & 3 & 13 & 1 & 0 & 3 & 0 \\
+8 & 3 & 95 & 9 & 2 & 2 & 2 & 1 \\
+7 & 13 & 5 & 106 & 11 & 1 & 2 & 0 \\
+55 & 4 & 6 & 3 & 143 & 10 & 8 & 4 \\
+8 & 0 & 1 & 0 & 5 & 39 & 1 & 2 \\
+7 & 3 & 2 & 1 & 6 & 0 & 41 & 1 \\
+13 & 3 & 0 & 0 & 4 & 2 & 0 & 12
+\end{bmatrix}
+\]
+\normalsize
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[Gemma domain routing confusion matrix for $k=8$.]{Gemma domain routing confusion matrix for $k=8$ (rows=true, cols=pred). Label order:
+\texttt{[economy, health\_social, foreign\_security, law\_rights, politics\_government, environment\_energy, society\_culture, misc]}.}
+\label{tab:domain_cm_gemma_k8}
+\small
+\[
+\begin{bmatrix}
+388 & 31 & 2 & 13 & 17 & 13 & 8 & 1 \\
+8 & 115 & 3 & 14 & 0 & 0 & 3 & 0 \\
+4 & 5 & 92 & 15 & 2 & 2 & 2 & 0 \\
+6 & 7 & 5 & 117 & 7 & 1 & 2 & 0 \\
+59 & 9 & 6 & 15 & 111 & 14 & 17 & 2 \\
+8 & 1 & 0 & 0 & 2 & 42 & 3 & 0 \\
+7 & 3 & 3 & 5 & 3 & 2 & 38 & 0 \\
+15 & 1 & 2 & 1 & 2 & 2 & 2 & 9
+\end{bmatrix}
+\]
+\normalsize
+\end{table}
+
+\FloatBarrier
+\subsection{Fine-grained taxonomy ($k=13$ labels)}
+\label{app:cm_k12}
+
+\begin{table}[h]
+\centering
+\caption[Llama domain routing confusion matrix for $k=13$.]{Llama domain routing confusion matrix for $k=13$ (rows=true, cols=pred). Label order:
+\texttt{[macro\_econ, jobs\_labor, business\_finance, cost\_of\_living\_housing, healthcare\_policy, public\_health\_crises, substances\_gambling, family\_demographics, law\_crime\_rights, institutions\_elections, foreign\_affairs\_security, environment\_energy\_infra, media\_meta]}.}
+\label{tab:domain_cm_llama_k12}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+$
+\setcounter{MaxMatrixCols}{13}
+\begin{bmatrix}
+232 & 14 & 0 & 4 & 8 & 0 & 1 & 2 & 0 & 10 & 1 & 5 & 2 \\
+31 & 41 & 1 & 0 & 4 & 2 & 1 & 0 & 1 & 23 & 0 & 0 & 3 \\
+8 & 0 & 5 & 0 & 2 & 0 & 1 & 0 & 1 & 6 & 0 & 0 & 0 \\
+13 & 1 & 1 & 15 & 6 & 0 & 0 & 2 & 0 & 3 & 0 & 2 & 1 \\
+2 & 2 & 0 & 0 & 100 & 0 & 2 & 0 & 4 & 1 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 4 & 1 & 0 & 6 & 1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 3 & 0 & 7 & 0 & 2 & 0 & 0 & 0 & 1 \\
+2 & 0 & 0 & 3 & 1 & 0 & 0 & 12 & 7 & 1 & 0 & 0 & 2 \\
+0 & 2 & 0 & 0 & 3 & 3 & 1 & 8 & 95 & 10 & 5 & 1 & 3 \\
+25 & 5 & 4 & 0 & 4 & 1 & 1 & 2 & 5 & 173 & 11 & 14 & 11 \\
+1 & 0 & 0 & 0 & 2 & 0 & 0 & 1 & 3 & 2 & 69 & 0 & 3 \\
+3 & 2 & 3 & 0 & 0 & 2 & 0 & 0 & 1 & 5 & 0 & 42 & 3 \\
+8 & 0 & 0 & 0 & 0 & 0 & 1 & 4 & 2 & 10 & 2 & 0 & 52
+\end{bmatrix}
+$
+}
+\normalsize
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[Gemma domain routing confusion matrix for $k=13$.]{Gemma domain routing confusion matrix for $k=13$ (rows=true, cols=pred). Label order:
+\texttt{[macro\_econ, jobs\_labor, business\_finance, cost\_of\_living\_housing, healthcare\_policy, public\_health\_crises, substances\_gambling, family\_demographics, law\_crime\_rights, institutions\_elections, foreign\_affairs\_security, environment\_energy\_infra, media\_meta]}.}
+\label{tab:domain_cm_gemma_k12}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+$
+\setcounter{MaxMatrixCols}{13}
+\begin{bmatrix}
+194 & 36 & 5 & 5 & 8 & 0 & 1 & 4 & 2 & 7 & 1 & 9 & 7 \\
+14 & 54 & 3 & 4 & 2 & 1 & 1 & 1 & 4 & 15 & 0 & 2 & 6 \\
+5 & 2 & 7 & 1 & 2 & 0 & 1 & 1 & 1 & 2 & 0 & 1 & 0 \\
+8 & 0 & 1 & 22 & 5 & 0 & 0 & 4 & 0 & 3 & 0 & 1 & 0 \\
+4 & 2 & 3 & 0 & 96 & 1 & 2 & 2 & 2 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 & 3 & 0 & 1 & 6 & 0 & 1 & 2 & 0 \\
+1 & 0 & 0 & 1 & 3 & 0 & 5 & 0 & 2 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 4 & 1 & 1 & 0 & 12 & 6 & 1 & 0 & 0 & 3 \\
+1 & 2 & 1 & 0 & 1 & 6 & 0 & 8 & 99 & 5 & 5 & 1 & 2 \\
+14 & 17 & 11 & 4 & 2 & 2 & 0 & 2 & 12 & 146 & 13 & 10 & 23 \\
+3 & 0 & 0 & 0 & 1 & 0 & 0 & 2 & 4 & 3 & 60 & 2 & 6 \\
+5 & 1 & 3 & 1 & 0 & 2 & 0 & 0 & 0 & 5 & 0 & 41 & 3 \\
+6 & 0 & 0 & 3 & 0 & 0 & 0 & 2 & 3 & 9 & 3 & 2 & 51
+\end{bmatrix}
+$
+}
+\normalsize
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption[DeepSeek domain routing confusion matrix for $k=13$.]{DeepSeek domain routing confusion matrix for $k=13$ (rows=true, cols=pred). Label order:
+\texttt{[macro\_econ, jobs\_labor, business\_finance, cost\_of\_living\_housing, healthcare\_policy, public\_health\_crises, substances\_gambling, family\_demographics, law\_crime\_rights, institutions\_elections, foreign\_affairs\_security, environment\_energy\_infra, media\_meta]}.}
+\label{tab:domain_cm_deepseek_k12}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+$
+\setcounter{MaxMatrixCols}{13}
+\begin{bmatrix}
+228 & 16 & 2 & 3 & 7 & 0 & 1 & 2 & 1 & 9 & 1 & 5 & 4 \\
+33 & 37 & 0 & 1 & 5 & 1 & 1 & 1 & 3 & 20 & 0 & 2 & 3 \\
+9 & 2 & 4 & 0 & 3 & 0 & 1 & 0 & 1 & 2 & 0 & 1 & 0 \\
+14 & 1 & 1 & 10 & 8 & 0 & 0 & 4 & 0 & 4 & 0 & 2 & 0 \\
+3 & 0 & 1 & 0 & 101 & 0 & 2 & 1 & 3 & 1 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 3 & 1 & 0 & 6 & 0 & 1 & 2 & 0 \\
+0 & 0 & 0 & 0 & 2 & 0 & 9 & 0 & 1 & 0 & 0 & 0 & 1 \\
+1 & 0 & 0 & 3 & 1 & 0 & 0 & 11 & 8 & 1 & 0 & 0 & 3 \\
+1 & 2 & 0 & 0 & 3 & 2 & 2 & 3 & 103 & 7 & 4 & 2 & 2 \\
+22 & 8 & 2 & 0 & 3 & 0 & 0 & 3 & 7 & 176 & 10 & 13 & 12 \\
+4 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 5 & 3 & 65 & 0 & 3 \\
+4 & 3 & 3 & 0 & 1 & 0 & 0 & 1 & 0 & 4 & 0 & 42 & 3 \\
+10 & 1 & 0 & 0 & 0 & 0 & 1 & 2 & 4 & 9 & 3 & 1 & 48
+\end{bmatrix}
+$
+}
+\normalsize
+\end{table}
+
+\section{Domain Expert Verdict Models}
+
+This section reports per-domain expert performance for all backbone and taxonomy granularity combinations, evaluated on the held-out LIAR test split. Table~\ref{tab:expert_per_domain} provides a detailed per-domain breakdown, and Table~\ref{tab:expert_summary} summarizes aggregated performance across all domains for each backbone and granularity $k$.
+
+\begin{landscape}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{@{}l r l r r r r r r r r r@{}}
+\caption[Per-domain expert performance for all backbone $\times$ $k$ configurations on \texttt{liar\_test}.]{Per-domain expert performance for all backbone $\times$ $k$ configurations on \texttt{liar\_test}. Macro-F1 is the unweighted average of $F_1$ over both classes. Prec(+) and Rec(+) refer to the positive (\texttt{True}) class. For $k{=}13$, $n{=}1230$ due to domain label availability.}
+\label{tab:expert_per_domain}\\
+\toprule
+Backbone & $k$ & Domain & $n$ & Acc & Macro-F1 & Prec(+) & Rec(+) & TN & FP & FN & TP\\
+\midrule
+\endfirsthead
+\toprule
+Backbone & $k$ & Domain & $n$ & Acc & Macro-F1 & Prec(+) & Rec(+) & TN & FP & FN & TP\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+llama & 6 & \texttt{socioeconomic\_policy} & 616 & 0.649 & 0.640 & 0.67 & 0.74 & 142 & 126 & 90 & 258\\
+llama & 6 & \texttt{foreign\_security} & 122 & 0.689 & 0.690 & 0.71 & 0.71 & 38 & 19 & 19 & 46\\
+llama & 6 & \texttt{governance\_law} & 378 & 0.704 & 0.700 & 0.76 & 0.70 & 118 & 48 & 64 & 148\\
+llama & 6 & \texttt{environment\_science} & 57 & 0.614 & 0.610 & 0.62 & 0.70 & 14 & 13 & 9 & 21\\
+llama & 6 & \texttt{society\_culture} & 61 & 0.656 & 0.640 & 0.71 & 0.73 & 13 & 11 & 10 & 27\\
+llama & 6 & \texttt{misc} & 33 & 0.667 & 0.400 & 0.67 & 1.00 & 0 & 11 & 0 & 22\\
+\midrule
+llama & 8 & \texttt{economy} & 473 & 0.662 & 0.650 & 0.69 & 0.73 & 118 & 89 & 71 & 195\\
+llama & 8 & \texttt{health\_social} & 143 & 0.650 & 0.650 & 0.77 & 0.56 & 47 & 14 & 36 & 46\\
+llama & 8 & \texttt{foreign\_security} & 122 & 0.689 & 0.690 & 0.71 & 0.71 & 38 & 19 & 19 & 46\\
+llama & 8 & \texttt{law\_rights} & 145 & 0.648 & 0.650 & 0.65 & 0.69 & 42 & 28 & 23 & 52\\
+llama & 8 & \texttt{politics\_government} & 233 & 0.682 & 0.640 & 0.68 & 0.86 & 41 & 55 & 19 & 118\\
+llama & 8 & \texttt{environment\_energy} & 56 & 0.571 & 0.520 & 0.56 & 0.86 & 7 & 20 & 4 & 25\\
+llama & 8 & \texttt{society\_culture} & 61 & 0.607 & 0.580 & 0.67 & 0.70 & 11 & 13 & 11 & 26\\
+llama & 8 & \texttt{misc} & 34 & 0.706 & 0.680 & 0.81 & 0.74 & 7 & 4 & 6 & 17\\
+\midrule
+llama & 13 & \texttt{macro\_econ} & 279 & 0.656 & 0.650 & 0.71 & 0.69 & 72 & 45 & 51 & 111\\
+llama & 13 & \texttt{jobs\_labor} & 107 & 0.608 & 0.590 & 0.61 & 0.74 & 23 & 27 & 15 & 42\\
+llama & 13 & \texttt{business\_finance} & 23 & 0.870 & 0.870 & 0.80 & 1.00 & 8 & 3 & 0 & 12\\
+llama & 13 & \texttt{cost\_of\_living\_housing} & 44 & 0.568 & 0.440 & 0.55 & 1.00 & 2 & 19 & 0 & 23\\
+llama & 13 & \texttt{healthcare\_policy} & 114 & 0.640 & 0.640 & 0.65 & 0.68 & 32 & 22 & 19 & 41\\
+llama & 13 & \texttt{public\_health\_crises} & 14 & 0.571 & 0.360 & 0.57 & 1.00 & 0 & 6 & 0 & 8\\
+llama & 13 & \texttt{substances\_gambling} & 13 & 0.769 & 0.430 & 0.77 & 1.00 & 0 & 3 & 0 & 10\\
+llama & 13 & \texttt{family\_demographics} & 28 & 0.750 & 0.750 & 0.92 & 0.67 & 9 & 1 & 6 & 12\\
+llama & 13 & \texttt{law\_crime\_rights} & 131 & 0.733 & 0.730 & 0.78 & 0.72 & 44 & 15 & 20 & 52\\
+llama & 13 & \texttt{institutions\_elections} & 256 & 0.680 & 0.670 & 0.70 & 0.75 & 65 & 46 & 36 & 109\\
+llama & 13 & \texttt{foreign\_affairs\_security} & 81 & 0.654 & 0.650 & 0.72 & 0.63 & 24 & 11 & 17 & 29\\
+llama & 13 & \texttt{environment\_energy\_infra} & 61 & 0.590 & 0.550 & 0.55 & 0.90 & 9 & 22 & 3 & 27\\
+llama & 13 & \texttt{media\_meta} & 79 & 0.633 & 0.620 & 0.67 & 0.72 & 17 & 16 & 13 & 33\\
+\midrule
+gemma & 6 & \texttt{socioeconomic\_policy} & 616 & 0.627 & 0.550 & 0.61 & 0.92 & 65 & 203 & 27 & 321\\
+gemma & 6 & \texttt{foreign\_security} & 122 & 0.664 & 0.640 & 0.63 & 0.88 & 24 & 33 & 8 & 57\\
+gemma & 6 & \texttt{governance\_law} & 378 & 0.653 & 0.600 & 0.63 & 0.91 & 55 & 111 & 20 & 192\\
+gemma & 6 & \texttt{environment\_science} & 57 & 0.579 & 0.550 & 0.57 & 0.80 & 9 & 18 & 6 & 24\\
+gemma & 6 & \texttt{society\_culture} & 61 & 0.574 & 0.430 & 0.60 & 0.89 & 2 & 22 & 4 & 33\\
+gemma & 6 & \texttt{misc} & 33 & 0.606 & 0.480 & 0.67 & 0.82 & 2 & 9 & 4 & 18\\
+\midrule
+gemma & 8 & \texttt{economy} & 473 & 0.628 & 0.550 & 0.61 & 0.92 & 51 & 156 & 20 & 246\\
+gemma & 8 & \texttt{health\_social} & 143 & 0.678 & 0.640 & 0.67 & 0.88 & 25 & 36 & 10 & 72\\
+gemma & 8 & \texttt{foreign\_security} & 122 & 0.639 & 0.600 & 0.61 & 0.91 & 19 & 38 & 6 & 59\\
+gemma & 8 & \texttt{law\_rights} & 145 & 0.614 & 0.600 & 0.60 & 0.79 & 30 & 40 & 16 & 59\\
+gemma & 8 & \texttt{politics\_government} & 233 & 0.635 & 0.570 & 0.64 & 0.86 & 30 & 66 & 19 & 118\\
+gemma & 8 & \texttt{environment\_energy} & 56 & 0.500 & 0.360 & 0.51 & 0.93 & 1 & 26 & 2 & 27\\
+gemma & 8 & \texttt{society\_culture} & 61 & 0.574 & 0.470 & 0.61 & 0.84 & 4 & 20 & 6 & 31\\
+gemma & 8 & \texttt{misc} & 34 & 0.618 & 0.490 & 0.68 & 0.83 & 2 & 9 & 4 & 19\\
+\midrule
+gemma & 13 & \texttt{macro\_econ} & 279 & 0.645 & 0.580 & 0.64 & 0.90 & 35 & 82 & 17 & 145\\
+gemma & 13 & \texttt{jobs\_labor} & 107 & 0.626 & 0.550 & 0.59 & 0.96 & 12 & 38 & 2 & 55\\
+gemma & 13 & \texttt{business\_finance} & 23 & 0.522 & 0.410 & 0.52 & 0.92 & 1 & 10 & 1 & 11\\
+gemma & 13 & \texttt{cost\_of\_living\_housing} & 44 & 0.636 & 0.560 & 0.59 & 1.00 & 5 & 16 & 0 & 23\\
+gemma & 13 & \texttt{healthcare\_policy} & 114 & 0.614 & 0.570 & 0.59 & 0.90 & 16 & 38 & 6 & 54\\
+gemma & 13 & \texttt{public\_health\_crises} & 14 & 0.571 & 0.360 & 0.57 & 1.00 & 0 & 6 & 0 & 8\\
+gemma & 13 & \texttt{substances\_gambling} & 13 & 0.615 & 0.380 & 0.73 & 0.80 & 0 & 3 & 2 & 8\\
+gemma & 13 & \texttt{family\_demographics} & 28 & 0.607 & 0.380 & 0.63 & 0.94 & 0 & 10 & 1 & 17\\
+gemma & 13 & \texttt{law\_crime\_rights} & 131 & 0.664 & 0.640 & 0.65 & 0.83 & 27 & 32 & 12 & 60\\
+gemma & 13 & \texttt{institutions\_elections} & 256 & 0.633 & 0.570 & 0.62 & 0.90 & 32 & 79 & 15 & 130\\
+gemma & 13 & \texttt{foreign\_affairs\_security} & 81 & 0.568 & 0.550 & 0.61 & 0.65 & 16 & 19 & 16 & 30\\
+gemma & 13 & \texttt{environment\_energy\_infra} & 61 & 0.541 & 0.490 & 0.52 & 0.87 & 7 & 24 & 4 & 26\\
+gemma & 13 & \texttt{media\_meta} & 79 & 0.582 & 0.520 & 0.61 & 0.80 & 9 & 24 & 9 & 37\\
+\midrule
+deepseek & 6 & \texttt{socioeconomic\_policy} & 616 & 0.674 & 0.630 & 0.65 & 0.89 & 104 & 164 & 37 & 311\\
+deepseek & 6 & \texttt{foreign\_security} & 122 & 0.615 & 0.530 & 0.58 & 0.98 & 11 & 46 & 1 & 64\\
+deepseek & 6 & \texttt{governance\_law} & 378 & 0.675 & 0.670 & 0.71 & 0.71 & 105 & 61 & 62 & 150\\
+deepseek & 6 & \texttt{environment\_science} & 57 & 0.526 & 0.340 & 0.53 & 1.00 & 0 & 27 & 0 & 30\\
+deepseek & 6 & \texttt{society\_culture} & 61 & 0.607 & 0.380 & 0.61 & 1.00 & 0 & 24 & 0 & 37\\
+deepseek & 6 & \texttt{misc} & 33 & 0.667 & 0.400 & 0.67 & 1.00 & 0 & 11 & 0 & 22\\
+\midrule
+deepseek & 8 & \texttt{economy} & 473 & 0.676 & 0.650 & 0.66 & 0.86 & 92 & 115 & 38 & 228\\
+deepseek & 8 & \texttt{health\_social} & 143 & 0.692 & 0.660 & 0.68 & 0.87 & 28 & 33 & 11 & 71\\
+deepseek & 8 & \texttt{foreign\_security} & 122 & 0.615 & 0.530 & 0.58 & 0.98 & 11 & 46 & 1 & 64\\
+deepseek & 8 & \texttt{law\_rights} & 145 & 0.566 & 0.460 & 0.54 & 0.97 & 9 & 61 & 2 & 73\\
+deepseek & 8 & \texttt{politics\_government} & 233 & 0.597 & 0.390 & 0.59 & 1.00 & 2 & 94 & 0 & 137\\
+deepseek & 8 & \texttt{environment\_energy} & 56 & 0.518 & 0.340 & 0.52 & 1.00 & 0 & 27 & 0 & 29\\
+deepseek & 8 & \texttt{society\_culture} & 61 & 0.607 & 0.380 & 0.61 & 1.00 & 0 & 24 & 0 & 37\\
+deepseek & 8 & \texttt{misc} & 34 & 0.676 & 0.400 & 0.68 & 1.00 & 0 & 11 & 0 & 23\\
+\midrule
+deepseek & 13 & \texttt{macro\_econ} & 279 & 0.663 & 0.610 & 0.66 & 0.88 & 42 & 75 & 19 & 143\\
+deepseek & 13 & \texttt{jobs\_labor} & 107 & 0.533 & 0.350 & 0.53 & 1.00 & 0 & 50 & 0 & 57\\
+deepseek & 13 & \texttt{business\_finance} & 23 & 0.522 & 0.340 & 0.52 & 1.00 & 0 & 11 & 0 & 12\\
+deepseek & 13 & \texttt{cost\_of\_living\_housing} & 44 & 0.523 & 0.340 & 0.52 & 1.00 & 0 & 21 & 0 & 23\\
+deepseek & 13 & \texttt{healthcare\_policy} & 114 & 0.667 & 0.650 & 0.63 & 0.87 & 24 & 30 & 8 & 52\\
+deepseek & 13 & \texttt{public\_health\_crises} & 14 & 0.571 & 0.360 & 0.57 & 1.00 & 0 & 6 & 0 & 8\\
+deepseek & 13 & \texttt{substances\_gambling} & 13 & 0.308 & 0.310 & 0.67 & 0.20 & 2 & 1 & 8 & 2\\
+deepseek & 13 & \texttt{family\_demographics} & 28 & 0.643 & 0.390 & 0.64 & 1.00 & 0 & 10 & 0 & 18\\
+deepseek & 13 & \texttt{law\_crime\_rights} & 131 & 0.672 & 0.630 & 0.64 & 0.92 & 22 & 37 & 6 & 66\\
+deepseek & 13 & \texttt{institutions\_elections} & 256 & 0.629 & 0.520 & 0.61 & 0.98 & 19 & 92 & 3 & 142\\
+deepseek & 13 & \texttt{foreign\_affairs\_security} & 81 & 0.568 & 0.360 & 0.57 & 1.00 & 0 & 35 & 0 & 46\\
+deepseek & 13 & \texttt{environment\_energy\_infra} & 61 & 0.492 & 0.330 & 0.49 & 1.00 & 0 & 31 & 0 & 30\\
+deepseek & 13 & \texttt{media\_meta} & 79 & 0.582 & 0.440 & 0.59 & 0.93 & 3 & 30 & 3 & 43\\
+
+\end{longtable}
+
+\begin{table}[h]
+\centering
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption[Aggregated expert performance per backbone and domain granularity $k$ 
+on \texttt{liar\_test}.]{Aggregated expert performance per backbone and domain granularity $k$ 
+on \texttt{liar\_test}. Macro-F1 is the unweighted average of $F_1$ over both 
+classes. Prec(+) and Rec(+) refer to the positive (\texttt{True}) class.}
+\label{tab:expert_summary}
+\begin{tabular}{@{}l r r r r r r r r r r r@{}}
+\toprule
+Backbone & $k$ & $n$ & Acc & Macro-F1 & Prec(+) & Rec(+) & TN & FP & FN & TP\\
+\midrule
+llama & 6 & 1267 & 0.669 & 0.66 & 0.70 & 0.73 & 325 & 228 & 192 & 522\\
+llama & 8 & 1267 & 0.660 & 0.65 & 0.68 & 0.74 & 311 & 242 & 189 & 525\\
+llama & 13 & 1230 & 0.662 & 0.65 & 0.68 & 0.74 & 305 & 236 & 180 & 509\\
+\midrule
+gemma & 6 & 1267 & 0.633 & 0.57 & 0.62 & 0.90 & 157 & 396 & 69 & 645\\
+gemma & 8 & 1267 & 0.626 & 0.57 & 0.62 & 0.88 & 162 & 391 & 83 & 631\\
+gemma & 13 & 1230 & 0.621 & 0.56 & 0.61 & 0.88 & 160 & 381 & 85 & 604\\
+\midrule
+deepseek & 6 & 1267 & 0.658 & 0.62 & 0.65 & 0.86 & 220 & 333 & 100 & 614\\
+deepseek & 8 & 1267 & 0.635 & 0.56 & 0.62 & 0.93 & 142 & 411 & 52 & 662\\
+deepseek & 13 & 1230 & 0.613 & 0.52 & 0.60 & 0.93 & 112 & 429 & 47 & 642\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{landscape}
+
+\FloatBarrier
+\section{End-to-End Results}
+
+This section reports end-to-end verdict performance for the final domain-specialized framework across all backbone families and taxonomy granularities, both without checkability gating (Table~\ref{tab:appendix_e2e_no_gate}) and with checkability gating (Table~\ref{tab:appendix_e2e_gate}).
+
+\begin{table}[h]
+\centering
+\caption[End-to-end verdict results without checkability gating on the full test set ($n=1267$).]{End-to-end verdict results without checkability gating on the full test set ($n=1267$). Prec$_T$, Rec$_T$, and F1$_T$ refer to the positive class (\texttt{True}); F1$_F$ refers to the negative class (\texttt{False}). Routing acc.\ reports agreement with subject-derived super-domain labels.}
+\label{tab:appendix_e2e_no_gate}
+\small
+\begin{tabular}{llrrrrrrrr}
+\hline
+Model & $k$ & $n$ & Verdict acc. & Routing acc. & Prec$_T$ & Rec$_T$ & F1$_T$ & F1$_F$ & Macro-F1 \\
+\hline
+DeepSeek & 6  & 1267 & 0.6606 & 0.7877 & 0.6492 & 0.8655 & 0.7419 & 0.5000 & 0.6209 \\
+DeepSeek & 8  & 1267 & 0.6101 & 0.7443 & 0.5968 & 0.9496 & 0.7330 & 0.2760 & 0.5045 \\
+DeepSeek & 13 & 1267 & 0.6093 & 0.6805 & 0.5998 & 0.9216 & 0.7267 & 0.3150 & 0.5209 \\
+\hline
+Gemma    & 6  & 1267 & 0.4886 & 0.7687 & 0.5851 & 0.3179 & 0.4120 & 0.5460 & 0.4790 \\
+Gemma    & 8  & 1267 & 0.5770 & 0.7198 & 0.6104 & 0.6891 & 0.6474 & 0.4680 & 0.5577 \\
+Gemma    & 13 & 1267 & 0.5927 & 0.6423 & 0.6187 & 0.7227 & 0.6667 & 0.4810 & 0.5739 \\
+\hline
+Llama    & 6  & 1267 & 0.5430 & 0.7656 & 0.7288 & 0.3011 & 0.4262 & 0.6200 & 0.5231 \\
+Llama    & 8  & 1267 & 0.6322 & 0.7395 & 0.6685 & 0.6891 & 0.6786 & 0.5700 & 0.6243 \\
+Llama    & 13 & 1267 & 0.6354 & 0.6886 & 0.6765 & 0.6765 & 0.6765 & 0.5860 & 0.6313 \\
+\hline
+\end{tabular}
+\normalsize
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[End-to-end verdict results with checkability gating. Metrics are reported on the \texttt{fact\_checkable} subset]{End-to-end verdict results with checkability gating. Metrics are reported on the \texttt{fact\_checkable} subset; $n$ varies by model (Llama: 1100, Gemma: 535, DeepSeek: 1263). Prec$_T$, Rec$_T$, and F1$_T$ refer to the positive class (\texttt{True}); F1$_F$ to the negative class. Routing acc.\ reports agreement with subject-derived super-domain labels.}
+\label{tab:appendix_e2e_gate}
+\small
+\begin{tabular}{llrrrrrrrr}
+\hline
+Model & $k$ & $n$ & Verdict acc. & Routing acc. & Prec$_T$ & Rec$_T$ & F1$_T$ & F1$_F$ & Macro-F1 \\
+\hline
+DeepSeek & 6  & 1263 & 0.6611 & 0.7870 & 0.6495 & 0.8666 & 0.7425 & 0.5046 & 0.6236 \\
+DeepSeek & 8  & 1263 & 0.6097 & 0.7435 & 0.5966 & 0.9494 & 0.7328 & 0.2761 & 0.5044 \\
+DeepSeek & 13 & 1263 & 0.6089 & 0.6794 & 0.5996 & 0.9213 & 0.7265 & 0.3139 & 0.5202 \\
+\hline
+Gemma    & 6  & 535  & 0.4336 & 0.7757 & 0.6607 & 0.3109 & 0.4229 & 0.4440 & 0.4334 \\
+Gemma    & 8  & 535  & 0.6206 & 0.7383 & 0.6954 & 0.7675 & 0.7297 & 0.3636 & 0.5467 \\
+Gemma    & 13 & 535  & 0.6318 & 0.6296 & 0.7030 & 0.7759 & 0.7377 & 0.3824 & 0.5601 \\
+\hline
+Llama    & 6  & 1100 & 0.5427 & 0.7700 & 0.7526 & 0.3333 & 0.4620 & 0.6024 & 0.5322 \\
+Llama    & 8  & 1100 & 0.6373 & 0.7436 & 0.6823 & 0.7191 & 0.7002 & 0.5409 & 0.6205 \\
+Llama    & 13 & 1100 & 0.6336 & 0.6838 & 0.6831 & 0.7052 & 0.6940 & 0.5436 & 0.6188 \\
+\hline
+\end{tabular}
+\normalsize
+\end{table}

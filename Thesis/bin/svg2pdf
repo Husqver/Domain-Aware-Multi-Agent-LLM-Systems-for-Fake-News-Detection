@@ -1,0 +1,24 @@
+#!/bin/sh
+
+usage ()
+{
+  echo "Convert Inkscape file to PDF"
+  echo "Usage: $0 <filename.svg>"
+}
+
+if [ "$#" -ne 1 ]
+then
+  usage
+  exit
+fi
+
+INFILE=$1
+BASE=$(basename ${INFILE} .svg)
+DIR=$(dirname ${INFILE})
+
+BASEPATH="`dirname \"$0\"`"
+
+echo $DIR
+
+python $BASEPATH/inkscapeslidepdf.py ${DIR} ${INFILE}
+

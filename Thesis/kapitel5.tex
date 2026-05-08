@@ -1,0 +1,591 @@
+\chapter{Baseline Experiments with Single LLMs}
+\label{chap:baseline_single}
+
+This chapter establishes single-model baselines for binary claim verification on the LIAR benchmark. The experiments are organized 
+along two main axes: (i) prompt-based evaluation, which tests how well off-the-shelf language models can classify political claims 
+without task-specific training, and (ii) supervised fine-tuning, which quantifies the performance gains achievable through parameter-efficient adaptation.
+
+The prompt-based block (Section~\ref{sec:prompt_baselines}) systematically varies output handling, subject conditioning, prompt 
+design, reasoning strategies, and stylistic factors to identify which models and configurations provide the strongest starting 
+point. The fine-tuning block (Section~\ref{sec:finetuning}) then investigates how much performance can be gained through LoRA 
+adaptation under different training regimes and how well such adaptations transfer across domains.
+
+Together, these experiments serve two purposes: they provide a quantitative reference for evaluating the multi-agent framework 
+introduced in later chapters, and they identify the key limitations of single-model approaches -- output instability, domain 
+overfitting, and limited generalization -- that motivate the agent-based design.
+
+\section{Model Selection}
+
+This section describes the selection of the Large Language Models used in this thesis. First, the criteria guiding the model selection are outlined. In the following, the chosen models are presented as representative examples of different Transformer architectures. The selected models form the basis for all subsequent experiments and comparisons.
+
+\subsection{Selection Criteria}
+
+To obtain a broad and meaningful selection of LLMs, models with different architectural designs were considered. The selection includes decoder-only, encoder-only, and encoder--decoder architectures, enabling an analysis of how architectural differences influence model behavior in the proposed setting. In addition, general-purpose foundation models were included, as they are commonly used across a wide range of NLP tasks.
+
+Another important criterion was the public availability of the models. Only openly accessible models were selected to ensure reproducibility and transparency of the experimental setup. Furthermore, extremely large models were intentionally excluded. The goal of this thesis is not to achieve maximal performance through very large parameter counts, but rather to investigate how much performance can be obtained from relatively small to medium-sized models through effective prompting strategies and agent-based design.
+
+In summary, the selected models
+(i) represent different Transformer architectures,
+(ii) are openly available,
+(iii) have moderate model sizes, and
+(iv) are widely used baseline or foundation models in current research.
+
+\subsection{Representative LLMs}
+
+Based on the criteria described above, the following models were selected as representative LLMs for the experiments:
+
+\begin{itemize}
+    \item LLaMA (Decoder-only)
+    \item GPT-2 (Decoder-only)
+    \item DeepSeek LLM (Decoder-only)
+    \item T5 / FLAN-T5 (Encoder--Decoder)
+    \item BERT (Encoder-only)
+    \item Gemma (Decoder-only)
+\end{itemize}
+
+\paragraph{LLaMA}
+LLaMA (Large Language Model Meta AI) is a decoder-only Transformer model that autoregressively predicts the next token in a sequence. It is based on self-attention, feed-forward networks, residual connections, and layer normalization. LLaMA was designed to achieve strong performance with relatively fewer parameters by training on large, high-quality text corpora. The original work demonstrates that LLaMA models can compete with significantly larger models despite their smaller size \cite{touvron2023llamaopenefficientfoundation}.
+
+\paragraph{GPT-2}
+GPT-2 is a decoder-only Transformer trained using a causal language modeling objective. Through masked self-attention, the model generates coherent and context-aware text without task-specific fine-tuning. Due to its simplicity, accessibility, and widespread use, GPT-2 serves as a strong baseline for generative language modeling tasks \cite{yenduri2023generativepretrainedtransformercomprehensive}.
+
+\paragraph{DeepSeek LLM}
+DeepSeek LLM is an open-source family of decoder-only Transformer models trained on very large-scale text data. In addition to pretraining, the models incorporate supervised fine-tuning and Direct Preference Optimization to enable conversational capabilities. Evaluations show that DeepSeek models perform strongly in domains such as code generation, mathematical reasoning, and logical problem solving \cite{deepseekai2024deepseekllmscalingopensource}.
+
+\paragraph{T5 and FLAN-T5}
+T5 (Text-to-Text Transfer Transformer) employs an encoder--decoder architecture and formulates all NLP tasks in a unified text-to-text format. This design allows the model to be applied flexibly to tasks such as classification, question answering, and summarization \cite{raffel2023exploringlimitstransferlearning}.  
+FLAN-T5 extends T5 through instruction fine-tuning on a diverse set of tasks, significantly improving instruction-following ability and generalization across downstream applications \cite{chung2022scalinginstructionfinetunedlanguagemodels}.
+
+\paragraph{BERT and RoBERTa}
+BERT and RoBERTa are encoder-only Transformer models designed to learn rich bidirectional contextual representations. BERT is pretrained using masked language modeling and next sentence prediction objectives, enabling it to capture both left and right context effectively. RoBERTa builds upon BERT by optimizing the pretraining procedure, including training on larger text corpora, using dynamic masking, removing the next sentence prediction objective, and employing larger batch sizes. These improvements lead to stronger and more robust representations. Both models achieve strong performance across a wide range of natural language understanding tasks, particularly in text classification and inference, and are widely used as backbone models for downstream NLP applications \cite{devlin2019bertpretrainingdeepbidirectional, liu2019robertarobustlyoptimizedbert}.
+
+
+\paragraph{Gemma}
+Gemma is a family of lightweight, open language models developed by Google and based on a decoder-only Transformer architecture. The models incorporate modern architectural improvements such as rotary positional embeddings and multi-query attention. Despite their relatively small size, Gemma models achieve strong performance across a range of benchmarks while emphasizing efficiency and responsible deployment \cite{gemmateam2024gemmaopenmodelsbased}.
+
+\subsection{Prompt Formatting Across Heterogeneous Language Models}
+
+Since the selected language models differ not only in architecture but also in the format in which they expect textual input, prompt construction was implemented using a compatibility-oriented strategy. In the Hugging Face framework, some instruction-tuned or chat-oriented models provide a tokenizer-level chat template that converts structured conversational messages, such as system and user instructions, into the exact serialized prompt format expected by the respective model \cite{hf_chat_templates,hf_chat_templates_writing}. This mechanism is important because the prompt structure used at inference time should match the format a model has seen during instruction tuning or conversational post-training.
+
+For this reason, prompts were not treated identically across all models. Instead, prompt construction followed a compatibility-oriented strategy. Whenever a model supported chat-style formatting, the prompt was rendered in a structured conversational form. Depending on the model, this could involve either separate conversational roles or a user-only chat prompt. If such formatting was not supported, the input was reduced to a plain text prompt. In later multi-agent experiments, this strategy was extended further by distinguishing between models that support an explicit system role and those that require system-level instructions to be embedded into the user message. In this way, all models could be evaluated within one unified framework while still respecting their model-specific input conventions.
+
+This distinction was particularly relevant for the models used in this thesis. Meta's Llama 3.1 Instruct models explicitly support conversational prompt formatting with role-separated inputs, including a system instruction \cite{meta_llama_prompt}. In contrast, Google's instruction-tuned Gemma models do not support a separate system role and instead require such instructions to be embedded into the user message \cite{gemma_prompt_structure}. Base models such as DeepSeek-LLM-7B-Base, which are not primarily designed as chat models, are more appropriately addressed through plain text prompting when no dedicated chat template is provided \cite{deepseek_model_card}.
+
+Overall, this prompting strategy should not be understood as a property of Transformer architecture itself, but rather as a practical compatibility layer between different model checkpoints and their expected input formatting. The approach ensures that each model is queried in a form that is as close as possible to its intended usage. This is consistent with the broader literature on instruction tuning, which shows that model behavior depends strongly on prompt phrasing, structure, and task formulation \cite{ouyang2022traininglanguagemodelsfollow,sanh2022multitaskpromptedtrainingenables,chung2022scalinginstructionfinetunedlanguagemodels}.
+
+\section{Prompt-Based Baselines}
+\label{sec:prompt_baselines}
+
+This section establishes prompt-only baselines for binary factuality classification on the preprocessed LIAR test set (Section~\ref{sec:preprocessing}). To ensure comparability, the dataset, preprocessing, and evaluation metrics are held constant across runs. The baselines vary along three orthogonal axes: (1) output handling (Setup~A vs.\ Setup~B), (2) optional subject conditioning (domain-free vs.\ domain-informed), and (3) prompt design (basic vs.\ engineered prompts and structured inference variants introduced in later subsections). Complete results for all models and configurations are reported in Appendix~A Table~\ref{tab:zeroshot_setups} and Table~\ref{tab:appendix_all_baselines_full}.
+
+The core baselines -- zero-shot evaluation and prompt engineering -- establish the performance ceiling for instruction-following without task-specific training. Beyond these, several exploratory extensions are evaluated: iterative prompting strategies, chain-of-thought reasoning, tone neutralization, and external domain classification. These extensions are not part of the primary baseline but provide additional insight into the factors that influence model behavior on the LIAR benchmark.
+
+\subsection{Zero-Shot Evaluation Setups}
+This subsection defines the two output-handling setups used throughout the prompt-based baselines. 
+All runs use the same binary prompt, but differ in whether outputs are strictly parsed (Setup~A) or converted into a label via heuristic resolution (Setup~B).
+
+\paragraph{Setup A: Strict parsing.}
+Setup~A measures compliance with a strict output contract. A prediction is accepted only if the model output contains a single, unambiguous label token (\textit{True} or \textit{False}) in the expected format; otherwise the output is treated as \textit{unknown}. 
+This setup is intentionally conservative and is designed to expose formatting failures and ambiguity in direct prompting. 
+A known failure mode in strict parsing is that decoded outputs may include the prompt text itself; since the prompt contains the label words (\textit{true}, \textit{false}), naive extraction can accidentally match tokens originating from the prompt rather than from a clean model decision. 
+
+\paragraph{Setup B: Forced decision with heuristic resolution.}
+Setup~B enforces a binary decision for every instance. If the model output does not contain a clear \textit{True}/\textit{False} decision, a deterministic heuristic maps the response to one of the two labels. 
+This setup therefore reflects the combined behavior of the model and a lightweight decision rule rather than purely unconstrained generation. 
+However, it yields stable predictions for all inputs and enables clearer comparisons across models in settings where a deterministic label is required.
+
+\subsubsection{Subject Conditioning (Domain-Informed Prompts)}
+
+The LIAR dataset provides human-annotated subject tags for each statement -- comma-separated topical labels assigned by PolitiFact 
+editors that describe the domain of the claim (e.g., \textit{``health-care, medicare''} or \textit{``taxes, federal-budget''}). These tags are not part of the statement text itself but constitute metadata that can optionally be used as domain context.
+
+To test whether topical context helps zero-shot decisions, all experiments were performed in two prompt modes:
+
+\begin{itemize}
+    \item \textbf{Domain-free:} the prompt contains only the claim text.
+    \item \textbf{Domain-informed:} LIAR subject labels are prepended to the prompt as additional context.
+\end{itemize}
+
+Subject conditioning is treated as an optional auxiliary input. No additional supervision is provided; the subject string is included only as prompt context. 
+
+\paragraph{Results.}
+Among the tested models, FLAN-T5-XL achieved the most balanced behavior in Setup A (without subjects), reaching an accuracy of 0.579. Encoder-only models showed mixed behavior under mask-based scoring: BERT-base reached 0.573 accuracy, while RoBERTa-large performed substantially lower (0.474).
+
+Across the remaining decoder-only baselines, including GPT-J-6B, DeepSeek-LLM-7B-base, and the smaller Gemma-2B-IT model, behavior was largely identical to that of LLaMA-3.1-8B-Instruct. These models frequently failed to generate a clean, parsable binary answer under strict output constraints and effectively collapsed to near-constant predictions. As a result, they achieved similar accuracy values close to the majority-class baseline and exhibited very low macro-F1 scores, indicating limited discriminative ability in this strict zero-shot setting.
+
+Under Setup B without subjects, the strongest overall performance was achieved by Gemma-7B-IT with an accuracy of 0.612. FLAN-T5-XL followed with 0.579, while BERT-base achieved 0.573. LLaMA-3.1-8B-Instruct reached 0.529 under the same conditions. In contrast, DeepSeek-LLM-7B-base showed strongly skewed predictions and obtained the lowest accuracy (0.436), indicating poor alignment with the binary prompting format in this configuration.
+
+GPT-J-6B and Gemma-2B-IT benefited moderately from the forced-decision setup, achieving performance comparable to their larger counterparts, whereas DeepSeek-LLM-7B-base remained strongly biased toward a single class despite heuristic resolution.
+
+
+\paragraph{Effect of subject information (domain-informed prompts).}
+ Overall, adding subjects did not yield consistent improvements across models. For many models, results remained similar to the domain-free setting, suggesting that simply providing subject metadata is not sufficient to reliably steer zero-shot decisions. Notable exceptions were observed for LLaMA-3.1-8B-Instruct, which improved from 0.529 (Setup B, no subjects) to 0.568 (Setup B, with subjects). In contrast, Gemma-7B-IT showed a small decrease (from 0.612 to 0.608), and FLAN-T5-XL decreased from 0.579 to 0.571.
+
+\paragraph{Summary.}
+Across both setups, the experiments highlight two main findings. First, strict zero-shot evaluation is highly sensitive to output format and extraction decisions, and several models fail to produce reliably parsable binary outputs under minimal prompting. Second, forcing a binary decision (Setup~B) produces more stable and interpretable results and reveals model-specific differences, with Gemma-7B-IT and FLAN-T5-XL performing strongest among the evaluated baselines.
+
+The key takeaway is that zero-shot prompting alone is insufficient for reliable binary claim verification on LIAR: even the strongest models reach only moderate accuracy (0.612), and performance is highly dependent on output handling and model architecture rather than on genuine factual reasoning ability. The performance gap between strict and forced-decision setups further suggests that many models lack robust instruction-following under minimal constraints. Overall, differences between decoder-only baselines (LLaMA, GPT-J, DeepSeek, Gemma) were small under strict zero-shot evaluation, whereas encoder–decoder models showed more stable behavior across setups.
+
+For the multi-agent design, these findings have two concrete implications. First, the output instability observed under strict 
+parsing motivates the use of structured output constraints (LM Format Enforcer) in the agent pipeline, ensuring that expert 
+agents reliably produce machine-readable verdicts regardless of backbone-specific formatting behavior. Second, the model-specific 
+performance differences -- particularly Gemma's stronger zero-shot alignment compared to LLaMA and DeepSeek -- inform the selection 
+and configuration of backbone models for the domain-specialized expert agents in later chapters.
+
+For readability, Table~\ref{tab:zeroshot_top2} summarizes the top-2 configurations per setup (A/B) and subject condition.
+
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{Top-2 zero-shot configurations on LIAR test ($n=1267$) for each setup 
+(A/B) and subject condition. Ranking by Accuracy. Setup~A applies strict label 
+parsing; Setup~B enforces a binary decision via heuristic resolution. 
+Bal.\ Acc denotes balanced accuracy. TN/FP/FN/TP refer to the entries of the 
+binary confusion matrix.}
+\label{tab:zeroshot_top2}
+\scriptsize
+\begin{tabular}{ll l r r r r r r r r}
+\toprule
+Setup & Subjects & Model & n & Acc & Macro-F1 & Bal. Acc & TN & FP & FN & TP \\
+\midrule
+A (strict) & no  & flan-t5-xl        & 1267 & 0.579 & 0.571 & 0.570 & 280 & 273 & 261 & 453 \\
+A (strict) & no  & bert-base-uncased & 1267 & 0.573 & 0.423 & 0.517 &  40 & 513 &  28 & 685 \\
+\addlinespace
+A (strict) & yes & flan-t5-xl        & 1267 & 0.571 & 0.570 & 0.574 & 334 & 219 & 325 & 389 \\
+A (strict) & yes & bert-base-uncased & 1267 & 0.567 & 0.383 & 0.506 &  13 & 540 &   8 & 705 \\
+\midrule
+B (forced) & no  & gemma-7b-it       & 1267 & 0.612 & 0.583 & 0.588 & 222 & 331 & 161 & 553 \\
+B (forced) & no  & flan-t5-xl        & 1267 & 0.579 & 0.571 & 0.570 & 280 & 273 & 261 & 453 \\
+\addlinespace
+B (forced) & yes & gemma-7b-it       & 1267 & 0.608 & 0.568 & 0.578 & 192 & 361 & 136 & 578 \\
+B (forced) & yes & flan-t5-xl        & 1267 & 0.571 & 0.570 & 0.574 & 334 & 219 & 325 & 389 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+\subsection{Prompt Engineering Experiments}
+
+To assess whether zero-shot performance can be improved through prompt design alone, a series of prompt engineering experiments was conducted. All experiments were performed on the preprocessed LIAR test set (Section~\ref{sec:preprocessing}) using a fixed set of prompt variants that differ in structure, instructional framing, and the use of contextual information.
+
+Five prompt variants were evaluated:
+
+\begin{itemize}
+    \item \textbf{P0 (Basic Prompt):} A minimal binary question asking whether a statement is true or false.
+    \item \textbf{P1 (Fake News, No Guessing):} Explicitly frames the task as factual verification and discourages guessing.
+    \item \textbf{P2 (One-Shot Example):} Includes a simple example to illustrate the expected behavior.
+    \item \textbf{P3 (Fact-Checking Assistant):} Assigns the model a specialized fact-checking role.
+    \item \textbf{P4 (Subjects as Context Clues):} Explicitly instructs the model to use subject labels as contextual guidance.
+\end{itemize}
+
+Each prompt was evaluated in two modes: \emph{domain-free}, where only the claim text is provided, and \emph{domain-informed}, where subject labels are prepended to the prompt. Experiments were conducted for four representative models: LLaMA-3.1-8B-Instruct, Gemma-7B-IT, DeepSeek-LLM-7B, and FLAN-T5-XL. The exact prompt templates (P0--P4) are provided in Appendix~\ref{app:prompts}.
+
+
+\subsubsection{Results and Analysis}
+
+Overall, prompt engineering led to moderate but consistent performance differences, with improvements strongly dependent on the underlying model architecture.
+
+Gemma-7B-IT achieved the strongest overall results across prompt variants. The best-performing configuration used the \emph{subjects-as-context-clues} prompt (P4) with subject information, reaching an accuracy of 0.615 and a macro-F1 score of 0.586. This indicates that Gemma is capable of leveraging explicit domain context when it is framed as auxiliary reasoning information rather than as raw metadata.
+
+FLAN-T5-XL showed comparatively stable behavior across all prompt variants, with accuracies ranging between 0.57 and 0.60. While role-based and one-shot prompts produced slight improvements over the basic prompt, the overall gains were limited. This suggests that FLAN-T5-XL relies more heavily on its pretraining and instruction tuning than on prompt-level variations.
+
+LLaMA-3.1-8B-Instruct benefited selectively from prompt engineering. Prompts that emphasized factual verification and discouraged guessing (P1) yielded improvements over the basic prompt, particularly when subject information was included. However, one-shot prompting and role-based instructions often led to performance degradation, indicating sensitivity to prompt structure and potential overfitting to superficial patterns.
+
+In contrast, DeepSeek-LLM-7B performed poorly across nearly all prompt variants. Even with structured instructions and subject information, the model frequently collapsed to near-constant predictions, resulting in low macro-F1 scores. This suggests limited alignment with binary fact-checking tasks under zero-shot prompting.
+
+Across all models, explicitly framing subject labels as contextual clues (P4) was more effective than simply prepending subject information. This finding highlights that domain information must be semantically integrated into the reasoning process in order to be useful.
+
+\paragraph{Summary.}
+The prompt engineering experiments demonstrate that carefully designed prompts can yield incremental performance improvements, particularly for instruction-following models such as Gemma-7B-IT. However, these gains remain limited, and no single prompt variant consistently resolves the shortcomings observed in strict zero-shot evaluation.
+
+The key takeaway is that prompt design provides only marginal gains over the zero-shot baseline: the best prompt engineering configuration (Gemma-7B-IT, P4 with subjects, accuracy 0.615) barely exceeds the best zero-shot result (0.612), indicating a performance ceiling for prompt-only approaches on LIAR. Notably, domain information is only beneficial when semantically integrated into the reasoning process (P4) rather than simply prepended as raw metadata.
+
+For the multi-agent design, these findings suggest two things. First, prompt design alone cannot compensate for the inherent difficulty of the task -- more structural changes such as domain specialization and agent collaboration are needed. Second, the P4 prompt strategy (subjects as context clues) proves most effective at integrating domain information and is therefore adopted as the default prompt template for domain-aware expert agents in the multi-agent pipeline.
+
+For a compact overview, Table~\ref{tab:top2_promptengineering} reports the top configurations.
+
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{Top prompt-engineering configurations on LIAR test ($n=1267$), 
+ranked by accuracy. One representative configuration per model is shown. 
+Mean Conf denotes the mean predicted confidence for the positive class.}
+\label{tab:top2_promptengineering}
+\scriptsize
+\begin{tabular}{l l l l r r r r r r r}
+\toprule
+Prompt & Model & Subjects & Acc & Macro-F1 & TN & FP & FN & TP & Mean Conf \\
+\midrule
+P4 (subjects as context clues) & gemma-7b-it           & yes & 0.615 & 0.586 & 223 & 330 & 158 & 556 & 0.913 \\
+P1 (fake news, no guess)       & flan-t5-xl            & yes & 0.595 & 0.539 & 156 & 397 & 116 & 598 & 0.562 \\
+P1 (fake news, no guess)       & Llama-3.1-8B-Instruct & yes & 0.579 & 0.579 & 362 & 191 & 343 & 371 & 0.757 \\
+P2 (one-shot example)          & deepseek-llm-7b-base  & yes & 0.579 & 0.418 &  34 & 519 &  15 & 699 & 0.003 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+\subsection{Extended Prompt-Based Strategies}
+
+Beyond the core zero-shot and prompt engineering baselines, four additional inference strategies were systematically evaluated to 
+assess whether more sophisticated prompting mechanisms can overcome the limitations identified above: iterative prompting (self-consistency and reprompting), chain-of-thought reasoning, tone classification and neutralization, and external domain  classification. These strategies were motivated by prior work suggesting potential benefits for instruction-following models, 
+but -- as the results show -- none of them produced consistent improvements over the simpler baselines on the LIAR benchmark. 
+Their evaluation is therefore reported for completeness and to justify the transition to supervised fine-tuning and multi-agent 
+approaches.
+
+\subsubsection{Self-Consistency, Reprompting and Iterative self-refinement}
+
+To further improve zero-shot performance beyond prompt wording alone, three iterative inference strategies were evaluated for the two strongest instruction-tuned decoder models from the previous experiments: LLaMA-3.1-8B-Instruct and Gemma-7B-IT. All methods were evaluated in a domain-free (\textit{no\_subjects}) and domain-informed (\textit{with\_subjects}) setting on the preprocessed LIAR test set.
+
+\paragraph{Confidence-based label scoring.}
+Instead of extracting labels from decoded text, both methods relied on likelihood-based scoring of the candidate answers \textit{True} and \textit{False}. For each input prompt, the model score was computed as the conditional log-likelihood of multiple surface forms of the labels (e.g., ``True'', `` true'', ``\textbackslash nTrue''). These scores were normalized into a two-class probability distribution, yielding $p(\text{True})$ and $p(\text{False})$, with confidence defined as $\max(p(\text{True}), p(\text{False}))$. This approach avoids the parsing issues observed in strict decoding-based evaluation and allows a consistent confidence estimate for downstream decision rules.
+
+\paragraph{Self-consistency.}
+Self-consistency aggregates predictions across multiple prompt paraphrases for the same claim. For each instance, $N=5$ prompt variants were generated using lightweight paraphrasing templates, and the final prediction was derived via a weighted vote based on the model's two-class probabilities. This method aims to reduce variance from prompt sensitivity and stabilize decisions through ensembling.
+
+For Gemma-7B-IT, self-consistency achieved an accuracy of 0.609 without subjects and 0.603 with subjects. For LLaMA-3.1-8B-Instruct, self-consistency yielded smaller gains, reaching 0.538 accuracy without subjects and 0.541 with subjects. Overall, self-consistency improved stability compared to the basic baseline for both models, but the gains were modest and dependent on model behavior.
+
+\paragraph{Reprompting.}
+Reprompting applies staged prompting based on confidence. Each claim was first evaluated using the base prompt. If the confidence score exceeded a fixed threshold ($\tau = 0.75$), the prediction was accepted. Otherwise, a second-stage prompt was applied that explicitly encouraged the model to reconsider the claim with a more structured instruction (including a subject-aware variant when enabled).
+
+Reprompting produced the strongest results among the tested strategies for Gemma-7B-IT, achieving 0.614 accuracy without subjects and 0.616 with subjects. This indicates that Gemma benefits from conditional escalation when uncertain, while still producing reliable high-confidence predictions for many instances. In contrast, reprompting did not benefit LLaMA: accuracy decreased to 0.502 without subjects and 0.526 with subjects, suggesting that the second-stage prompt tended to amplify existing biases rather than correcting uncertain cases.
+
+\paragraph{Iterative self-refinement.}
+As an additional baseline, iterative self-refinement was evaluated for both Gemma-7B-IT and LLaMA-3.1-8B-Instruct, in which the model is prompted to critique and revise its own prediction over multiple rounds. For Gemma, this method collapsed to near-constant \texttt{True} predictions (TN$\approx$2, TP$\approx$713) with extremely low confidence scores (Mean Conf$\approx 2.85 \times 10^{-7}$). LLaMA showed less severe collapse but similarly low confidence ($5.4 \times 10^{-4}$) and reduced accuracy (0.519), indicating that iterative revision destabilized decision behavior for both models rather than improving it.
+
+\paragraph{Summary.}
+Overall, the evaluated strategies highlight that iterative prompting can improve performance for some models, but not universally. Gemma-7B-IT benefited from reprompting and achieved the best overall results in this block of experiments (accuracy 0.616), while LLaMA-3.1-8B-Instruct showed limited improvements under self-consistency (0.541) and degraded under reprompting (0.526). Iterative 
+self-refinement collapsed to near-constant \texttt{True} predictions for both models, with extremely low confidence scores, indicating that the iterative revision process destabilized decision behavior rather than improving it. These observations motivate the use of more structured coordination and verification mechanisms, which are later explored in the multi-agent setting. For a compact overview, Table~\ref{tab:top_iterative} reports the top configurations for each method and model.
+
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{Top configurations per method and model on LIAR test ($n=1267$), 
+ranked by accuracy within each method group. Mean Conf denotes the mean predicted confidence for the positive class.}
+\label{tab:top_iterative}
+\scriptsize
+\begin{tabular}{l l l l r r r r r r r}
+\toprule
+Method & Model & Subjects & Acc & Macro-F1 & TN & FP & FN & TP & Mean Conf \\
+\midrule
+reprompting               & gemma-7b-it           & yes & 0.616 & 0.584 & 213 & 340 & 146 & 568 & 0.979 \\
+self-consistency          & gemma-7b-it           & no  & 0.609 & 0.584 & 231 & 322 & 174 & 540 & 0.933 \\
+self-consistency          & Llama-3.1-8B-Instruct & yes & 0.541 & 0.529 & 442 & 111 & 471 & 243 & 0.905 \\
+reprompting               & Llama-3.1-8B-Instruct & yes & 0.526 & 0.510 & 451 & 102 & 498 & 216 & 0.882 \\
+iterative self-refinement & gemma-7b-it           & no  & 0.564 & 0.364 &   2 & 551 &   1 & 713 & 2.85e-07 \\
+iterative self-refinement & Llama-3.1-8B-Instruct & yes & 0.519 & 0.499 & 456 &  97 & 512 & 202 & 5.4e-04 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+\subsubsection{Chain-of-Thought Prompting}
+
+To test whether explicitly eliciting intermediate reasoning improves factuality judgments, a chain-of-thought (CoT) prompting setup was evaluated for LLaMA-3.1-8B-Instruct and Gemma-7B-IT. The prompt required the model to (i) provide a short justification (1--3 sentences) based on publicly verifiable facts and (ii) output a final decision in a fixed format (\texttt{Final answer: True/False}). Experiments were run in a domain-free condition (statement only) and a domain-informed condition (subjects prepended).
+
+Predictions were extracted using a forced True/False parser (Setup-B-like), while confidence was computed at the decision point by scoring the next-token probability distribution after the marker \texttt{Final answer:}. This yields a confidence estimate conditioned on the generated reasoning rather than on the raw prompt alone.
+
+\paragraph{Results.}
+CoT prompting improved performance for Gemma-7B-IT relative to the basic baseline. Gemma achieved 0.604 accuracy in both modes (0.601 macro-F1 without subjects; 0.597 macro-F1 with subjects), indicating that the model benefited from producing an explicit justification but did not consistently leverage subject metadata in this configuration. The mean confidence at the decision point was very high (approximately 0.99), suggesting that the format strongly constrains the output distribution.
+
+In contrast, CoT prompting did not benefit LLaMA-3.1-8B-Instruct. Accuracy remained low at 0.492 without subjects and increased only marginally to 0.506 with subjects (macro-F1: 0.449 and 0.476, respectively). This suggests that for LLaMA in this setup, generating short reasoning did not translate into more accurate binary decisions, even though confidence values were also high (around 0.93--0.94).
+
+\paragraph{Summary.}
+Overall, CoT prompting helped the better-aligned instruction model (Gemma-7B-IT) but did not reliably improve factual classification for LLaMA-3.1-8B-Instruct. These results support the broader observation that reasoning prompts can yield gains, but their effectiveness is model-dependent and does not by itself resolve the limitations of zero-shot factual verification on LIAR. For a compact overview, Table~\ref{tab:top_cot} reports the top configurations.
+
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{Chain-of-Thought configurations on LIAR test ($n=1267$), ranked 
+by accuracy. Results are shown for both subject conditions per model. Mean Conf 
+denotes the mean predicted confidence at the \texttt{Final answer:} decision point.}
+\label{tab:top_cot}
+\scriptsize
+\begin{tabular}{l l l l r r r r r r r}
+\toprule
+Method & Model & Subjects & Acc & Macro-F1 & TN & FP & FN & TP & Mean Conf \\
+\midrule
+chain-of-thought & gemma-7b-it           & no  & 0.604 & 0.601 & 331 & 222 & 280 & 434 & 0.987 \\
+chain-of-thought & gemma-7b-it           & yes & 0.604 & 0.597 & 298 & 255 & 247 & 467 & 0.991 \\
+chain-of-thought & Llama-3.1-8B-Instruct & yes & 0.506 & 0.476 & 473 &  80 & 546 & 168 & 0.93  \\
+chain-of-thought & Llama-3.1-8B-Instruct & no  & 0.492 & 0.449 & 487 &  66 & 578 & 136 & 0.933 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+\subsubsection{Tone Classification and Neutralization}
+
+To investigate whether stylistic factors influence factuality judgments, an additional pipeline was implemented that (i) classifies the tone of each statement and (ii) rewrites it into a neutral, objective formulation. Tone was predicted using the labels \{\textit{neutral}, \textit{subjective}, \textit{ironic}, \textit{emotional}\} via an instruction prompt. Neutralization then rewrote each statement to remove sarcasm, exaggeration, and emotionally loaded phrasing while preserving meaning and without adding new facts. Both steps were performed with an instruction-tuned decoder model, and the resulting tone labels and neutralized statements were stored for downstream evaluation.
+
+Using these artifacts, two base prompts (P0 and P4) were reevaluated under four conditions: (1) original statement, (2) neutralized statement, (3) original statement with an explicit tone line (\texttt{Tone: <label>}), and (4) neutralized statement with an explicit tone line. Each condition was tested with and without subject metadata.
+
+\paragraph{Results: Gemma-7B-IT.}
+For Gemma, adding tone information to the \emph{original} statement slightly improved accuracy in the best configurations. The strongest result was obtained with P0 in the subject-informed setting when tone was included (orig\_plus\_tone), reaching 0.616 accuracy. With P4 and tone, accuracy remained similarly high (0.615 with subjects; 0.613 without subjects) and macro-F1 improved in some configurations (e.g., 0.597 for P4 with subjects). In contrast, neutralization consistently reduced performance across prompts: accuracies dropped to approximately 0.565--0.579 depending on configuration, indicating that removing expressive or stylistic cues harmed the model's ability to match the dataset labels.
+
+\paragraph{Results: LLaMA-3.1-8B-Instruct.}
+For LLaMA, the tone/neutralization interventions did not produce consistent gains. The best LLaMA configuration in this block was obtained under neutral\_plus\_tone with P0 and subjects (0.522 accuracy), but most settings remained close to chance-level and often below earlier subject-informed baselines. Notably, adding subjects tended to help LLaMA in several conditions compared to no-subjects, but the overall absolute performance stayed limited.
+
+\paragraph{Summary.}
+These results suggest that label-relevant stylistic signals are present in LIAR: rewriting statements into a strictly neutral style reduces accuracy, especially for Gemma. Conversely, explicitly exposing the tone label can provide a small benefit for some prompt/model combinations, but the effect is modest and not robust across architectures. For a compact overview, Table~\ref{tab:top_tone} reports the top configurations.
+
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{Top configurations for tone classification and neutralization on 
+LIAR test ($n=1267$), ranked by accuracy. Top-2 configurations per model are shown.}
+\label{tab:top_tone}
+\scriptsize
+\begin{tabular}{l l l l r r r r r r}
+\toprule
+Method & Model & Subjects & Acc & Macro-F1 & TN & FP & FN & TP \\
+\midrule
+P0 + orig\_plus\_tone    & gemma-7b-it           & yes & 0.616 & 0.574 & 190 & 363 & 123 & 591 \\
+P4 + orig\_plus\_tone    & gemma-7b-it           & yes & 0.615 & 0.597 & 258 & 295 & 193 & 521 \\
+P0 + neutral\_plus\_tone & Llama-3.1-8B-Instruct & yes & 0.522 & 0.522 & 335 & 218 & 388 & 326 \\
+P0 + neutral\_plus\_tone & Llama-3.1-8B-Instruct & no  & 0.511 & 0.511 & 321 & 232 & 387 & 327 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+\subsubsection{External Domain Classification}
+
+Beyond the human-provided LIAR subject labels, an external domain classifier was used to generate a single coarse-grained domain label for each statement. A zero-shot natural language inference model (BART-large-MNLI) was applied with a fixed list of candidate domains (e.g., \textit{health}, \textit{economy}, \textit{politics}, \textit{law}, \textit{crime}, etc.), and the top-1 predicted domain label was stored alongside the dataset.
+
+To measure whether externally inferred domain context can replace or complement the original subject metadata, the fact-checking prompts (P0 and P4) were evaluated under three subject modes: (i) no subjects, (ii) human LIAR subjects, and (iii) external top-1 domain label. All runs used likelihood-based next-token scoring for \textit{True}/\textit{False} (Setup-B-like), ensuring consistent evaluation across conditions.
+
+\paragraph{Results.}
+For Gemma-7B-IT, using human subjects produced the best results (P0: 0.612 accuracy; P4: 0.610). Replacing human subjects with the external top-1 domain led to a small performance drop (P0: 0.608; P4: 0.602), but still outperformed the no-subjects condition in some cases. This indicates that externally inferred domain context can provide useful coarse guidance, but does not fully substitute for the richer human subject annotations.
+
+For LLaMA-3.1-8B-Instruct, none of the subject modes produced strong performance. The best LLaMA result in this comparison was obtained using P4 without subjects (0.492 accuracy). Human subjects increased P0 accuracy relative to the no-subjects baseline (0.481 vs. 0.455), but external domains did not improve over human subjects and remained below 0.472 in the reported configurations. Overall, subject/domain conditioning provided only limited benefit for LLaMA under this evaluation scheme.
+
+\paragraph{Summary.}
+External domain classification yields a scalable form of contextual metadata that can partially recover the benefit of human subject labels for Gemma-7B-IT, but it does not consistently improve results for LLaMA-3.1-8B-Instruct. Taken together with the previous experiments, these findings reinforce that contextual information is only effective when the underlying model is capable of integrating it reliably, motivating more structured approaches in later sections. For a compact overview, Table~\ref{tab:top_extdomain} reports the top configurations for each baseline block.
+
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{Comparison of subject conditions for external domain classification 
+on LIAR test ($n=1267$), ranked by accuracy. Results show the best prompt per 
+subject condition and model.}
+\label{tab:top_extdomain}
+\scriptsize
+\begin{tabular}{l l l r r r r r r}
+\toprule
+Method & Model & Subjects & Acc & Macro-F1 & TN & FP & FN & TP \\
+\midrule
+P0 + human subjects    & gemma-7b-it           & yes & 0.612 & 0.590 & 243 & 310 & 182 & 532 \\
+P0 + ext\_domain\_top1 & gemma-7b-it           & yes & 0.608 & 0.586 & 239 & 314 & 183 & 531 \\
+P0 + no subjects       & gemma-7b-it           & no  & 0.606 & 0.591 & 263 & 290 & 209 & 505 \\
+\addlinespace
+P4 + no subjects       & Llama-3.1-8B-Instruct & no  & 0.492 & 0.450 & 486 &  67 & 577 & 137 \\
+P0 + human subjects    & Llama-3.1-8B-Instruct & yes & 0.481 & 0.416 & 517 &  36 & 621 &  93 \\
+P0 + ext\_domain\_top1 & Llama-3.1-8B-Instruct & yes & 0.471 & 0.398 & 520 &  33 & 637 &  77 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+\paragraph{Overall summary of extended strategies.}
+
+Across all four extended strategies, none produced consistent improvements over the core prompt-based baselines on the LIAR benchmark. Self-consistency and reprompting yielded modest gains for Gemma-7B-IT but were ineffective or harmful for LLaMA-3.1-8B-Instruct. Chain-of-thought reasoning helped Gemma but not LLaMA, suggesting that reasoning prompts are model-dependent. Tone neutralization consistently reduced performance, indicating that stylistic signals in LIAR are label-relevant rather than noise. External domain classification partially recovered the benefit of human subject labels but did not surpass them.
+
+The key takeaway is that no prompt-level intervention -- regardless of its sophistication -- reliably overcomes the fundamental difficulty of binary claim verification on LIAR. Performance gains are marginal, model-dependent, and do not generalize across architectures.
+
+For the multi-agent design, these findings have one concrete implication: prompt engineering alone is insufficient and supervised adaptation is necessary. The transition to fine-tuning in the next section is therefore not merely a design choice but 
+a direct consequence of the prompt-based ceiling observed here.
+
+\section{Fine-Tuning Experiments}
+\label{sec:finetuning}
+
+The zero-shot and prompt-based baselines in the previous section showed two recurring limitations: (i) several models struggled to produce stable and discriminative binary decisions under minimal prompting, and (ii) even under forced-decision decoding, performance gains from prompt engineering remained modest and model-dependent. To move beyond purely inference-time steering, the next set of experiments applies supervised adaptation via parameter-efficient fine-tuning. The goal is not to maximize absolute benchmark performance, but to quantify how much factuality classification performance can be obtained from moderately sized open models when trained directly on the task, and how well such adaptations transfer across domains.
+
+\subsection{Fine-Tuning Method: LoRA Adapters}
+
+All fine-tuning experiments were performed using Low-Rank Adaptation (LoRA), a parameter-efficient method that injects trainable low-rank matrices into selected linear projections while keeping the original backbone weights frozen. In practice, this reduces GPU memory requirements and training time compared to full fine-tuning, while still allowing the model to learn task-specific decision boundaries. Following common practice for decoder-only Transformers, LoRA modules were applied to the attention projections (typically \texttt{q\_proj}, \texttt{k\_proj}, \texttt{v\_proj}, \texttt{o\_proj}). The LoRA configuration was kept fixed across runs to enable consistent comparisons:
+\begin{itemize}
+    \item rank $r=8$,
+    \item $\alpha=32$,
+    \item dropout $0.05$,
+    \item bias: none.
+\end{itemize}
+During training, gradient checkpointing was enabled and caching was disabled (\texttt{use\_cache=False}) to reduce memory usage and stabilize training for long sequences.
+
+\subsection{Training Data and Regimes}
+
+Fine-tuning was conducted under four training regimes, each corresponding to one dataset condition used throughout the evaluation:
+
+\begin{itemize}
+    \item \textbf{General (LIAR)}: training on the full LIAR training split (binary labels).
+    \item \textbf{Healthcare}: training on the healthcare subset (domain-specific).
+    \item \textbf{Taxes}: training on the taxes subset (domain-specific).
+    \item \textbf{Synthetic}: training on synthetically generated fact-checking instances (ChatGPT).
+\end{itemize}
+
+For each regime, two prompt settings were evaluated:
+(i) \emph{no\_subjects} (statement only) and
+(ii) \emph{with\_subjects} (LIAR subject metadata prepended).
+This yields a controlled comparison of whether additional topical context improves learning and/or generalization beyond what the model can infer from the statement alone.
+
+\paragraph{Dataset preprocessing and domain subset construction.}
+All datasets used for fine-tuning were preprocessed using the pipeline described in Section~\ref{sec:preprocessing}. 
+For domain-specific fine-tuning, the two largest LIAR subject categories were selected (healthcare and taxes). 
+Domain subsets were constructed by retaining statements whose subject list contained the target domain and at most one additional subject label. 
+This constraint reduces topic ambiguity while preserving a realistic multi-label setting. 
+When enabled, subject information was provided only as additional input context in the prompt, not as a separate supervision signal.
+
+\subsection{Training Setup and Hyperparameters}
+
+All runs used the same training pipeline and hyperparameters to make results comparable across models and datasets. Inputs were formatted using the same binary fact-checking prompt template used in the prompt baselines, and for instruction-tuned chat models the tokenizer's chat template was applied where available. Training was performed in a \emph{completion-only} style: the model receives the prompt and is trained to generate exactly one of the two labels (\texttt{True} or \texttt{False}), while prompt tokens are masked out in the loss.
+
+Key hyperparameters were:
+\begin{itemize}
+    \item max sequence length: 512 tokens,
+    \item epochs: 3,
+    \item learning rate: $2 \cdot 10^{-5}$,
+    \item per-device batch size: 2,
+    \item gradient accumulation: 4 (effective batch size 8),
+    \item optimizer: AdamW (\texttt{adamw\_torch}),
+    \item mixed precision: bfloat16 (\texttt{bf16=True}),
+    \item validation split: 5\% (random split with fixed seed),
+    \item training objective: completion-only (prompt tokens masked, loss computed only on the label ``True''/``False''),
+    \item prompt template: \texttt{standard} (two variants: without subjects and with subjects, see below).
+\end{itemize}
+
+\noindent Prompt without subjects:
+\begin{verbatim}
+Statement: {statement}
+Task: Verify the factual accuracy of the statement using only publicly available and objective information. Do not guess.
+Answer with only one word: True or False.
+Answer:
+\end{verbatim}
+
+\noindent Prompt with subjects:
+\begin{verbatim}
+Subjects: {subjects}
+Statement: {statement}
+Task: Verify the factual accuracy of the statement using only publicly available and objective information.
+Use the subjects only as context clues; they may be incomplete. Do not guess.
+Answer with only one word: True or False.
+Answer:
+\end{verbatim}
+
+Evaluation during training was performed at fixed step intervals. For runs trained on the full LIAR training set, validation was executed every 250 optimization steps; for the smaller domain-specific datasets, validation was executed every 10 steps. Checkpoints were saved using the same interval.
+
+To avoid losing the best-performing model state when training continues beyond the validation optimum, the checkpoint with the lowest validation loss was tracked and retained. After training, this best checkpoint was additionally exported into a dedicated directory (e.g., \texttt{best\_adapter}). Consequently, all downstream evaluations consistently use the strongest model state observed during training rather than the final checkpoint.
+
+
+\subsection{Evaluation Protocol and Metrics}
+
+After training, each adapter was evaluated on multiple test sets to measure both \emph{in-domain performance} and \emph{cross-domain transfer}. Specifically, models trained on each regime (general, healthcare, taxes, synthetic) were evaluated on:
+\begin{itemize}
+    \item the LIAR test set (generalization to the main benchmark),
+    \item the healthcare test subset,
+    \item the taxes test subset,
+    \item the synthetic test set.
+\end{itemize}
+
+Predictions were obtained deterministically, and the reported metrics include accuracy, macro-F1, positive-class precision/recall, the confusion matrix, and confidence statistics (mean confidence overall and separated by correct/incorrect predictions). This provides a more complete picture than accuracy alone, especially in cases where models become biased toward one class (which can produce deceptively acceptable accuracy but very low macro-F1).
+
+\subsection{Fine-Tuning Results}
+
+The fine-tuning results reveal three consistent patterns across models and training regimes. Complete results for all train/eval combinations, models, and subject settings are reported in Appendix~D Table~\ref{tab:finetune_all_results}. For readability, Table~\ref{tab:finetune_bestof} summarizes the best-performing configurations per training regime and evaluation target.
+
+\paragraph{(1) General training yields the strongest LIAR performance.}
+Adapters trained on the general LIAR data achieve the best results when evaluated on the LIAR test set. Among the three decoder-only models tested (Gemma-7B-IT, LLaMA-3.1-8B-Instruct, DeepSeek-LLM-7B-base), LIAR-trained adapters without subjects perform best overall, with LLaMA and DeepSeek slightly ahead of Gemma in this setting. This indicates that direct supervision on the target distribution is more impactful than prompt engineering alone, and that the task is learnable with relatively small parameter-efficient updates.
+
+\paragraph{(2) Domain-specific fine-tuning improves in-domain results but transfers poorly.}
+Training on healthcare or taxes improves performance on the corresponding domain test set, but this specialization does not reliably transfer to the general LIAR benchmark. In cross-domain evaluation, domain-trained adapters typically perform 
+worse than general-trained adapters on LIAR, consistent with domain overfitting: the adapter learns patterns and priors that are useful within the narrow domain but do not generalize to broader political and public-figure claims that dominate LIAR. Notably, cross-domain transfer is asymmetric: healthcare-trained adapters transfer more reliably to taxes (0.667) than taxes-trained dapters transfer to healthcare (0.639), suggesting that the healthcare domain provides a broader and more generalizable training signal.
+
+\paragraph{(3) Synthetic training shows a strong distribution mismatch.}
+Synthetic-trained adapters reach high performance on the synthetic test set, but their LIAR performance drops substantially compared to adapters trained on LIAR. This suggests that the synthetic data captures a different distribution of linguistic cues and label correlations than LIAR, and that high synthetic accuracy does not necessarily indicate robust factual reasoning on real-world claims.
+
+\paragraph{Effect of subjects (context metadata).}
+Across regimes, subject metadata does not yield a uniform benefit. In some in-domain cases, subjects help by providing a coarse topical prior, but in cross-domain settings they can hurt or lead to unstable precision/recall trade-offs, suggesting shortcut learning: the model may over-rely on topic-label correlations rather than statement-level evidence. Overall, subjects appear most beneficial when the underlying model is already well-aligned to the task and capable of integrating auxiliary context, whereas weaker or less-stable configurations do not consistently benefit.
+
+\paragraph{Summary.}
+In contrast to the zero-shot baseline results, supervised adaptation via LoRA produces stable and discriminative classifiers. However, the experiments also show that fine-tuning can trade off generalization for specialization: domain-specific adapters can improve in-domain accuracy but often reduce performance on the main benchmark. Finally, synthetic supervision appears insufficient to replace real benchmark data, reinforcing the importance of training on distributions that match the target evaluation setting.
+
+The key takeaway is that fine-tuning substantially improves over prompt-only approaches but introduces new limitations: domain 
+overfitting reduces cross-domain robustness, and all models still rely on dataset-specific patterns rather than genuine fact verification. The best single-model result (LLaMA-3.1-8B-Instruct, LIAR-trained, accuracy 0.667) establishes the performance ceiling for single-model approaches and serves as the primary reference point for evaluating the multi-agent framework.
+
+For the multi-agent design, the fine-tuning results have three concrete implications. First, LLaMA-3.1-8B-Instruct consistently 
+outperforms Gemma and DeepSeek in terms of balanced class behavior and cross-domain stability, making it the preferred backbone for 
+domain-specialized expert agents. Second, domain-specific fine-tuning is feasible and improves in-domain performance, motivating the use of domain-restricted training subsets for individual expert agents in the multi-agent pipeline. Third, the observed domain overfitting motivates the routing-based design in the final framework, where claims are directed to the most relevant expert rather than evaluated by all experts indiscriminately.
+
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Best fine-tuned configuration per training regime and evaluation target (selected by Accuracy; tie-breaker: Macro-F1). Full fine-tuning results are provided in Appendix~C (Table~\ref{tab:finetune_all_results}).}
+\label{tab:finetune_bestof}
+\begin{tabular}{l l l c r r r r r}
+\toprule
+Train set & Eval set & Best model & Subjects & Acc & Macro-F1 & Prec(+) & Rec(+) & Mean Conf \\
+\midrule
+General (LIAR) & LIAR test      & Llama-3.1-8B-Instruct & yes & 0.667 & 0.649 & 0.674 & 0.793 & 0.731 \\
+General (LIAR) & Synthetic test & deepseek-llm-7b-base  &  no & 0.823 & 0.822 & 0.785 & 0.832 & 0.680 \\
+\addlinespace
+Healthcare     & Healthcare test & Llama-3.1-8B-Instruct &  no & 0.711 & 0.711 & 0.725 & 0.690 & 0.701 \\
+Healthcare     & LIAR test       & Llama-3.1-8B-Instruct &  no & 0.650 & 0.642 & 0.683 & 0.704 & 0.685 \\
+Healthcare     & Taxes test      & Llama-3.1-8B-Instruct & yes & 0.667 & 0.661 & 0.615 & 0.828 & 0.681 \\
+\addlinespace
+Taxes          & Taxes test      & gemma-7b-it           & yes & 0.650 & 0.642 & 0.682 & 0.517 & 0.841 \\
+Taxes          & LIAR test       & Llama-3.1-8B-Instruct & yes & 0.609 & 0.597 & 0.642 & 0.689 & 0.774 \\
+Taxes          & Healthcare test & gemma-7b-it           &  no & 0.639 & 0.629 & 0.714 & 0.476 & 0.881 \\
+\addlinespace
+Synthetic      & Synthetic test  & gemma-7b-it           & yes & 0.885 & 0.884 & 0.871 & 0.871 & 0.928 \\
+Synthetic      & LIAR test       & gemma-7b-it           & yes & 0.604 & 0.604 & 0.690 & 0.539 & 0.834 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Results and Analysis}
+
+This section consolidates the empirical findings from the single-model experiments. Since the preceding sections already reported results close to each experimental setup, the goal here is to extract overarching patterns, relate them across regimes (zero-shot vs.\ fine-tuning), and highlight implications for later multi-agent experiments.
+
+\subsection{Performance Overview Across Baselines and Fine-Tuning}
+
+Across all single-model experiments, supervised adaptation via LoRA leads to the largest and most reliable performance gains compared to purely prompt-based steering. In the zero-shot and prompt engineering blocks, results were highly sensitive to output format and label extraction, and several decoder-only models exhibited degenerate behavior under strict parsing (Setup~A). Even under forced decision making (Setup~B), prompt engineering yielded only modest and model-dependent improvements.
+
+Fine-tuning reduces these instabilities substantially: the model is trained to produce a short, consistent continuation (\texttt{True}/\texttt{False}) and therefore behaves more like a standard discriminative classifier. On the main benchmark (LIAR test), LIAR-trained adapters outperform the strongest prompt-based baselines, indicating that the task-relevant decision boundary is learnable with relatively small parameter-efficient updates. However, the absolute performance remains moderate, suggesting that the model still relies on dataset-specific cues rather than robust external fact verification.
+
+\subsection{In-Domain Performance vs.\ Cross-Domain Transfer}
+
+A central result of the fine-tuning experiments is the trade-off between \emph{specialization} and \emph{generalization}. Models trained on the full LIAR training set achieve the strongest performance on the LIAR test set. In contrast, adapters trained on domain-specific subsets (healthcare or taxes) show improved in-domain behavior but transfer less reliably to LIAR. This pattern is consistent with domain overfitting: when training data is narrow, the adapter can learn strong domain priors (e.g, typical wording, recurring entities, or claim style) that help within the domain but do not generalize to the broader claim distribution in LIAR.
+
+The synthetic regime further highlights distribution mismatch. Synthetic-trained adapters reach very high performance on synthetic test data, but their performance on LIAR drops substantially. This indicates that synthetic claims capture different linguistic regularities and label correlations than LIAR. In other words, strong in-domain synthetic accuracy is not evidence of robust factual reasoning on real-world benchmark statements.
+
+\subsection{Effect of Subject Metadata}
+
+Subject labels (domain metadata) do not provide a consistent improvement across models and regimes. In the zero-shot baselines, subjects sometimes helped (e.g., for LLaMA) but often had no effect or caused small drops (e.g., for Gemma under some settings). After fine-tuning, the effect remains mixed: subjects can act as a useful topical prior in-domain, but can also encourage shortcut learning if the model over-relies on topic--label correlations rather than claim content.
+
+This is also reflected in shifts of precision/recall trade-offs. In several configurations, adding subjects increases true negatives while increasing false negatives (or vice versa), indicating that the model changes its decision threshold or class bias depending on whether topic information is present. Overall, subject metadata is beneficial only when the underlying model can integrate it in a calibrated way. Otherwise, it can introduce additional spurious signals that reduce transfer performance.
+
+\subsection{Error Patterns and Confusion Matrix Dynamics}
+
+Beyond accuracy, macro-F1 and confusion matrices reveal recurring error modes. For multiple LIAR-evaluated runs, models tend to show strong positive-class recall but comparatively weaker specificity, leading to many false positives. This pattern suggests that the model often defaults toward predicting one label under uncertainty (depending on training regime and prompt setting). Such imbalances are not always visible from accuracy alone, especially if the dataset is not perfectly balanced or if the majority-class baseline is non-trivial. An exception to the typical True-class bias is observed for the Taxes-trained Gemma adapter, which shows comparatively low recall for the positive class (Rec(+) = 0.517), suggesting that the narrow tax-domain training distribution induces a different label prior than the broader LIAR or Healthcare regimes.
+
+Domain-specific adapters show analogous patterns: performance gains on small domain test sets can be driven by learning a narrow set of lexical and stylistic cues that correlate with labels in that domain. When evaluated outside that domain, these cues no longer hold, producing a measurable increase in misclassification and a drop in macro-F1.
+
+\subsection{Interpretation: Benefits of Fine-Tuning}
+
+The results support two complementary interpretations:
+
+\paragraph{Fine-tuning improves format reliability and task alignment.}
+LoRA adaptation turns the problem into a supervised decision task with stable output behavior. This largely removes the parsing failure modes observed in strict zero-shot prompting and yields consistent, reproducible predictions.
+
+\paragraph{Fine-tuning does not guarantee real fact checking.}
+Even after fine-tuning, the models still do not use external sources or retrieval. They are trained only to match the dataset labels. Therefore, higher scores may come from learning correlations in the data (e.g., writing style cues, topic biases, or annotation artifacts) rather than truly verifying a claim against evidence. The weak cross-domain transfer—especially for adapters trained on synthetic data—supports this: when the data distribution changes, performance drops, which suggests that the models rely on dataset-specific shortcuts instead of robust fact verification.
+
+\subsection{Implications for Multi-Agent Fact-Checking}
+
+Taken together, the single-model results motivate stronger mechanisms than single-pass prompting or single-model fine-tuning. Prompt-only approaches suffer from output instability and limited discriminative power; fine-tuning improves stability but introduces risks of domain overfitting and shortcut learning, and still lacks explicit verification.
+
+These limitations directly motivate the design choices in the subsequent chapters:
+
+\begin{itemize}
+    \item \textbf{Output constraints:} The formatting failures observed 
+    under strict zero-shot parsing motivate decoding-time enforcement 
+    (LM Format Enforcer) to guarantee machine-readable agent outputs.
+    
+    \item \textbf{Domain specialization:} The domain overfitting observed in single-model fine-tuning motivates routing claims to 
+    domain-specific expert agents rather than applying a single generalist model.
+    
+    \item \textbf{Aggregation:} The class imbalance and prediction bias observed across models motivate aggregation mechanisms that combine multiple expert verdicts to produce more balanced predictions.
+    
+    \item \textbf{Backbone selection:} LLaMA-3.1-8B-Instruct consistently provides the best trade-off between accuracy and balanced class behavior, making it the preferred backbone for domain-specialized expert agents.
+\end{itemize}
+
+

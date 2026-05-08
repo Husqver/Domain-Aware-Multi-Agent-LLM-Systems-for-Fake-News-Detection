@@ -1,0 +1,98 @@
+\chapter{Introduction}
+
+The widespread dissemination of misinformation and fake news in online media poses a growing societal and technical challenge. Digital platforms enable fast and broad access to information, but they also allow the large-scale distribution of false or misleading content. As a result, automated fake news detection has become an important research problem at the intersection of natural language processing and machine learning.
+
+Despite substantial progress, existing detection systems continue to face fundamental limitations, particularly with respect to domain dependency, limited generalization, and contextual ambiguity. Recent advances in large language models (LLMs) offer new opportunities for addressing these challenges, yet empirical evidence suggests that text-only and domain-agnostic approaches remain insufficient for robust fake news detection. This thesis investigates whether domain-aware modeling and multi-agent LLM architectures can improve the accuracy and robustness of binary claim verification, using the LIAR benchmark of short political statements as the primary evaluation setting \cite{wang2017liarliarpantsfire}.
+
+\section{Background and Motivation}
+
+The growing influence of digital media has fundamentally reshaped how information is created and shared. While online platforms enable rapid access to news and public discourse, they also amplify the widespread dissemination of false or misleading information. This section outlines the societal and technical context of fake news, discusses the challenges faced by automated detection systems, and motivates the exploration of large language models and domain-aware approaches as potential solutions.
+
+\subsection{Rise of Misinformation and Fake News}
+Online news and social media have reshaped the modern information ecosystem, changing how content is produced, circulated, and consumed. This increased accessibility has come with a downside: false or misleading narratives can now reach large audiences quickly and at low cost. Fake news is commonly defined as news-like content that is intentionally false or misleading and designed to deceive readers \cite{fi16080298}. Closely related concepts include misinformation, which refers to false information shared unintentionally due to mistakes or misunderstandings, and disinformation, which denotes deliberately fabricated or manipulated information intended to mislead, cause harm, or manipulate public opinion, for example in political propaganda \cite{10704605}.
+
+The political domain is particularly affected by misinformation. Short political statements -- such as claims made by politicians, public figures, or advocacy groups -- are frequently shared online and can influence public opinion, contribute to political polarization, and undermine trust in democratic institutions \cite{Lazer_2018}. Unlike long-form news articles, such claims are often brief, lack sufficient context, and require domain-specific knowledge to verify. This makes automated fact-checking of political claims a practically relevant and technically challenging problem, and the primary focus of this thesis.
+
+\subsection{Challenges of Automated Fake News Detection}
+
+Automated fake news detection remains challenging because deception in political claims is often subtle and context-dependent. Falsehoods are frequently expressed through misleading framing, selective omission of relevant details, or emotionally charged language rather than through explicitly incorrect statements \cite{10.1145/3728725.3728739}.
+
+A further challenge arises from domain dependency: verifying a short political claim often requires knowledge of specific legislation, statistical data, or historical events that varies substantially across topics such as economics, healthcare, or foreign policy. Models that ignore these domain-specific characteristics tend to rely on superficial textual patterns and exhibit limited generalization \cite{HAMED2023e20382}.
+
+Finally, the quality and availability of labeled data limits progress. Existing benchmarks such as LIAR cover specific domains and time periods. Detection systems trained on such data may struggle to generalize to new topics or evolving political narratives \cite{wang2017liarliarpantsfire}.
+
+\subsection{Societal Impact of Misinformation}
+
+The widespread distribution of misinformation has serious consequences for society that go far beyond individual cases of deception. Continuous exposure to false or misleading information can weaken shared understandings of reality and reduce trust in institutions that depend on informed public discussion \cite{iizuka-2022}. Research shows that misinformation reinforces existing 
+misconceptions and shapes public debates in ways that may harm democratic societies \cite{Lazer_2018}.
+
+The political effects of misinformation have been studied in particular detail. During the 2016 United States presidential election, large amounts of fake news were widely shared on social media, and studies suggest that misinformation contributes to political polarization, growing cynicism, and declining trust in democratic institutions \cite{iizuka-2022, colomina-2021}.
+
+Misinformation also poses major risks to public health. During the COVID-19 pandemic, the World Health Organization described the situation as an ``infodemic'', where people were exposed to a large mix of accurate and inaccurate information \cite{ijerph17072430}, contributing to vaccine hesitancy and resistance to public health measures \cite{adams-2023}.
+
+The spread of misinformation also affects trust in journalism. Research indicates that even when people do not fully believe false news, such content often receives high levels of attention and engagement \cite{adams-2023}, blurring the distinction between reliable and unreliable information and leading to declining trust in news organizations \cite{Lazer_2018}.
+
+\section{Problem Definition}
+
+This section defines the specific research problem addressed in this thesis by summarizing the main limitations of current fake news detection approaches. These limitations motivate the research questions introduced in the following section.
+
+\subsection{Limitations of Existing Detection Approaches}
+
+Despite extensive research, existing fake news detection systems exhibit several persistent limitations. Early approaches rely primarily on handcrafted linguistic features and shallow statistical patterns that often fail to capture semantic nuance and context-dependent manipulation \cite{tong-etal-2025-generate}. More recent deep learning models improve representation learning but typically depend on large amounts of labeled training data restricted to specific domains or time periods, and strong benchmark performance does not necessarily translate to reliable behavior under distribution shifts \cite{HAMED2023e20382}.
+
+These limitations are especially pronounced for short political claims, where the veracity signal is weak and ambiguous. Even large pretrained language models achieve only moderate performance on binary variants of political fact-checking benchmarks such as LIAR, suggesting that textual features alone provide insufficient information for robust generalization \cite{hasan2025generalizationgapspoliticalfake}. Together, these findings highlight the need for more flexible approaches that incorporate domain knowledge and structured reasoning.
+
+\subsection{Generalization Across Topics and Domains}
+
+A major limitation of current fake news detection systems is their restricted ability to generalize to new topics and unseen contexts. Many approaches achieve promising performance on benchmark datasets but fail when applied to new topics or emerging narratives, indicating that learned patterns do not transfer reliably beyond the training distribution \cite{tong-etal-2025-generate, fi16080298}.
+
+This generalization gap is particularly pronounced for short political claims. Models trained on domain-specific data tend to exploit spurious lexical correlations or dataset-specific patterns rather than learning transferable indicators of factual correctness, leading to severe performance degradation on held-out data \cite{hasan2025generalizationgapspoliticalfake}. These findings motivate approaches that explicitly model domain structure and reduce reliance on dataset-specific shortcuts.
+
+\subsection{Domain Dependency}
+
+Fake news detection is inherently domain-dependent, as deceptive strategies, evidentiary standards, and communicative conventions vary substantially across domains such as politics, public health, and entertainment \cite{encyclopedia2010043}. Each domain imposes different expectations regarding acceptable evidence and persuasive framing, which directly influences how truthfulness is expressed and evaluated.
+
+Most existing detection systems are developed in single-domain settings and trained on domain-specific datasets. In real-world settings, however, content arises from multiple heterogeneous domains with different conventions and evidentiary expectations. This mismatch creates practical challenges, since detection criteria do not transfer uniformly across domains \cite{tong2024mmdfnd}. These observations motivate domain-aware modeling strategies that explicitly account for topical variation, which is a central focus of this thesis.
+
+\section{Research Objectives and Questions}
+
+The limitations discussed in the previous sections highlight fundamental challenges for automated fake news detection. In particular, existing systems struggle with cross-domain generalization and domain-specific deception patterns. These challenges are especially pronounced for short political claims, where textual features alone provide insufficient information for reliable classification. Motivated by these observations, this thesis investigates how domain knowledge and multi-agent LLM architectures can improve binary claim verification on the LIAR benchmark.
+
+\subsection{Role of Domain Knowledge in Fake News Detection}
+
+One central hypothesis is that domain knowledge plays a critical role in reliable claim verification. Detection models that ignore domain-specific characteristics are likely to rely on superficial textual cues and exhibit limited generalization. This thesis therefore investigates whether incorporating explicit domain information improves classification accuracy and cross-domain robustness.
+
+\begin{quote}
+\textbf{RQ1a:} Does the incorporation of domain knowledge improve binary claim verification accuracy on the LIAR benchmark compared to domain-agnostic approaches?
+\end{quote}
+
+\begin{quote}
+\textbf{RQ1b:} How does domain specialization affect the generalization ability of claim verification models when evaluated across different topical domains?
+\end{quote}
+
+\subsection{Effectiveness of Multi-Agent LLM Systems}
+
+Single-model approaches remain limited when faced with domain-dependent and context-sensitive claim verification. This thesis therefore evaluates whether multi-agent architectures composed of domain-specific experts and auxiliary components such as routing and aggregation mechanisms can improve detection performance.
+
+\begin{quote}
+\textbf{RQ2:} To what extent do multi-agent LLM architectures improve binary claim verification accuracy and Macro-F1 compared to single-model baselines on the LIAR benchmark, particularly in domain-diverse settings?
+\end{quote}
+
+Together, these research questions provide a clear framework for the experimental design and evaluation presented in the subsequent chapters.
+
+\section{Thesis Structure}
+
+The remainder of this thesis is organized as follows. Chapter~2 introduces the theoretical foundations relevant to this thesis, 
+including deep learning, large language models, and multi-agent systems. Chapter~3 surveys related work on fake news detection and 
+situates this thesis within the existing literature by identifying the research gap addressed by this work.
+
+Chapter~4 describes the LIAR dataset in detail, including its structure, domain distribution, binary label mapping, and 
+preprocessing pipeline. Chapter~5 presents baseline experiments using single large language models, covering prompt-based, 
+iterative, and fine-tuning approaches, and establishes the performance ceiling for single-model fact-checking on LIAR. Chapter~6 introduces a prototype multi-agent architecture with domain-specific expert agents and evaluates alternative aggregation 
+strategies. Chapter~7 extends this framework with a checkability gate and a domain routing module, and presents an end-to-end   evaluation of the resulting pipeline.
+
+Finally, Chapter~8 provides a comparative analysis of results across all approaches with respect to the research questions 
+RQ1a, RQ1b, and RQ2, and Chapter~9 concludes the thesis by summarizing key findings and outlining directions for future 
+research.
+
+The complete implementation, including all experiment scripts, model configurations, and evaluation pipelines, is publicly available at \url{https://github.com/Husqver/Domain-Aware-Multi-Agent-LLM-Systems-for-Fake-News-Detection}.

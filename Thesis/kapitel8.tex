@@ -1,0 +1,212 @@
+\chapter{Comparative Results and Analysis}
+\label{chap:comparative}
+
+This chapter consolidates the empirical findings from the single-model baselines (Chapter~\ref{chap:baseline_single}), the prototype multi-agent pipeline (Chapter~\ref{chap:prototype_framework}), and the final domain-specialized framework (Chapter~\ref{chap:final_framework}) into a unified comparative analysis. The analysis is structured around the three research questions of this thesis: RQ1a (does domain-aware modeling improve binary claim verification accuracy over domain-agnostic aselines?), RQ1b (how well do domain-aware approaches generalize across domains?), and RQ2 (does a multi-agent architecture with domain routing and aggregation outperform single-model fine-tuning?). The goal is to identify overarching performance trends, characterize the conditions under which each design choice provides the greatest benefit, and articulate the fundamental trade-offs between specialization, generalization, and inference cost.
+
+\section{Performance Summary}
+
+Table~\ref{tab:consolidated} summarizes the strongest result obtained at each experimental stage for each backbone family, measured by accuracy and Macro-F1 on the binary LIAR test set ($n = 1267$). Results are drawn from the best single configuration reported in each chapter, selected by accuracy, and are presented without checkability gating to preserve comparability across the full test set. Macro-F1 is the unweighted average of $F_1$ over both classes (True and False); $F_1(+)$ denotes the positive-class $F_1$ for the True class.
+
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\caption{Best-performing configuration per experimental stage and backbone on the LIAR test set ($n = 1267$). Configurations selected by accuracy within each stage. Macro-F1 is the unweighted average of $F_1$ over both classes; $F_1(+)$ denotes $F_1$ for the positive class (True). Dashes indicate that $F_1(+)$ was not computed for prompt-only configurations. All values sourced from Appendix tables.}
+\label{tab:consolidated}
+\begin{tabular}{l l l r r r}
+\toprule
+Stage & Backbone & Configuration & Acc & Macro-F1 & $F_1(+)$ \\
+\midrule
+\multirow{3}{*}{\shortstack[l]{Zero-shot /\\Prompt-only (Ch.~4)}}
+  & Gemma-7B-IT           & Reprompting, with subjects              & 0.616 & 0.584 & -- \\
+  & LLaMA-3.1-8B-Instruct & P1\_fake\_news\_no\_guess, with subjects & 0.579 & 0.579 & -- \\
+  & DeepSeek-LLM-7B       & P2\_one-shot, no subjects               & 0.568 & 0.531 & -- \\
+\midrule
+\multirow{3}{*}{\shortstack[l]{Single-model\\Fine-Tuning (Ch.~4)}}
+  & LLaMA-3.1-8B-Instruct & LIAR-trained, with subjects             & 0.667 & 0.649 & 0.729 \\
+  & Gemma-7B-IT           & LIAR-trained, no subjects               & 0.657 & 0.634 & 0.726 \\
+  & DeepSeek-LLM-7B       & LIAR-trained, no subjects               & 0.667 & 0.645 & 0.734 \\
+\midrule
+\multirow{3}{*}{\shortstack[l]{Prototype\\Multi-Agent (Ch.~5)}}
+  & Gemma-7B-IT           & LIAR-finetuned, majority vote, no subj. & 0.644 & 0.595 & 0.735 \\
+  & LLaMA-3.1-8B-Instruct & LIAR-finetuned, weighted vote, w/ subj. & 0.630 & 0.629 & 0.615 \\
+  & DeepSeek-LLM-7B       & Domain-specific, majority vote, no subj.& 0.609 & 0.608 & 0.629 \\
+\midrule
+\multirow{3}{*}{\shortstack[l]{Final Framework\\(Ch.~6)}}
+  & DeepSeek-LLM-7B       & $k{=}6$, no gate                        & 0.661 & 0.621 & 0.742 \\
+  & LLaMA-3.1-8B-Instruct & $k{=}13$, no gate                       & 0.635 & 0.631 & 0.677 \\
+  & Gemma-7B-IT           & $k{=}13$, no gate                       & 0.593 & 0.574 & 0.667 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three patterns are immediately visible. First, supervised fine-tuning substantially improves over zero-shot prompting for all backbone families: the largest gains are observed for LLaMA and DeepSeek, where accuracy increases from 0.579 and 0.568 to 0.667 respectively. Second, the prototype multi-agent pipeline does not improve over single-model fine-tuning on aggregate metrics for any backbone, with performance gaps ranging from $-0.013$ accuracy (Gemma) to $-0.058$ accuracy (DeepSeek). Third, the final domain-specialized framework narrows but does not close the gap to single-model fine-tuning for LLaMA ($k{=}13$: Acc~=~0.635) and DeepSeek ($k{=}6$: Acc~=~0.661), while Gemma remains the furthest below its fine-tuned baseline ($k{=}13$: Acc~=~0.593).
+
+A cross-stage pattern also emerges in the relationship between accuracy and Macro-F1. For the multi-agent stage, Gemma achieves the highest accuracy (0.644) but the lowest Macro-F1 (0.595) among the three backbones, reflecting a skewed prediction distribution under majority voting. In contrast, LLaMA's multi-agent configuration achieves the highest Macro-F1 (0.629) with only modestly lower accuracy (0.630), indicating more balanced class predictions. This divergence between accuracy and Macro-F1 recurs throughout the experiments and motivates reporting both metrics throughout this chapter.
+
+\section{Research Questions Revisited}
+
+This section addresses the three research questions of this thesis directly, drawing on the empirical results across all experimental stages. For each question, the evidence is organized along the progression from single-model baselines (Chapter~\ref{chap:baseline_single}) through the prototype multi-agent pipeline (Chapter~\ref{chap:prototype_framework}) to the final domain-specialized framework (Chapter~\ref{chap:final_framework}).
+
+\subsection{RQ1a: Does Domain-Aware Modeling Improve Accuracy?}
+
+Domain-aware modeling consistently improves binary claim verification accuracy over domain-agnostic baselines across all experimental stages, but the magnitude of the improvement depends on how domain knowledge is incorporated.
+
+\paragraph{Prompt level.}
+Subject conditioning improved LLaMA's Macro-F1 from 0.514 to 0.568 under Setup~B, and the P4 prompt (subjects as context clues) produced the strongest prompt-only result overall (Gemma: Acc~=~0.615, Macro-F1~=~0.586). These gains were model-dependent and did not generalize consistently across architectures: Gemma showed small decreases under some subject-conditioned configurations, and DeepSeek did not benefit consistently from subject injection.
+
+\paragraph{Fine-tuning level.}
+Domain-specific LoRA adapters improved in-domain performance for all backbone families. Healthcare-trained LLaMA reached 0.711 accuracy on the healthcare test subset, compared to 0.667 on the general LIAR benchmark. Taxes-trained Gemma reached 0.650 on the taxes subset. These results show that domain-restricted training produces measurable improvements when evaluated within the target domain.
+
+\paragraph{Multi-agent level.}
+Domain-specialized expert agents with routing achieved the closest approximation to single-model fine-tuning performance for DeepSeek ($k{=}6$: Acc~=~0.661, Macro-F1~=~0.621) and LLaMA ($k{=}13$: Acc~=~0.635, Macro-F1~=~0.631), demonstrating that structured domain decomposition recovered much of the performance lost in the transition from single-model to multi-agent architectures.
+
+Across all three levels of domain integration, accuracy improvements over domain-agnostic baselines are observed when domain information is structurally incorporated through routing or domain-restricted fine-tuning. Prepending subject metadata alone produces smaller and less consistent gains.
+
+\subsection{RQ1b: How Well Do Domain-Aware Approaches Generalize?}
+
+Domain-aware approaches consistently exhibit a specialization--generalization trade-off: in-domain performance improves, but cross-domain generalization degrades. This pattern is robust across all backbone families and levels of domain granularity.
+
+\paragraph{Single-model fine-tuning.}
+Healthcare-trained adapters dropped from 0.711 (in-domain) to 0.650 on the general LIAR test set. Taxes-trained adapters showed a steeper drop, from 0.650 (in-domain) to 0.609 on LIAR. Synthetic-trained adapters demonstrated the most severe distribution mismatch: accuracy of 0.885 on synthetic test data collapsed to 0.604 on LIAR. Subject metadata produced inconsistent generalization effects: in some configurations it improved precision at the cost of recall shifts, suggesting that models exploited topic--label correlations rather than performing genuine claim-level reasoning.
+
+\paragraph{Multi-agent framework.}
+Cross-domain generalization in the multi-agent setting is mediated by routing quality. When routing assigns a claim to the correct expert, in-domain performance is maintained. When routing fails -- as is more frequent at finer granularities -- the routed expert operates outside its training distribution, compounding the generalization loss. At $k{=}13$, routing accuracy dropped to 0.64--0.69, directly limiting end-to-end performance for all backbones.
+
+\paragraph{LIAR-specific context.}
+The LIAR dataset consists predominantly of short political claims that frequently span multiple topical domains simultaneously. A claim about healthcare spending, for example, simultaneously touches on economic, political, and health domains. This multi-domain character of short political claims means that clean domain boundaries are difficult to maintain, which contributes to the observed generalization losses across all backbone families and domain granularities. Furthermore, because the system operates without external evidence retrieval, domain-specific knowledge cannot be supplemented at inference time, making adapters entirely dependent on patterns learned from the training distribution.
+
+\subsection{RQ2: Does the Multi-Agent Architecture Outperform Single-Model Fine-Tuning?}
+
+On aggregate accuracy and Macro-F1, the multi-agent pipeline does not consistently outperform the best single-model fine-tuned baseline for any backbone. The performance gaps between the best multi-agent result and single-model fine-tuning are as follows:
+
+\begin{itemize}
+    \item \textbf{LLaMA:} best multi-agent result 0.630 / 0.629 
+    vs.\ single-model 0.667 / 0.649 
+    (gap: $-0.037$ accuracy, $-0.020$ Macro-F1)
+    \item \textbf{Gemma:} best multi-agent result 0.644 / 0.595 
+    vs.\ single-model 0.657 / 0.634 
+    (gap: $-0.013$ accuracy, $-0.039$ Macro-F1)
+    \item \textbf{DeepSeek:} best multi-agent result 0.609 / 0.608 
+    vs.\ single-model 0.667 / 0.645 
+    (gap: $-0.058$ accuracy, $-0.037$ Macro-F1)
+\end{itemize}
+
+The final domain-specialized framework narrows these gaps for LLaMA and DeepSeek: LLaMA reaches 0.635 / 0.631 at $k{=}13$ and DeepSeek reaches 0.661 / 0.621 at $k{=}6$, approaching but not surpassing single-model performance.
+
+The multi-agent architecture exhibits measurable differences from single-model fine-tuning that aggregate metrics do not capture. 
+First, class calibration differs: for LLaMA under weighted voting, Macro-F1 reaches 0.629 with a more balanced True/False distribution, compared to Macro-F1~=~0.649 for single-model fine-tuning with higher accuracy. Second, the checkability gate produces an explicit category distribution over verifiable and non-verifiable claims (Table~\ref{tab:checkability_dist}), an output type that single-model classifiers do not produce. Third, the modular pipeline architecture separates routing errors from expert errors, allowing each component's contribution to end-to-end performance to be measured independently.
+
+\paragraph{Qualitative upper-bound reference.}
+To contextualize the performance of the open-source systems, a qualitative comparison against two frontier models was conducted 
+on a small illustrative subset of LIAR examples (Appendix~\ref{app:gpt_deep_research_examples}, Table~\ref{tab:gpt_deep_research_examples}). GPT-5.1 Thinking was evaluated on the full LIAR test set ($n = 1223$ after excluding 
+non-binary responses), achieving accuracy of 0.632 and Macro-F1 of 0.62 -- a result comparable to the best single-model fine-tuned 
+configurations in this thesis. GPT-5.1 Deep Research was evaluated qualitatively on a small subset only and is not directly comparable to the quantitative results. Both frontier models returned \emph{unknown} for a subset of fragmentary or underspecified claims, and GPT-5.1 Deep Research produced both corrected and newly introduced errors relative to GPT-5.1 Thinking on the evaluated 
+subset.
+
+\section{Performance Trends}
+
+\subsection{Effect of Backbone Architecture}
+
+Across all experimental stages, the three backbone families exhibit consistently different behavioral profiles that persist from zero-shot prompting through to the final domain-specialized framework.
+
+\paragraph{LLaMA-3.1-8B-Instruct.}
+LLaMA achieves the highest single-model fine-tuned accuracy (0.667, Macro-F1~=~0.649) and the most stable performance across domain 
+granularities in the final framework (accuracy: 0.543, 0.632, 0.635 across $k \in \{6, 8, 13\}$). LLaMA produces the most balanced 
+class-wise precision and recall across all experimental stages, reflected in consistently higher Macro-F1 values relative to accuracy. In the multi-agent setting, LLaMA is the only backbone for which router-weighted voting consistently improves over majority voting on both accuracy and Macro-F1 across all training regimes and subject conditions.
+
+\paragraph{Gemma-7B-IT.}
+Gemma achieves the strongest zero-shot and prompt-based performance among the three backbones (best accuracy 0.616, Macro-F1~=~0.584). After fine-tuning, Gemma exhibits a persistent tendency toward positive-class bias (high recall for True, lower recall for False), most pronounced under domain-specific training and fine-grained taxonomies. The divergence between accuracy and Macro-F1 in the multi-agent stage (0.644 accuracy vs.\ Macro-F1~=~0.595) is the clearest quantitative expression of this tendency: majority voting yields $F_1(+) = 0.735$ but a substantially lower False-class F1. Gemma's checkability gate filters out nearly 58\% of the test set, producing a strong selection effect that reduces the effective evaluation set compared to the other backbones.
+
+\paragraph{DeepSeek-LLM-7B-base.}
+DeepSeek performs poorly under zero-shot prompting and collapses to near-constant predictions under strict output constraints. After 
+fine-tuning -- particularly with domain-specific LoRA adapters -- DeepSeek recovers substantially and achieves its best overall result in the final framework at $k{=}6$ (0.661 accuracy, Macro-F1~=~0.621). The performance decline with increasing domain granularity ($0.661 \to 0.610 \to 0.609$ accuracy as $k$ increases from 6 to 13) is more pronounced for DeepSeek than for LLaMA, indicating greater sensitivity to smaller per-domain training set sizes.
+
+\subsection{Effect of Prompting Strategies}
+
+Within the zero-shot regime, three consistent trends emerge across the prompt engineering, self-consistency, reprompting, chain-of-thought, and tone-conditioning experiments:
+
+\begin{enumerate}
+    \item \textbf{Forced-decision decoding substantially improves 
+    over strict parsing.} Setup~A (strict parsing) frequently failed 
+    for decoder-only models, resulting in near-constant predictions. 
+    Setup~B (heuristic resolution) eliminated these failures and 
+    revealed genuine but modest discriminative ability, particularly 
+    for Gemma and FLAN-T5-XL.
+
+    \item \textbf{Iterative prompting benefits well-aligned models 
+    only.} Reprompting and self-consistency improved Gemma's 
+    performance modestly (best: Acc~=~0.616 under reprompting with 
+    subjects) but degraded LLaMA's in many settings, with accuracy 
+    decreasing to 0.526 under reprompting with subjects.
+
+    \item \textbf{Chain-of-thought prompting did not improve accuracy 
+    for LLaMA.} CoT prompting improved Gemma's accuracy to 0.604 
+    (Macro-F1~=~0.601) but left LLaMA's performance below 0.510, 
+    indicating that generating a short justification does not produce 
+    better-calibrated final decisions for all backbone families.
+\end{enumerate}
+
+\subsection{Effect of Subject Metadata}
+
+Subject labels produced inconsistent effects throughout all experimental stages. In the zero-shot setting, adding subjects 
+improved LLaMA's Macro-F1 from 0.514 to 0.568 under Setup~B but caused small drops for Gemma in several configurations. After 
+fine-tuning, subjects sometimes shifted precision/recall trade-offs without improving Macro-F1. In the multi-agent setting, subjects 
+improved LLaMA under weighted voting (Macro-F1: $0.614 \to 0.629$) but reduced DeepSeek's domain-specific majority vote Macro-F1 
+substantially ($0.608 \to 0.512$). Across all settings, the effect of subject metadata was conditioned on the backbone and training 
+regime, with no consistent direction of improvement observed.
+
+\subsection{Effect of Domain Granularity}
+\label{sec:domain_granularity}
+
+Routing accuracy decreased monotonically with taxonomy granularity for all backbones: from 0.766--0.788 at $k{=}6$ to 0.642--0.689 at $k{=}13$. The effect on end-to-end accuracy was backbone-dependent. DeepSeek peaked at the coarsest taxonomy ($k{=}6$, accuracy 0.661) and degraded monotonically as granularity increased ($0.661 \to 0.610 \to 0.609$). LLaMA and Gemma showed 
+the opposite pattern: both reached their best end-to-end accuracy at $k{=}13$ (0.635 and 0.593 respectively), with $k{=}6$ performing worst (0.543 and 0.489). The intermediate 8-domain taxonomy ($k{=}8$) consistently provided the most stable balance between routing reliability and specialization depth across backbone families.
+
+\section{Trade-Offs}
+
+Five trade-offs recur across the experimental stages. The first two are directly relevant to the research questions of this thesis; the remaining three are secondary but inform the interpretation of the results.
+
+\subsection{Specialization vs.\ Generalization}
+
+The most pervasive trade-off is between in-domain specialization and cross-domain generalization. This trade-off is particularly pronounced in the context of short political claims on LIAR, where topical boundaries are inherently ambiguous: a claim about healthcare spending simultaneously touches on economic, political, and health domains, making clean domain assignment difficult regardless of the taxonomy used.
+
+Domain-specific fine-tuning consistently improved in-domain performance across all backbone families -- healthcare-trained LLaMA reached 0.711 on the healthcare subset, taxes-trained Gemma reached 0.650 on the taxes subset -- but cross-domain performance on the general LIAR benchmark decreased in both cases (0.650 and 0.609 respectively). In the multi-agent framework, finer taxonomies improved in-domain expert accuracy but reduced end-to-end performance through increased routing errors and smaller per-domain training sets.
+
+Two mechanisms drive this trade-off in the LIAR setting specifically. First, short political claims often lack the lexical density needed to unambiguously signal their domain, so domain-restricted training may overfit to surface cues that do not transfer. Second, because the system operates without external evidence retrieval, domain-specific knowledge cannot be supplemented at inference time, making adapters entirely dependent on patterns learned from the training distribution.
+
+\subsection{Routing Quality vs.\ End-to-End Performance}
+
+In the final framework, end-to-end verdict accuracy is directly bounded by routing quality. This trade-off is specific to the multi-agent architecture and does not arise in single-model classification. When the router misassigns a claim to an incorrect domain, the routed expert operates outside its training distribution and the resulting verdict is less reliable. As shown in Section~\ref{sec:domain_granularity}, routing degradation at finer taxonomies directly limits end-to-end performance, particularly for DeepSeek whose domain-specific adapters are sensitive to smaller per-domain training sets.
+
+This trade-off is compounded by the binary classification setting: because the output space has only two values, a misrouted expert still has a 50\% baseline probability of producing the correct verdict, which partially masks routing errors in aggregate accuracy metrics. Macro-F1 is more sensitive to this effect because it penalizes class-imbalanced predictions regardless of overall accuracy.
+
+\subsection{Accuracy vs.\ Calibration and Class Balance}
+
+Binary classification on LIAR exhibits a persistent tension between maximizing aggregate accuracy and maintaining balanced class-wise predictions. The LIAR binary test set contains approximately 56\% true labels, creating a mild majority-class bias that several 
+configurations exploit.
+
+The most visible instance is Gemma's multi-agent configuration under majority voting: accuracy of 0.644 and $F_1(+) = 0.735$, but 
+Macro-F1 of only 0.595. The 0.14-point gap between the two F1 measures reflects a strong True-class bias introduced by majority 
+voting under LIAR-finetuned experts. In a binary fact-checking setting without external evidence, a system that rarely predicts 
+False produces high True-class recall but low False-class recall, directly affecting the detection rate of false claims. Across all 
+stages, LLaMA consistently produced the most balanced class predictions, reflected in higher Macro-F1 relative to accuracy at 
+every experimental stage. Gemma and DeepSeek more frequently exhibited accuracy--Macro-F1 divergence, particularly under 
+domain-specific training and fine-grained taxonomies.
+
+\subsection{Simplicity vs.\ Complexity}
+
+Rule-based voting strategies (majority and weighted vote) outperformed the decision-agent aggregator in most configurations. For LLaMA under LIAR-finetuned experts with subjects, weighted voting achieved Acc~=~0.630, Macro-F1~=~0.629, while decision-agent aggregation reached Acc~=~0.603, Macro-F1~=~0.599. For DeepSeek under domain-specific training without subjects, majority voting achieved Acc~=~0.609, Macro-F1~=~0.608, while the decision-agent reached only Acc~=~0.527, Macro-F1~=~0.516.
+
+This pattern is specific to the present setting: expert justifications are short (2--4 sentences) and generated without access to external evidence, providing limited additional signal beyond the binary verdict itself. Under these conditions, the decision-agent has no informational advantage over a simple vote count, and its additional inference step introduces further opportunities for formatting and reasoning errors.
+
+\subsection{Efficiency vs.\ Performance}
+
+The final framework requires three sequential model forward passes per claim (checkability, routing, expert verdict), compared to a 
+single forward pass for single-model fine-tuning. The end-to-end accuracy of the final framework (best: DeepSeek $k{=}6$, 
+Acc~=~0.661) is comparable to or slightly below the single-model fine-tuned baseline (Acc~=~0.667 for both LLaMA and DeepSeek), 
+meaning that the additional inference cost does not yield a corresponding accuracy gain on the LIAR benchmark.
+
+The checkability gate introduces an additional efficiency consideration specific to this setting: for Gemma, 57.8\% of test 
+instances are filtered as non-fact-checkable, substantially reducing the effective evaluation set and making direct comparisons with 
+single-model results on the full test set difficult.

@@ -1,0 +1,92 @@
+\chapter{Conclusion and Future Work}
+
+This chapter summarizes the key findings of this thesis, revisits the research questions in light of the experimental evidence, and 
+identifies the main limitations and directions for future work. Section~\ref{sec:key_findings} highlights the most important 
+empirical results across the three experimental stages. Section~\ref{sec:implications} addresses the research questions directly. Section~\ref{sec:limitations} discusses the limitations of the present work, and Section~\ref{sec:future} outlines promising directions for future research.
+
+\section{Key Findings}
+\label{sec:key_findings}
+This thesis investigated the extent to which binary factuality classification can be improved through progressively more structured inference-time and training-time mechanisms, using the LIAR benchmark as a testbed and moderately sized open-source
+language models as the backbone. The following key findings emerged across the three experimental stages (Chapters 5--7).
+
+\paragraph{Supervised adaptation is necessary and effective -- the single most impactful finding.}
+Zero-shot and prompt-engineered baselines are insufficient for reliable factuality classification. LoRA fine-tuning on the LIAR training distribution consistently resolves output instabilities and yields discriminative classifiers that outperform the best prompt-only configurations by a substantial margin on both accuracy and Macro-F1 (Chapter~5). This transition from prompt-only to 
+supervised adaptation represents the largest single performance gain across all backbone families and experimental stages.
+
+\paragraph{Performance remains below frontier model levels without retrieval.}
+A qualitative comparison against GPT-5.1 Thinking on the full LIAR test set ($n = 1223$, excluding 44 non-binary responses) showed that the frontier model achieved accuracy of 0.632 and Macro-F1 of 0.62. The fine-tuned open-source models in this thesis achieve higher results on the full test set ($n = 1267$): LLaMA and DeepSeek each reach Acc~=~0.667, and Gemma reaches Acc~=~0.657. However, this comparison is not directly interpretable as a controlled benchmark 
+result due to differences in test set size, reasoning mechanisms, and the potential use of internal knowledge or chain-of-thought reasoning by GPT-5.1 Thinking. The results should therefore be interpreted as a qualitative reference rather than a definitive performance ranking. GPT-5.1 Thinking also returned \emph{unknown} for a subset of fragmentary or underspecified claims, consistent with the motivation for the checkability gate introduced in 
+Chapter~7. GPT-5.1 Deep Research, evaluated qualitatively on a small subset only, corrected several errors through web retrieval but also introduced new errors on ambiguous claims.
+
+\paragraph{Multi-agent design provides structural benefits beyond aggregate accuracy.}
+The multi-agent framework does not always exceed single-model fine-tuning on aggregate metrics, but introduces structural properties---explicit disagreement modeling, domain-aware specialization, and checkability filtering---that are valuable in real-world fact-checking pipelines where transparency and modularity matter as much as peak benchmark performance (Chapter~6).
+
+\paragraph{Routing is a critical and underappreciated bottleneck.}
+In the final domain-specialized framework, routing accuracy directly bounds end-to-end performance. Even high-quality expert agents cannot compensate for systematic routing errors, making the routing mechanism the single most important component for future improvement (Chapter~7).
+
+\paragraph{Domain specialization trades off generalization.}
+Domain-specific fine-tuning reliably improves in-domain performance but degrades cross-domain generalization, most severely for smaller training sets and weaker backbones. Domain specialization is most beneficial in narrowly scoped deployment settings with reliable routing (Chapters~6--7).
+
+\section{Implications for Research}
+\label{sec:implications}
+
+\subsection*{Research Questions Revisited}
+
+\paragraph{RQ1a: Does domain-aware modeling improve binary claim verification accuracy over domain-agnostic baselines?}
+Domain knowledge reliably improves in-domain performance across all experimental stages. Domain-specific LoRA fine-tuning and domain-aware expert prompting consistently produce better results on topically aligned claims compared to domain-agnostic baselines. At the prompt level, subject conditioning improved LLaMA's Macro-F1 from 0.514 to 0.568 under Setup~B, and the P4 prompt produced the strongest prompt-only result overall (Gemma: Acc~=~0.615). At the fine-tuning level, healthcare-trained LLaMA reached 0.711 on the healthcare subset compared to 0.667 on the general benchmark. At the multi-agent level, domain-specialized routing narrowed the gap to single-model fine-tuning for LLaMA ($k{=}13$: Acc~=~0.635) and DeepSeek ($k{=}6$: Acc~=~0.661). The benefit of domain knowledge is conditional on the quality of the routing mechanism and the size of the domain-specific training set: when routing is accurate and per-domain data is sufficient, domain awareness yields measurable gains; when routing degrades or training sets shrink, the performance ceiling imposed by routing errors prevents the specialized experts from realizing their potential.
+
+\paragraph{RQ1b: How well do domain-aware approaches generalize across domains?}
+Domain specialization consistently degrades cross-domain generalization. Adapters trained on narrow subsets learn lexical and stylistic patterns that do not transfer to the general LIAR benchmark: healthcare-trained adapters dropped from 0.711 (in-domain) 
+to 0.650 on LIAR, taxes-trained adapters from 0.650 to 0.609, and synthetic-trained adapters from 0.885 to 0.604. In the multi-agent 
+framework, routing errors compound this effect: at $k{=}13$, routing accuracy dropped to 0.64--0.69, directly limiting end-to-end 
+performance. The inherently multi-domain character of short political claims in LIAR -- where a single claim may simultaneously touch on economic, political, and health domains -- means that clean domain boundaries are difficult to maintain regardless of taxonomy granularity.
+
+\paragraph{RQ2: Can multi-agent large language model systems outperform single-model approaches in fake news detection, particularly in domain-diverse and cross-domain settings?}
+On aggregate accuracy and Macro-F1, the multi-agent pipeline does not consistently outperform the best single-model fine-tuned baseline. For LLaMA, the prototype multi-agent system reaches 0.630 accuracy and Macro-F1~=~0.629, compared to 0.667 and 0.649 for single-model fine-tuning. For Gemma, the multi-agent majority vote achieves higher $F_1(+)$ (0.735 vs.\ 0.726) but lower Macro-F1 (0.595 vs.\ 0.634), reflecting a class-balance shift rather than a genuine gain. For DeepSeek, domain-specific multi-agent training (Macro-F1~=~0.608) approaches but does not surpass the single-model result (0.645). The final domain-specialized framework achieves parity with or close to single-model fine-tuning for LLaMA and DeepSeek when routing is reliable, but falls short for Gemma.
+
+Multi-agent systems provide structural properties that single-model classifiers do not offer: modular specialization, explicit 
+disagreement detection, and checkability filtering. These properties are relevant in domain-diverse and cross-domain settings where a single model's uniform decision boundary is insufficient, but they require a well-functioning routing layer to translate into metric improvements.
+
+\section{Limitations}
+\label{sec:limitations}
+
+Several limitations of the present work point toward directions for future research. 
+
+First, all models in this thesis operate without access to external evidence or retrieval mechanisms. The improvements observed after fine-tuning therefore reflect learning of distributional cues in the training data---writing style, claim structure, topic--label correlations---rather than genuine fact verification against an external knowledge base.
+
+Second, the binary label mapping from six LIAR classes to two introduces structural label noise at the decision boundary. In particular, statements labeled \textit{barely-true} and \textit{half-true} are semantically similar yet assigned to opposite binary classes, which makes the task inherently harder than aggregate accuracy figures suggest and may account for a portion of the observed misclassifications.
+
+Third, domain-specific training subsets are small by construction. The healthcare and taxes subsets each contain only a few hundred instances, which limits the adapter's ability to learn robust domain-specific patterns and increases susceptibility to overfitting and class imbalance. This data scarcity is compounded by the long-tail distribution of LIAR domains, where many topical areas contain too few instances for reliable fine-tuning.
+
+Fourth, the LIAR benchmark, while widely used, has known limitations: labels are derived from expert journalists and cover primarily U.S.\ political and public discourse. Generalization to other languages, cultural contexts, and claim types (scientific misinformation, financial claims, health disinformation) is not guaranteed by performance on LIAR alone.
+
+Fifth, the checkability model currently relies on model-generated judgments without ground-truth supervision. The strong model dependence observed in checkability distributions (ranging from 
+42\% to nearly 100\% of claims classified as fact-checkable across backbone families) underscores that checkability is not a neutral preprocessing step.
+
+Sixth, the qualitative comparison with GPT-5.1 Deep Research suggests that both frontier and open-source models make errors on a subset of LIAR instances regardless of retrieval capability, 
+indicating that a portion of classification errors may originate from annotation ambiguity or label noise in the dataset rather than from model limitations alone.
+
+\section{Future Directions}
+\label{sec:future}
+
+\subsection{Retrieval-Augmented Generation}
+The absence of external evidence retrieval is the most critical limitation of the present work (Section~\ref{sec:limitations}). 
+Integrating retrieval-augmented generation or web-based evidence retrieval into the expert stage would directly address this gap. 
+The qualitative comparison with GPT-5.1 Deep Research showed that web retrieval can correct errors that pure parametric reasoning 
+cannot resolve, but also introduces new errors on claims where retrieved evidence is ambiguous or imprecisely matched to the claim 
+being verified. This indicates that retrieval integration requires careful query formulation and evidence filtering rather than naive web search.
+
+\subsection{Agent Debate and Negotiation}
+The decision-agent aggregator did not outperform simple voting rules in the present pipeline, partly because expert justifications are short and generated without external evidence. More sophisticated aggregation mechanisms -- such as structured multi-round debate between experts, contrastive explanation generation, or uncertainty-calibrated weighted voting -- may unlock additional 
+performance gains and better exploit the explanatory outputs produced by the expert agents beyond the simple voting strategies 
+evaluated in this thesis.
+
+\subsection{Reinforcement Learning for Agent Coordination}
+Routing quality was identified as the primary bottleneck in the final framework (Section~\ref{sec:limitations}). Future work could 
+explore reinforcement learning-based training of the routing and aggregation components, allowing the coordination layer to be 
+optimized end-to-end for factuality classification rather than relying on fixed voting rules. Additionally, distillation strategies 
+that compress the domain-specialized pipeline into a single model, or dynamic routing schemes that invoke additional agents only when initial confidence is low, could reduce average inference cost while preserving the robustness benefits of the full pipeline.
+
+The experiments demonstrate that structured multi-agent frameworks represent a viable direction for automated fact-checking with 
+open-source language models, with meaningful performance gains arising from careful alignment between model adaptation, domain 
+structure, and inference-time design.

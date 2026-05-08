@@ -1,0 +1,558 @@
+\chapter{Final Domain-Specialized Multi-Agent Framework}
+\label{chap:final_framework}
+
+The prototype pipeline presented in Chapter~\ref{chap:prototype_framework} revealed three key limitations. First, all claims were evaluated by all three experts regardless of their actual domain, introducing noise from irrelevant expert perspectives and wasting compute. Second, the coarse three-domain taxonomy (politics, economy, health/science) did not capture the full topical diversity of LIAR, limiting the specialization capacity of individual experts. Third, the pipeline had no mechanism to filter non-verifiable or underspecified claims, forcing experts into speculative decisions on inputs that are inherently difficult to classify.
+
+This chapter addresses each of these limitations through three targeted extensions: (i) a \emph{domain routing model} that assigns 
+each claim to the most relevant expert rather than evaluating all claims with all experts, (ii) a \emph{finer-grained taxonomy} with 
+up to 13 super-domains to enable more precise specialization, and (iii) a \emph{checkability gate} that filters non-verifiable inputs before they reach the expert pipeline. Together, these components form the final domain-specialized multi-agent framework evaluated in this chapter.
+
+\section{Domain Routing Model}
+
+\subsection{Purpose and Design}
+
+The multi-agent framework relies on a \emph{router} that assigns each input claim to a single high-level domain. This routing step serves two goals: (i) selecting the most relevant \emph{domain-specialized expert}, and (ii) enabling routing-aware aggregation schemes (e.g., router-weighted voting) where expert contributions can be modulated by domain relevance.
+
+Formally, the routing model implements a function
+\[
+r(\text{claim}) \rightarrow \texttt{super\_domain} \in \mathcal{D},
+\]
+where $\mathcal{D}$ is a fixed set of super-labels (e.g., 8-way routing). The router operates only on the statement text at inference time. Subjects or metadata are not required for prediction; they are used only to construct weak supervision labels during training.
+
+\paragraph{Backbone-aligned (self) routing.}
+To avoid cross-model mismatch, routing is performed using a router built on the same backbone family as the downstream experts (e.g., a Gemma-based router for Gemma experts, a Llama-based router for Llama experts, and a DeepSeek-based router for DeepSeek experts). This keeps domain assignment aligned with the model family's internal representations and reduces inconsistencies that can arise when routing and expert judgment are produced by different model families.
+
+\subsection{Super-Label Taxonomy and Rationale}
+
+To control the granularity of specialization, three alternative super-label taxonomies were explored: a coarse (6 labels), an intermediate (8 labels), and a fine (13 labels) configuration.
+
+\paragraph{8 super-labels.}
+\[
+\mathcal{D}_{8}=\left\{
+\begin{array}{@{}l@{}}
+\texttt{economy},\,\texttt{health\_social},\,\texttt{foreign\_security},\,\texttt{law\_rights},\\
+\texttt{politics\_government},\,\texttt{environment\_energy},\,\texttt{society\_culture},\,\texttt{misc}\
+\end{array}
+\right\}.
+\]
+
+\paragraph{6 super-labels (coarser grouping).}
+\[
+\mathcal{D}_{6=}\left\{
+\begin{array}{@{}l@{}}
+\texttt{socioeconomic\_policy},\,\texttt{foreign\_security},\,\texttt{governance\_law},\\
+\texttt{environment\_science},\,\texttt{society\_culture},\,\texttt{misc}
+\end{array}
+\right\}.
+\]
+
+\paragraph{13 super-labels (finer specialization).}
+\[
+\mathcal{D}_{13}=\left\{
+\begin{array}{@{}l@{}}
+\texttt{macro\_econ},\ \texttt{jobs\_labor},\ \texttt{business\_finance},\ \texttt{cost\_of\_living\_housing},\\
+\texttt{healthcare\_policy},\ \texttt{public\_health\_crises},\ \texttt{substances\_gambling},\\
+\texttt{family\_demographics},\,\texttt{law\_crime\_rights},\
+\texttt{institutions\_elections},\\ \texttt{foreign\_affairs\_security},\
+\texttt{environment\_energy\_infra},\ \texttt{media\_meta}
+\end{array}
+\right\}.
+\]
+
+\subsection{Label Construction from LIAR Subjects}
+
+The LIAR dataset provides a comma-separated \texttt{subjects} field that describes topical tags for each statement. Since the router must predict exactly one domain label, training labels are derived from these tags using a deterministic mapping:
+\[
+\texttt{subjects} \rightarrow \texttt{super\_domain}.
+\]
+Concretely, each subject tag is mapped to one super-label via a dictionary (\texttt{domain\_to\_super}). If multiple tags map to multiple super-labels, a single label is chosen using a priority rule determined by the ordered list of \texttt{super\_labels}. If no tag yields a known mapping, the example defaults to \texttt{misc}. This yields a single ``weak supervision'' label per statement.
+
+This approach has two practical advantages: it produces routing labels at scale without manual annotation, and it keeps routing consistent with the dataset's topical organization. Its main limitation is that LIAR subjects can be noisy or incomplete; therefore routing performance reflects both model quality and label quality.
+
+\subsection{Router Model Architecture}
+
+The router is trained as a LoRA adapter on top of an instruction-tuned language model backbone (e.g., \texttt{meta-llama/Llama-3.1-8B-Instruct}).
+
+In the implementation, LoRA is applied to attention and MLP projection modules
+\[
+\{\texttt{q\_proj},\texttt{k\_proj},\texttt{v\_proj},\texttt{o\_proj},\texttt{gate\_proj},\texttt{up\_proj},\texttt{down\_proj}\},
+\]
+with rank $r=8$, scaling $\alpha=16$, and dropout $0.05$.
+
+\subsection{Training Objective and Data Formatting}
+
+Routing is trained as a constrained generation problem: given a statement, the model must output exactly one domain label (no explanation). Each training example is formatted as a chat-style sequence:
+\begin{itemize}
+    \item \textbf{System message:} strict instruction listing valid labels (constructed from the chosen taxonomy),
+    \item \textbf{User message:} the claim statement text,
+    \item \textbf{Assistant target:} the gold \texttt{super\_domain} label string.
+\end{itemize}
+Training uses a standard causal language modeling objective on the full chat-formatted input (system + user + label). A language-modeling collator is applied with masked language modeling disabled, and the adapter is optimized for a small number of epochs (e.g., 3) with a learning rate typical for LoRA adapters (e.g., $5\times10^{-4}$).
+
+\subsection{Inference Procedure and Output Normalization}
+
+At inference time, the router receives only the statement text and produces a short completion (e.g., up to 8 new tokens) using greedy decoding (\texttt{do\_sample=False}). To ensure robustness against minor formatting noise, the output label is extracted using a strict normalization heuristic:
+\begin{enumerate}
+    \item exact word match against the valid label list,
+    \item substring fallback if an exact match fails,
+    \item default to \texttt{misc} if no label is detected.
+\end{enumerate}
+This procedure is intentionally strict, aligning with the router's design goal: always return exactly one valid label.
+
+\subsection{Routing Accuracy}
+
+Routing accuracy is evaluated by comparing predicted super-domains against the subject-derived labels on a held-out test split. The evaluation reports overall accuracy, per-class precision/recall/$F_1$, and a confusion matrix (true labels as rows, predicted labels as columns). Because labels are derived from LIAR subjects, reported routing accuracy should be interpreted as agreement with the subject-tag mapping rather than ground-truth topicality.
+
+\paragraph{Statement-only evaluation.}
+Although LIAR subject tags can be injected as auxiliary metadata elsewhere in the pipeline, the router is trained and evaluated primarily in a statement-only mode to reflect realistic deployment, where only the claim text is available.
+
+\subsection{Results}
+
+This section reports the empirical performance of the routing models across backbone families and super-domain granularities. The analysis focuses exclusively on routing agreement with subject-derived super-domain labels. Binary verdict performance is discussed in the subsequent section.
+
+\subsubsection{Routing Agreement Across Taxonomies}
+
+Routing accuracy is evaluated on the held-out LIAR test split by comparing predicted super-domains against the deterministic subject-derived labels.
+
+Across all backbone families, routing accuracy decreases consistently as label granularity increases (Table~\ref{tab:main_results}). This pattern is stable and architecture-independent.
+
+\paragraph{Coarse taxonomy ($k=6$).}
+Under the 6-label configuration, routing accuracy is highest for all backbones. DeepSeek achieves the strongest performance at $0.788$, followed closely by Gemma ($0.769$) and Llama ($0.766$). The small spread between models indicates that broad topical grouping can be recovered reliably from statement text alone.
+
+\paragraph{Intermediate taxonomy ($k=8$).}
+When increasing granularity to 8 super-domains, routing accuracy decreases moderately. DeepSeek reaches $0.744$, Llama $0.740$, and Gemma $0.720$. The performance gap between backbone families becomes slightly more pronounced, but the overall degradation remains controlled.
+
+\paragraph{Fine-grained taxonomy ($k=13$).}
+Under fine-grained specialization, routing becomes substantially more challenging. Llama achieves $0.689$, DeepSeek $0.680$, and Gemma $0.642$. This reflects the difficulty of distinguishing semantically adjacent subdomains using short, statement-only inputs.
+
+\subsubsection{Error Patterns}
+
+Inspection of the routing confusion matrices (Appendix~\ref{app:confusion_matrices}) reveals that most errors occur between semantically related categories rather than across unrelated domains. 
+
+For the 13-label taxonomy, common confusions include:
+\begin{itemize}
+    \item \texttt{macro\_econ} vs.\ \texttt{jobs\_labor},
+    \item \texttt{institutions\_elections} vs.\ \texttt{media\_meta},
+    \item \texttt{law\_crime\_rights} vs.\ policy-oriented governance categories.
+\end{itemize}
+
+Similarly, in the 8-label configuration, confusion primarily occurs between \texttt{economy} and \texttt{politics\_government}, as well as between \texttt{law\_rights} and governance-related domains. 
+
+These patterns are consistent with two factors:
+\begin{enumerate}
+    \item Short claims often contain overlapping topical cues.
+    \item Subject-derived supervision introduces additional noise when multiple LIAR tags map to different super-domains and a single priority-based label must be chosen.
+\end{enumerate}
+
+\subsubsection{Backbone Comparison}
+
+Across granularities, DeepSeek achieves the highest routing agreement, followed closely by Llama, while Gemma consistently performs slightly worse under finer taxonomies. However, differences between DeepSeek and Llama remain relatively small. The stronger degradation observed for Gemma under $k=13$ suggests that finer-grained semantic discrimination is more sensitive to backbone-specific representation capacity or training stability.
+
+\subsubsection{Summary}
+
+Routing performance exhibits a clear granularity–accuracy trade-off. Coarser taxonomies yield the highest agreement but provide less specialization capacity for downstream experts. Finer taxonomies enable more precise specialization but increase routing ambiguity and susceptibility to label noise. The intermediate 8-label configuration represents a balanced compromise, maintaining strong routing agreement while preserving meaningful domain differentiation.
+
+\begin{table}[t]
+\centering
+\caption{Routing agreement across backbones and taxonomy granularities on the LIAR test set ($n = 1267$). Domain accuracy reports agreement with subject-derived super-domain labels.}
+\label{tab:main_results}
+\begin{tabular}{llrrrrr}
+\hline
+Backbone & $k$ & Domain acc. \\
+\hline
+DeepSeek & 6  & 0.788 \\
+DeepSeek & 8  & 0.744 \\
+DeepSeek & 13 & 0.680 \\
+\hline
+Llama    & 6  & 0.766 \\
+Llama    & 8  & 0.740 \\
+Llama    & 13 & 0.689 \\
+\hline
+Gemma    & 6  & 0.769 \\
+Gemma    & 8  & 0.720 \\
+Gemma    & 13 & 0.642 \\
+\hline
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\section{Checkability Model}
+
+\subsection{Motivation and Definition}
+A recurring issue in benchmark and real-world fact-checking is that not every input is a well-formed, verifiable claim.
+In LIAR-style data, some entries are incomplete fragments, topical cues without an assertion, or references that depend on missing context.
+Typical examples include: (i) fragmentary statements without a proposition (e.g., ``On the Bush tax cuts .''), (ii) pronoun-only references without a resolvable entity (e.g., ``Says states mandated tests come from an English company .''), and (iii) underspecified claims where key information such as actor, time, or location is missing.
+Such cases introduce noise into both training and evaluation and can force downstream agents into guessing behavior.
+
+To mitigate this, the pipeline introduces a \emph{checkability gate} that determines whether a statement is suitable for automated fact-checking.
+Checkability is operationalized as a categorical decision:
+\[
+\mathrm{checkability}(x) \in \mathcal{C},
+\]
+where $\mathcal{C}$ is a small set of mutually exclusive categories.
+Only statements labeled as \texttt{fact\_checkable} are forwarded to the domain router and expert agents.
+
+\subsection{Checkability Categories}
+The checkability model predicts exactly one of the following categories:
+\begin{itemize}
+    \item \texttt{fact\_checkable}: a concrete factual claim that can be verified with objective evidence (e.g., dates, votes, laws, numerical assertions).
+    \item \texttt{non\_claim}: no clear factual proposition (topic headings, fragments, or descriptive placeholders).
+    \item \texttt{opinion\_or\_ambiguous}: primarily evaluative language, vague blame, or claims without a clear factual benchmark.
+    \item \texttt{needs\_additional\_context}: potentially checkable in principle, but missing essential context (who/what/when/where).
+    \item \texttt{sensitive\_selfharm}: statements about suicide/self-harm that are ethically sensitive and excluded from automatic True/False assignment.
+\end{itemize}
+
+This design separates \emph{ill-posed} inputs (e.g., \texttt{non\_claim}) from \emph{underspecified} inputs (e.g., \texttt{needs\_additional\_context}) and additionally isolates sensitive content into a dedicated category.
+
+\subsection{Modeling and Output Format}
+The checkability component is implemented as a lightweight classifier using an instruction-following language model in \emph{generation mode}.
+Given a statement, the model is prompted to return \emph{only} a JSON object of the form:
+\[
+\{\texttt{"category"}:\ \cdots\}.
+\]
+No explanation, markdown, or additional keys are permitted.
+At inference time, the system extracts the first valid JSON object from the generated text; if parsing fails, it falls back to a conservative default category (implemented as \texttt{opinion\_or\_ambiguous} in the current pipeline).
+
+Importantly, the checkability gate uses the \emph{base model} (without LoRA adapters), since its purpose is not domain specialization but robust detection of malformed or underspecified inputs.
+
+\subsection{Pipeline Integration}
+The checkability gate is placed \emph{before} routing and expert evaluation:
+\begin{enumerate}
+    \item \textbf{Checkability filtering:} assign a checkability category $\in \mathcal{C}$.
+    \item \textbf{Domain routing:} for \texttt{fact\_checkable} inputs, predict exactly one super-domain label.
+    \item \textbf{Domain expert:} run the domain-specific expert to produce \texttt{True}/\texttt{False} plus a short explanation.
+    \item \textbf{Optional escalation:} if enabled, apply an additional adjudication step (e.g., a generalist tie-breaker or second-expert fallback).
+\end{enumerate}
+
+Only statements categorized as \texttt{fact\_checkable} are forwarded to subsequent stages.
+All other categories are excluded from True/False prediction to avoid forcing domain experts into speculative decisions.
+
+\subsection{Evaluation Handling}
+Depending on the reporting setup, non-checkable inputs are handled in one of two ways:
+\begin{itemize}
+    \item \textbf{Filtered evaluation:} remove non-checkable instances and compute routing and verdict metrics only on the \texttt{fact\_checkable} subset.
+    \item \textbf{Separate accounting:} track excluded instances as a dedicated category and report their frequency alongside standard classification metrics.
+\end{itemize}
+
+In the implemented evaluation routine, routing accuracy and fact-checking metrics (accuracy, classification report, confusion matrix) are computed on the \texttt{fact\_checkable} subset to ensure comparability across aggregation methods and to prevent ill-posed inputs from dominating error patterns.
+
+\subsection{User-Facing Feedback and Practical Deployment}
+In this thesis, the checkability model is primarily used as an \emph{internal filter} to improve the reliability of the downstream evaluation.
+The goal is to reduce noise introduced by ill-posed inputs (e.g., fragments or missing referents) and thereby obtain more meaningful accuracy comparisons between routing and aggregation variants.
+
+In a real-world deployment, however, the checkability stage would ideally serve a second purpose: \emph{user-facing guidance}.
+In an interactive verification setting (e.g., via an API where users submit claims for checking), the checkability output can be surfaced to the user to explain \emph{why} a claim cannot currently be verified and what information is missing.
+For instance, the model can indicate that a statement lacks a named entity, a time reference, or a concrete proposition, and it could prompt the user to provide the required context before a True/False decision is attempted.
+
+This user-feedback functionality is not implemented as part of the experimental pipeline in this work, since the primary objective is improving and analyzing end-to-end classification performance on Fake News.
+Nevertheless, for public-facing fact-checking tools, exposing checkability feedback is an important design choice: it improves transparency, reduces misleading binary outputs on underspecified claims, and supports iterative refinement of user queries toward verifiable statements.
+
+\subsection{Results}
+
+Because no ground-truth checkability annotations are available for LIAR, the checkability
+component cannot be evaluated in terms of classification accuracy. Instead, the
+\emph{empirical category distribution} induced by the gate is reported, i.e.\ how often each base model
+assigns statements to \texttt{fact\_checkable} versus exclusion categories. This directly
+determines the effective evaluation subset for downstream routing and expert verdicts.
+
+Table~\ref{tab:checkability_dist} summarizes the observed distributions on the test split
+($n=1267$). The results show substantial variation across base models. DeepSeek is highly
+permissive and classifies almost the entire test set as \texttt{fact\_checkable}
+(1263/1267; 99.7\%). Llama filters a moderate fraction of statements (1100/1267; 86.8\%),
+primarily assigning the remainder to \texttt{opinion\_or\_ambiguous} and \texttt{non\_claim}.
+In contrast, Gemma is considerably stricter, marking fewer than half of all statements as
+\texttt{fact\_checkable} (535/1267; 42.2\%), with a large share assigned to
+\texttt{needs\_additional\_context} (383/1267; 30.2\%) and \texttt{opinion\_or\_ambiguous}
+(279/1267; 22.0\%).
+
+These findings indicate that checkability gating is not a neutral preprocessing step but a
+model-dependent decision rule that can substantially alter the downstream evaluation set.
+Accordingly, the gate is treated as an explicit, auditable stage of the pipeline: category
+frequencies are reported, and routing and verdict metrics are computed only on the
+\texttt{fact\_checkable} subset when the gate is enabled.
+
+\begin{table}[t]
+\centering
+\caption{Checkability gate category distribution on the test split ($n=1267$) using different base models.}
+\label{tab:checkability_dist}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Base model & fact\_checkable & opinion/ambig. & non\_claim & needs\_ctx & selfharm \\
+\midrule
+Llama    & 1100 (86.8\%) & 122 (9.6\%)  &  42 (3.3\%) &   1 (0.1\%) & 2 (0.2\%) \\
+Gemma    &  535 (42.2\%) & 279 (22.0\%) &  68 (5.4\%) & 383 (30.2\%) & 2 (0.2\%) \\
+DeepSeek & 1263 (99.7\%) &   2 (0.2\%)  &   2 (0.2\%) &   0 (0.0\%) & 0 (0.0\%) \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+\subsection{Discussion}
+
+The checkability gate increases robustness by explicitly separating \emph{claim understanding}
+from \emph{claim verification}. In principle, this reduces noise originating from fragments and
+underspecified inputs that would otherwise force downstream experts into speculative
+True/False decisions.
+
+At the same time, the empirical results reveal strong \emph{model dependence} in checkability
+judgments. A permissive gate (as observed for DeepSeek) largely preserves the original benchmark
+distribution but provides limited filtering. A stricter gate (as observed for Gemma) excludes a
+substantial fraction of the test set, potentially removing genuinely verifiable but short claims
+and thereby altering the effective evaluation subset. Llama exhibits intermediate behavior
+between these two extremes.
+
+Consequently, the checkability component is treated as an explicit, auditable stage rather than
+an implicit preprocessing heuristic. Category frequencies are reported, and—when the gate is
+enabled—routing and verdict metrics are computed exclusively on the
+\texttt{fact\_checkable} subset. This approach makes the impact of filtering transparent and
+allows downstream comparisons to be interpreted in light of the induced selection effect.
+
+\section{Domain-Specific Agents}
+
+\subsection{Training Procedure}
+For each super-domain $d \in \mathcal{D}$, a dedicated expert agent is trained via a lightweight LoRA adapter on top of a shared instruction-tuned backbone (e.g., \texttt{meta-llama/Llama-\\3.1-8B-Instruct}). All experts within the same model family use the \emph{same frozen base model}, but each domain expert has its \emph{own} adapter parameters.
+
+\paragraph{Domain-restricted supervision.}
+Expert training data is constructed by filtering the global training set by the domain label:
+\[
+\mathcal{T}_d = \{(x_i, y_i) \mid \texttt{super\_domain}(x_i)=d\},
+\]
+where $x_i$ is the claim statement and $y_i \in \{\texttt{True},\texttt{False}\}$ is the binary ground-truth label. Each expert is therefore optimized only on examples from its assigned domain.
+
+\paragraph{Chat-formatted training objective.}
+Training is implemented as supervised next-token prediction on a chat-style transcript. Each example is formatted as:
+(i) a domain-specific system instruction that defines the expert role, 
+(ii) a user message containing the claim text, and
+(iii) an assistant target consisting of the gold label (\texttt{True} or \texttt{False}) with no additional text.
+The objective encourages the model to generate a single binary verdict under a strict instruction-following interface.
+
+\paragraph{LoRA setup.}
+Adapters are trained with rank $r=8$, $\alpha=16$, and dropout $0.05$, applied to the attention and MLP projection modules (\texttt{q\_proj}, \texttt{k\_proj}, \texttt{v\_proj}, \texttt{o\_proj}, \texttt{gate\_proj}, \texttt{up\_proj}, \texttt{down\_proj}). Unless otherwise noted, experts are trained for 3 epochs with learning rate $5\times10^{-4}$, batch size 4, and gradient accumulation of 2. After training, only the LoRA weights and tokenizer are saved in a domain-specific subdirectory.
+
+\paragraph{Memory-efficient sequential execution.}
+At inference time, the system is implemented in a memory-efficient sequential manner. After routing has assigned each claim to a domain, experts are loaded one-by-one and applied only to the subset of claims routed to their domain. The corresponding model is then released before the next expert is loaded. This sequential strategy reduces peak VRAM usage and enables evaluation across multiple domain experts without requiring simultaneous multi-model residency.
+
+\subsection{Design Differences}
+All domain experts follow a shared interface: they output a binary verdict and a short explanation. Concretely, each expert produces a JSON object with the fields
+\[
+\texttt{verdict} \in \{\texttt{True}, \texttt{False}\}, \qquad
+\texttt{explanation} \ \text{(2--4 concise sentences)}.
+\]
+
+\paragraph{Training vs.\ inference interface.}
+While inference outputs include both \texttt{verdict} and \texttt{explanation}, the expert adapters are trained using only the binary label supervision (\texttt{True}/\texttt{False}). Explanations are generated at inference time under explicit prompting, as they are not required for the classification objective.
+
+\paragraph{Schema enforcement and fallback behavior.}
+To guarantee machine-readable outputs, generation is constrained by a JSON schema (enforced during decoding). If the model produces malformed JSON or cannot be parsed reliably, a deterministic fallback policy is applied (e.g., defaulting to \texttt{False} and attaching a short error note). This ensures that the end-to-end pipeline remains robust and does not break due to occasional formatting errors.
+
+\subsection{Results}
+
+Domain experts are evaluated on the test split using \emph{domain-restricted ground truth}:
+for each super-domain $d$, the corresponding expert is applied only to instances whose
+gold label satisfies $\texttt{super\_domain}(x)=d$. This isolates expert performance from
+routing effects and measures how well each adapter performs on the domain distribution it
+was trained for. Performance is reported in terms of accuracy, per-class precision/recall,
+and the confusion matrix for the binary labels (\texttt{True}, \texttt{False}).
+
+\paragraph{Overall performance across model families.}
+Table~\ref{tab:expert_overall_summary} summarizes overall expert accuracy and macro-F1 when
+aggregating all domains for a fixed $(\textit{backbone},k)$ configuration.\footnote{For
+$k{=}13$, evaluation covers $n{=}1230$ instances due to domain label availability in the
+corresponding split; for $k{=}6$ and $k{=}8$, $n{=}1267$.}
+Across all configurations, Llama yields the strongest and most stable expert performance
+(mean accuracy $0.663$; mean macro-F1 $0.654$ across $k\in\{6,8,13\}$). Gemma performs
+consistently below Llama (mean accuracy $0.627$; mean macro-F1 $0.567$), while DeepSeek
+shows the largest variance across $k$ and tends to degrade as the number of domains
+increases (mean accuracy $0.635$; mean macro-F1 $0.569$).
+
+\paragraph{Effect of domain granularity.}
+Increasing the number of super-domains changes both the training regime (less data per expert)
+and the semantic specificity required of each expert.
+For Llama, overall accuracy remains relatively stable across $k$ (0.669 at $k{=}6$,
+0.660 at $k{=}8$, 0.662 at $k{=}13$), indicating that the adapters retain useful
+specialization even under finer domain splits.
+Gemma exhibits a mild decline with increasing granularity (0.633 $\rightarrow$ 0.626
+$\rightarrow$ 0.621).
+DeepSeek shows the strongest decline (0.658 $\rightarrow$ 0.635 $\rightarrow$ 0.613),
+suggesting sensitivity to smaller per-domain training sets and/or more brittle instruction
+following under finer label spaces.
+
+\paragraph{Class imbalance and prediction bias.}
+As noted in Section~\ref{sec:exploratory_domain_analysis}, the LIAR training set 
+exhibits a moderate class imbalance (approximately 56\% true vs.\ 44\% false), 
+which is reflected in the behavior of several expert configurations. These exhibit 
+a tendency toward predicting \texttt{True} more often than \texttt{False}, reflected 
+by substantially higher recall for \texttt{True} than for \texttt{False}. This is 
+most pronounced for Gemma and DeepSeek. For example, Gemma achieves high recall for 
+\texttt{True} (often above 0.88 in the aggregated reports) but comparatively low 
+recall for \texttt{False}, producing confusion matrices dominated by \texttt{False} 
+$\rightarrow$ \texttt{True} errors. DeepSeek shows a similar pattern for multiple 
+domains and, in some small domains, collapses to predicting a single class (e.g., 
+near-zero recall for \texttt{False}). In contrast, Llama's class-wise 
+precision/recall is more balanced, which is reflected in consistently higher macro-F1.
+
+\paragraph{Per-domain expert performance.}
+Per-domain results reveal that performance depends strongly on domain size and label
+distribution. Larger domains such as \texttt{socioeconomic\_policy} ($k{=}6$) and
+\texttt{economy} ($k{=}8$) yield comparatively stable accuracies across backbones,
+whereas small domains (e.g., \texttt{substances\_gambling}, \texttt{public\allowbreak\_health\_crises})
+display high variance and are especially prone to single-class behavior, which inflates
+accuracy when one label dominates but reduces macro-F1 substantially. This effect is visible
+for multiple backbones at $k{=}13$, where some small domains show confusion matrices with
+zero predicted instances for one class.
+
+\paragraph{Summary.}
+Overall, the expert-only evaluation indicates that (i) domain specialization via LoRA is
+effective, but (ii) stability depends on the backbone and the amount of domain-specific
+training data. Llama provides the best trade-off between accuracy and balanced class
+behavior across all domain granularities, while Gemma and DeepSeek more frequently show
+label bias and instability in low-resource domains. A detailed breakdown of all per-domain expert results is provided in Appendix~\ref{tab:expert_per_domain} and Appendix~\ref{tab:expert_summary}.
+
+\begin{table}[t]
+\centering
+\caption{Expert-only performance aggregated across all domains for each backbone and domain granularity $k$.
+Macro-F1 is computed over the two labels \texttt{True}/\texttt{False}.}
+\label{tab:expert_overall_summary}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Backbone ($k$) & $n$ & Accuracy & Macro-F1 \\
+\midrule
+Llama ($k{=}6$)  & 1267 & 0.669 & 0.660 \\
+Llama ($k{=}8$)  & 1267 & 0.660 & 0.650 \\
+Llama ($k{=}13$) & 1230 & 0.662 & 0.652 \\
+\midrule
+Gemma ($k{=}6$)  & 1267 & 0.633 & 0.569 \\
+Gemma ($k{=}8$)  & 1267 & 0.626 & 0.567 \\
+Gemma ($k{=}13$) & 1230 & 0.621 & 0.564 \\
+\midrule
+DeepSeek ($k{=}6$)  & 1267 & 0.658 & 0.622 \\
+DeepSeek ($k{=}8$)  & 1267 & 0.635 & 0.561 \\
+DeepSeek ($k{=}13$) & 1230 & 0.613 & 0.525 \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+\section{End-to-End Evaluation}
+
+\subsection{Setup and Metrics}
+End-to-end performance is evaluated on the binary LIAR test set using the full pipeline
+\[
+\text{checkability} \rightarrow \text{routing} \rightarrow \text{domain expert}.
+\]
+The primary outcome is the final binary verdict (\texttt{True}/\texttt{False}), evaluated with
+accuracy, precision, recall, and $F_1$ (treating \texttt{True} as the positive class). In addition,
+domain routing accuracy is reported to separate errors caused by misrouting from errors caused by
+the domain experts themselves. Confusion matrices are included to expose the error structure.
+
+Three taxonomies are compared: $k \in \{6,8,13\}$ domains. For each backbone (Llama, Gemma,
+DeepSeek), routing is performed by the corresponding router model, and the final verdict is
+generated by the routed domain expert.
+
+\subsection{End-to-End Results without Checkability}
+Table~\ref{tab:best_routing_no_gate} summarizes end-to-end verdict performance and routing accuracy
+without checkability gating. Across backbones, the 8-domain setting yields the most stable
+trade-off between routing difficulty and expert specialization. Llama achieves its strongest
+end-to-end accuracy at $k{=}13$ (0.635) and a comparable result at $k{=}8$ (0.632), while $k{=}6$
+performs substantially worse (0.543). This degradation is reflected in the confusion matrix, where
+$k{=}6$ exhibits a strong bias toward predicting \texttt{False} (high false negatives for
+\texttt{True}), suggesting that coarse experts and/or prompting lead to conservative behavior.
+
+DeepSeek attains its best end-to-end accuracy at $k{=}6$ (0.661), while its
+performance decreases for finer taxonomies ($k{=}8$: 0.610; $k{=}13$: 0.609),
+indicating a monotonic decline as granularity increases. Gemma shows the lowest
+overall performance without checkability gating, but its accuracy improves
+consistently with larger $k$ ($k{=}6$: 0.489, $k{=}8$: 0.577, $k{=}13$: 0.593),
+and the curve shows no sign of flattening at $k{=}13$. LLaMA's pattern is
+intermediate: accuracy rises sharply from $k{=}6$ (0.543) to $k{=}8$ (0.632) and
+then flattens at $k{=}13$ (0.635), suggesting that the optimum lies near or just
+beyond $k{=}13$ for this backbone.
+
+A notable asymmetry therefore emerges across backbones: DeepSeek's accuracy
+maximum is at the coarsest taxonomy ($k{=}6$), while LLaMA and Gemma reach
+their best results at the finest taxonomy evaluated ($k{=}13$). This divergence
+reflects the interaction between routing degradation and expert specialization
+gain. For DeepSeek, domain-specific adapters are more sensitive to reduced
+per-domain training data, so routing degradation at higher $k$ dominates and
+accuracy peaks early. For LLaMA and Gemma, the experts benefit sufficiently
+from narrower training distributions to offset the increased routing difficulty,
+so the accuracy maximum is pushed toward finer granularities. The practical
+implication is that the optimal taxonomy depth is backbone-specific and should
+be tuned jointly with expert quality rather than determined from routing accuracy
+alone.
+
+\FloatBarrier
+\begin{table}[t]
+\centering
+\caption{Best end-to-end configuration per backbone by verdict accuracy 
+\textbf{without} checkability gating on the full test set ($n{=}1267$).}
+\label{tab:best_routing_no_gate}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Backbone & $k$ & $n$ & Verdict Acc. & Macro-F1 & Routing Acc. \\
+\midrule
+DeepSeek & 6  & 1267 & 0.661 & 0.621 & 0.788 \\
+Llama    & 13 & 1267 & 0.635 & 0.631 & 0.689 \\
+Gemma    & 13 & 1267 & 0.593 & 0.574 & 0.642 \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+\subsection{End-to-End Results with Checkability Gating}
+When checkability gating is enabled, evaluation is performed on the subset classified as
+\texttt{fact\_checkable} by the gate. This changes the effective test set size in a
+model-dependent manner: Llama retains 1100/1267 instances, DeepSeek retains 1263/1267, and Gemma
+retains only 535/1267. Table~\ref{tab:best_routing_gate} reports results on these filtered
+subsets.
+
+For Llama, checkability gating has little effect on end-to-end verdict accuracy in absolute terms:
+$k{=}6$ remains unchanged (0.543 on 1100 instances), $k{=}8$ increases slightly (0.632$\rightarrow$0.637),
+and $k{=}13$ decreases marginally (0.635$\rightarrow$0.634). Routing accuracy remains similar across
+settings (e.g., $k{=}13$: 0.689$\rightarrow$0.684). This suggests that the main effect of gating for
+Llama is selection (changing which claims are evaluated), rather than systematically increasing
+or decreasing pipeline competence.
+
+For DeepSeek, gating is nearly neutral because the gate is highly permissive (1263/1267 retained).
+Consequently, verdict accuracy and routing accuracy remain essentially unchanged across $k$.
+
+For Gemma, gating substantially alters the evaluated subset due to strict filtering (535/1267
+retained). On this reduced subset, verdict accuracy increases compared to the ungated setting for
+$k{=}8$ and $k{=}13$ (e.g., $k{=}13$: 0.593$\rightarrow$0.632), while $k{=}6$ remains low (0.489$\rightarrow$0.434).
+However, this improvement cannot be interpreted as a pure capability gain because it is confounded
+with the strong selection effect induced by the gate. The gated evaluation reflects performance on
+claims that Gemma itself considers checkable, rather than on the original benchmark distribution.
+
+\begin{table}[t]
+\centering
+\caption{Best end-to-end configuration per backbone by verdict accuracy \textbf{with} 
+checkability gating. $n$ varies by model due to model-dependent filtering 
+(Llama: 1100, Gemma: 535, DeepSeek: 1263).}
+\label{tab:best_routing_gate}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Backbone & $k$ & $n$ & Verdict Acc. & Macro-F1 & Routing Acc. \\
+\midrule
+DeepSeek & 6  & 1263 & 0.661 & 0.624 & 0.787 \\
+Llama    & 8  & 1100 & 0.637 & 0.621 & 0.744 \\
+Gemma    & 13 &  535 & 0.632 & 0.560 & 0.630 \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+\subsection{Routing vs.\ Expert Errors}
+The results indicate that routing constitutes a persistent bottleneck. Even when per-domain experts
+are specialized, end-to-end verdict performance is bounded by routing quality, especially at
+$k{=}13$, where routing accuracy drops across backbones. Conversely, strong routing does not
+guarantee strong end-to-end performance: several settings exhibit reasonable domain accuracy
+($\approx$0.74--0.79) while final verdict accuracy remains substantially lower (e.g., Llama/Gemma
+at $k{=}6$), implying that expert decision quality and calibration remain limiting factors.
+
+Overall, the 8-domain taxonomy provides the most consistent end-to-end behavior across backbones,
+balancing routing reliability with meaningful domain specialization.
