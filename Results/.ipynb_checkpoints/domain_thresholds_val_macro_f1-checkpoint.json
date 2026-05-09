@@ -1,0 +1,12 @@
+{
+  "default_threshold": 0.5,
+  "domain_thresholds": {
+    "economy": 0.5900000000000002,
+    "environment_energy": 0.6500000000000002,
+    "foreign_security": 0.5900000000000002,
+    "health_social": 0.35,
+    "law_rights": 0.6500000000000002,
+    "politics_government": 0.39,
+    "society_culture": 0.5800000000000002
+  }
+}

@@ -1,0 +1,40 @@
+# Große Modelldateien
+*.bin
+*.pt
+*.safetensors
+*.gguf
+**/adapters/
+
+# Python Cache
+**/__pycache__/
+*.pyc
+**/.ipynb_checkpoints/
+
+# System
+.claude/
+.vscode/
+
+# Systemdateien
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.config/
+.gitconfig
+.ipython/
+.jupyter/
+.keras/
+.local/
+.npm/
+.profile
+.virtual_documents/
+
+# Unterstriche-Ordner (Cache/System)
+_data/
+_huggingface-shared/
+_ollama-shared/
+_informationen/
+_licenses/
+
+# Große Problemdatei
+4_Final_Pipeline/core

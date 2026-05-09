@@ -1,0 +1,65 @@
+###################################################
+Erklärung / Explanation:
+###################################################
+
+Bitte die Nutzung der Grafikkarte rechtzeitig planen und eintragen. Verwenden Sie eine weitere Zeile, wenn Sie bereits wissen, dass Sie eine GPU benötigen, sobald diese verfügbar wird.
+Nach der Nutzung wieder entfernen.
+
+Die aktuelle Auslastung kann mit "nvidia-smi" in der Konsole oder über Services->GPU-Auslastung (https://ki-server.oth-aw.de/services/GPU-Auslastung/) überprüft werden.
+Wenn mehrere GPUs benötigt werden, pro GPU angeben.
+Wenn ihr eine GPU benötigt, aber keine frei ist, schreibt Personen an.
+
+--------------
+
+Please plan and enter the use of the graphics card in good time. Use another line if you already know that you need a gpu after it gets free. Remove again after use.
+
+The current utilisation can be checked with "nvidia-smi" in the console or via Services->GPU-Auslastung (https://ki-server.oth-aw.de/services/GPU-Auslastung/).
+If several GPUs are required, specify per GPU.
+If you need a GPU but none is free, write to people.
+
+--------------
+
+Beispiel / Example: 
+
+GPU | GB | Duration      | Person / Mail
+---------------------------------------------------
+0   | 20 | xx.xx - xx.xx | x.xxxxx@oth-aw.de  
+0   | 20 | xx.xx - xx.xx | y.yyyyy@oth-aw.de  
+---------------------------------------------------
+1   | 40 | 21.09 - 24.09 | max.mustermann@oth-aw.de     <--- Neuer Eintrag / new entry
+1   | 10 | 26.09 - 30.09 | mia.musterfrau@oth-aw.de     <--- Neuer Eintrag / new entry
+1   | 15 | 26.09 - 30.09 | jane.doe@oth-aw.de           <--- Neuer Eintrag / new entry
+
+
+###################################################
+Aktuelle Nutzung der Grafikkarten / Current GPU Usage
+###################################################
+
+###################################################
+###################################################
+
+
+GPU | GB | Duration      | Person / Mail
+---------------------------------------------------
+0   | 40 | 05.05 - 07.05 | r.umashankar@oth-aw.de
+---------------------------------------------------
+1   | 40 | 05.05 - 07.05 | r.umashankar@oth-aw.de
+---------------------------------------------------
+2   | 40 | 08.05 - 09.05 | c.drescher@oth-aw.de
+---------------------------------------------------
+3   | 40 | 23.04 - 26.04 | m.lyoteva@oth-aw.de
+---------------------------------------------------
+4   | 40 | 23.04 - 26.04 | m.lyoteva@oth-aw.de
+---------------------------------------------------
+5   | 40 | 04.05 - 06.05 | y.benagatte-rangaswamy@oth-aw.de
+---------------------------------------------------
+6   | 40 | 06.05 - 08.05 | f.seitzer@oth-aw.de 
+---------------------------------------------------
+7   | 40 | 23.04 - 26.04 | t.stanchev@oth-aw.de
+---------------------------------------------------
+
+####################################################
+
+Tatyana Ivanovska:
+> Hier bitte bei längeren Berechnungen auf der GPU eintragen, wer plant welche GPU wie lange zu nutzen.
+> Hier geht es nicht darum, bis wann ihr die Masterarbeiten schreibt. Ich kann ja auch schreiben, dass ich die alle 4 Karte bis meiner Rente brauche :DDDD Es ist überhaupt nicht zielführend, wenn man schreibt bis wann man maximal die Karte braucht. Es geht darum, dass wir wissen, wann man was startet. 

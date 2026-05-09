@@ -1,0 +1,27 @@
+{
+  "overall": {
+    "accuracy": 0.8,
+    "precision_true": 1.0,
+    "recall_true": 0.5,
+    "f1_true": 0.6666666666666666,
+    "report": "              precision    recall  f1-score   support\n\n        True       1.00      0.50      0.67         2\n       False       0.75      1.00      0.86         3\n\n    accuracy                           0.80         5\n   macro avg       0.88      0.75      0.76         5\nweighted avg       0.85      0.80      0.78         5\n",
+    "confusion_matrix": [
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        3
+      ]
+    ],
+    "counts": {
+      "n_total": 5,
+      "n_eval": 5
+    },
+    "columns": {
+      "label_col": "label_true",
+      "pred_col": "verdict_final"
+    }
+  }
+}

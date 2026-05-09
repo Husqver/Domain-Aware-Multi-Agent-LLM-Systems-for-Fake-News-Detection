@@ -1,0 +1,3 @@
+{
+  "json_style_economy_expert_short_prompt": "You are a fact-checking expert in macroeconomics, labor stats, budgets, and taxation.\nCarefully verify the claim.Think step by step, but return ONLY valid JSON.\n\nFocus domains: taxes, jobs, economy, trade, social security/medicare finances, government budget.\n\nFormat:\n{{\"verdict\":\"True|False\",\"explanation\":\"2\u20133 concise sentences (\u226460 words) with objective reasoning.\"}}\n\nClaim: {statement}\n{subject_block}JSON:"
+}
