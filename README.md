@@ -1,4 +1,3 @@
-
 # Domain-Aware Multi-Agent LLM Systems for Fake News Detection
 
 Master's thesis project implementing a domain-aware multi-agent
@@ -143,9 +142,7 @@ benchmark for fake news detection consisting of short political
 statements with fine-grained veracity labels and subject tags.
 
 For this project, the original six-class labels are reduced to binary
-(`True` / `False`) using a deterministic mapping, and the subject tags
-are mapped to coarser super-domains using the `DomainConfig` class in
-`4_Final_Pipeline/train_domain_expert_domain_config.py`.
+(`True` / `False`) using a deterministic mapping.
 
 **Supported domain granularities:**
 
@@ -182,6 +179,26 @@ pip install -r requirements.txt
 ```
 
 ---
+
+
+## Usage
+
+The experiments are organized as Jupyter Notebooks and build on each other:
+
+| Notebook                                                      | Description                                               |
+| ------------------------------------------------------------- | --------------------------------------------------------- |
+| `1_Basics_Masterthesis/1_Basic_Model_Comparison.ipynb`      | Baseline comparison of different LLMs without fine-tuning |
+| `2_Finetuning_Masterthesis/2_Finetuning.ipynb`              | LoRA fine-tuning of models on the LIAR dataset            |
+| `3_Multi_Agent_Experiments/3_Multi_Agent_Experiments.ipynb` | Multi-agent experiments with confidence-weighted routing  |
+| `4_Final_Pipeline/4_Final_Pipeline.ipynb`                   | Final domain-aware pipeline with checkability gate        |
+
+### Start Notebooks
+
+```bash
+jupyter lab
+```
+
+The Python scripts in `4_Final_Pipeline/` can also be run directly for training or evaluation outside the notebook environment.
 
 ## Citation
 
